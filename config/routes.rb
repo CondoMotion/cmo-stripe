@@ -1,9 +1,10 @@
 CmoStripe::Application.routes.draw do
   mount StripeEvent::Engine => '/stripe'
 
-  get "pricing", to: "home#pricing", as: :pricing
-  get "about", to: "home#about", as: :about
-  get "contact", to: "home#contact", as: :contact
+  get "pricing",        to: "home#pricing",         as: :pricing
+  get "about",          to: "home#about",           as: :about
+  get "featured-sites", to: "home#featured_sites",  as: :featured_sites
+  get "contact",        to: "home#contact",         as: :contact
 
   authenticated :user do
     root :to => 'home#index'

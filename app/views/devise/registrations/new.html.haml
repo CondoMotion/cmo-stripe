@@ -11,7 +11,7 @@
     = hidden_field_tag 'plan', params[:plan]
     = f.error_notification
     = display_base_errors resource
-    = f.input :name, :autofocus => true
+    = f.input :name, label: "Full Name", :autofocus => true
     = f.input :email, :required => true
     = f.input :password, :required => true
     = f.input :password_confirmation, :required => true
