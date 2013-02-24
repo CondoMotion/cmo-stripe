@@ -5,7 +5,7 @@ class RegistrationsController < Devise::RegistrationsController
     if @plan && ENV["ROLES"].include?(@plan) && @plan != "admin"
       super
     else
-      redirect_to root_path, :notice => 'Please select a subscription plan below.'
+      redirect_to pricing_path, :notice => 'Please select a subscription plan below.'
     end
   end
 
@@ -31,11 +31,19 @@ class RegistrationsController < Devise::RegistrationsController
     end
   end
 
-  private
+protected
+
+  def after_update_path_for(resource)
+    edit_user_registration_path
+  end
+
+private
+
   def build_resource(*args)
     super
     if params[:plan]
       resource.add_role(params[:plan])
     end
   end
+
 end

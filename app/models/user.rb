@@ -12,6 +12,10 @@ class User < ActiveRecord::Base
   before_save :update_stripe
   before_destroy :cancel_subscription
 
+  def quantity 
+    1 # TODO: tie this to # of sites.
+  end
+
   def update_plan(role)
     self.role_ids = []
     self.add_role(role.name)
@@ -33,22 +37,8 @@ class User < ActiveRecord::Base
       if !stripe_token.present?
         raise "Stripe token not present. Can't create account."
       end
-      if coupon.blank?
-        customer = Stripe::Customer.create(
-          :email => email,
-          :description => name,
-          :card => stripe_token,
-          :plan => roles.first.name
-        )
-      else
-        customer = Stripe::Customer.create(
-          :email => email,
-          :description => name,
-          :card => stripe_token,
-          :plan => roles.first.name,
-          :coupon => coupon
-        )
-      end
+      options = {:email => email, :description => name, :card => stripe_token, :plan => roles.first.name, :coupon => (coupon unless coupon.blank?), :quantity => quantity}.reject{ |k,v| v.nil? }
+      customer = Stripe::Customer.create(options)
     else
       customer = Stripe::Customer.retrieve(customer_id)
       if stripe_token.present?
@@ -56,6 +46,7 @@ class User < ActiveRecord::Base
       end
       customer.email = email
       customer.description = name
+      customer.update_subscription(plan: roles.first.name, quantity: quantity)
       customer.save
     end
     self.last_4_digits = customer.active_card.last4

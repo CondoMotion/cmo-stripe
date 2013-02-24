@@ -1,15 +1,16 @@
 .plans{
   text-align: center;
+  margin-top: 20px;
 }
 .featured{
   -webkit-transform:scale(1.15); 
-  box-shadow: 0 0 30px rgba(0, 0, 0, 0.67);
 }
 .plan{
-  background-color: #111575;
+  background-color: #9494CE;
+  box-shadow: inset 0px 0px 30px rgba(0,0,0,0.21);
 }
 .plan.featured-plan{
-  background-color: #CCAB00;
+  background-color: #9EC74D;
 }
 .plan h2{
   line-height: 100px;

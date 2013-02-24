@@ -1,14 +1,16 @@
-= link_to "Rails Stripe Membership Saas", root_path, :class => 'brand'
-%ul.nav
-  - if user_signed_in?
-    %li
-      = link_to 'Logout', destroy_user_session_path, :method=>'delete'
-  - else
-    %li
-      = link_to 'Login', new_user_session_path
-  - if user_signed_in?
-    %li
-      = link_to 'Edit account', edit_user_registration_path
-    - if current_user.has_role? :admin
-      %li
-        = link_to 'Admin', users_path
+= content_for(:navigation) do
+  .navbar.navbar-static-top.home-nav
+    .navbar-inner
+      .container
+        = link_to image_tag("logo.png", style: "height: 20px;"), root_path, class: "brand"
+        %ul.nav
+          %li= link_to "Tour", root_path
+          %li= link_to "Pricing", pricing_path
+          %li= link_to "About", about_path
+          %li= link_to "Contact Us", contact_path
+        %ul.nav.pull-right
+          - if user_signed_in?
+            %li= link_to "My Account", edit_user_registration_path
+            %li= link_to "Sign Out", destroy_user_session_path, method: :delete
+          - else
+            %li= link_to "Sign In", new_user_session_path
