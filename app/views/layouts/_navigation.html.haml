@@ -1,23 +1,24 @@
 = content_for(:navigation) do
-  .navbar.navbar-static-top.home-nav
-    .navbar-inner
-      .container
-        %a.btn.btn-navbar{data: { toggle: "collapse", target: ".nav-collapse" }, style: "margin-top: 25px; margin-bottom: 26px;" }
-          %span.icon-bar
-          %span.icon-bar
-          %span.icon-bar
-        = link_to image_tag("logo.png"), root_path, class: "brand"
-        .nav-collapse.collapse
-          %ul.nav
-            %li= link_to "Tour", root_path
-            %li= link_to "Featured Sites", featured_sites_path
-            %li= link_to "Pricing", pricing_path
-            %li= link_to "About Us", about_path
-            %li= link_to "Contact Us", contact_path
-          %ul.nav.pull-right
-            - if user_signed_in?
-              %li= link_to "My Account", edit_user_registration_path
-              %li= link_to "Sign Out", destroy_user_session_path, method: :delete
-            - else
-              %li= link_to "Sign Up", pricing_path
-              %li= link_to "Sign In", new_user_session_path
+  .home-nav
+    .navbar.navbar-static-top
+      .navbar-inner
+        .container
+          %a.btn.btn-navbar{data: { toggle: "collapse", target: ".nav-collapse" }, style: "margin-top: 25px; margin-bottom: 26px;" }
+            %span.icon-bar
+            %span.icon-bar
+            %span.icon-bar
+          = link_to image_tag("logo.png"), root_path, class: "brand"
+          .nav-collapse.collapse
+            %ul.nav
+              %li= link_to "Tour", root_path
+              %li= link_to "Featured Sites", featured_sites_path
+              %li= link_to "Pricing", pricing_path
+              %li= link_to "About Us", about_path
+              %li= link_to "Contact Us", contact_path
+            %ul.nav.pull-right
+              - if user_signed_in?
+                %li= link_to "My Account", edit_user_registration_path
+                %li= link_to "Sign Out", destroy_user_session_path, method: :delete
+              - else
+                %li= link_to "Sign Up", pricing_path
+                %li= link_to "Sign In", new_user_session_path
