@@ -1,0 +1,9 @@
+= render "layouts/navigation"
+.container
+	%h2.title Company Information
+	.logo= image_tag @company.logo_url(:thumb) if @company.logo?
+	.owner= "Owner: #{@company.owner.name} (#{@company.owner.email})"
+	.name= "Name: #{@company.name}"
+	.phone= "Phone: #{@company.phone}"
+	.website= "Website: #{@company.website}"
+	= link_to "Edit Company Info", edit_company_path if can? :edit, @company

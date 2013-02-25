@@ -1,5 +1,10 @@
 class User < ActiveRecord::Base
   rolify
+
+  has_one :owned_company, class_name: "Company", foreign_key: :owner_id
+  belongs_to :company
+
+  accepts_nested_attributes_for :owned_company
   # Include default devise modules. Others available are:
   # :token_authenticatable, :confirmable,
   # :lockable, :timeoutable and :omniauthable
@@ -9,13 +14,20 @@ class User < ActiveRecord::Base
   validates :name, presence: true
 
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :name, :email, :password, :password_confirmation, :remember_me, :stripe_token, :coupon
+  attr_accessible :name, :email, :password, :password_confirmation, :remember_me, :stripe_token, :coupon, :owned_company_attributes
   attr_accessor :stripe_token, :coupon
-  before_save :update_stripe
+  before_save :update_stripe 
+  before_save :add_company
   before_destroy :cancel_subscription
 
   def quantity 
     1 # TODO: tie this to # of sites.
+  end
+
+  def add_company
+    if self.owned_company
+      self.company = self.owned_company
+    end
   end
 
   def update_plan(role)
@@ -31,10 +43,15 @@ class User < ActiveRecord::Base
     errors.add :base, "Unable to update your subscription. #{e.message}."
     false
   end
+
+  def free?
+    %w[admin manager resident].include? roles.first.name
+  end
   
   def update_stripe
     return if email.include?(ENV['ADMIN_EMAIL'])
     return if email.include?('@example.com') and not Rails.env.production?
+    return if free?
     if customer_id.nil?
       if !stripe_token.present?
         raise "Stripe token not present. Can't create account."

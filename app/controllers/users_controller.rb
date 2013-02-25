@@ -4,6 +4,8 @@ class UsersController < ApplicationController
   def index
     authorize! :index, @user, :message => 'Not authorized as an administrator.'
     @users = User.all
+    @free_roles = Role.where('name = ? or name = ?', 'manager', 'resident')
+    @paid_roles = Role.where('name = ? or name = ?', 'annual', 'monthly')
   end
 
   def show
@@ -24,13 +26,14 @@ class UsersController < ApplicationController
   end
     
   def destroy
-    authorize! :destroy, @user, :message => 'Not authorized as an administrator.'
     user = User.find(params[:id])
+    authorize! :destroy, user, :message => 'Not authorized as an administrator.'
+
     unless user == current_user
       user.destroy
-      redirect_to users_path, :notice => "User deleted."
+      redirect_to company_users_path, :notice => "User deleted."
     else
-      redirect_to users_path, :notice => "Can't delete yourself."
+      redirect_to company_users_path, :notice => "Can't delete yourself."
     end
   end
 end

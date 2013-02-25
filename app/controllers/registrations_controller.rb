@@ -1,7 +1,23 @@
 class RegistrationsController < Devise::RegistrationsController
+  
+  def company_user_registration
+    @user = User.new(params[:user])
+    @user.add_role(params[:plan].downcase)
+    @user.password = "changeme"
+    @user.password_confirmation = "changeme"
+    @user.company = current_user.owned_company
+
+    if @user.save
+      redirect_to company_managers_path, notice: "Manager successfully added!"
+    else
+      @users = current_user.company.users.with_role(:manager)
+      render "companies/managers"
+    end
+  end
 
   def new
     @plan = params[:plan]
+
     if @plan && ENV["ROLES"].include?(@plan) && @plan != "admin"
       super
     else

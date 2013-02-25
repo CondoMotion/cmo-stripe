@@ -11,7 +11,30 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130223172113) do
+ActiveRecord::Schema.define(:version => 20130225223526) do
+
+  create_table "companies", :force => true do |t|
+    t.string   "name"
+    t.string   "phone"
+    t.string   "website"
+    t.string   "logo"
+    t.integer  "owner_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "pages", :force => true do |t|
+    t.string   "name"
+    t.text     "content"
+    t.string   "slug"
+    t.integer  "site_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+    t.integer  "position"
+  end
+
+  add_index "pages", ["site_id"], :name => "index_pages_on_site_id"
+  add_index "pages", ["slug"], :name => "index_pages_on_slug"
 
   create_table "roles", :force => true do |t|
     t.string   "name"
@@ -23,6 +46,17 @@ ActiveRecord::Schema.define(:version => 20130223172113) do
 
   add_index "roles", ["name", "resource_type", "resource_id"], :name => "index_roles_on_name_and_resource_type_and_resource_id"
   add_index "roles", ["name"], :name => "index_roles_on_name"
+
+  create_table "sites", :force => true do |t|
+    t.string   "name"
+    t.string   "subdomain"
+    t.string   "layout"
+    t.integer  "company_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "sites", ["company_id"], :name => "index_sites_on_company_id"
 
   create_table "users", :force => true do |t|
     t.string   "email",                  :default => "", :null => false
@@ -40,6 +74,7 @@ ActiveRecord::Schema.define(:version => 20130223172113) do
     t.string   "name"
     t.string   "customer_id"
     t.string   "last_4_digits"
+    t.integer  "company_id"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

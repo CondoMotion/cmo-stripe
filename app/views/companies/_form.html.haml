@@ -1,0 +1,9 @@
+= simple_form_for @company, multipart: true do |f|
+	= f.error_notification
+	= f.input :name, label: "Company Name"
+	= f.input :phone
+	= f.input :website
+	= f.input :logo, as: :file
+	%span or
+	= f.input :remote_logo_url
+	= f.submit class: "btn"

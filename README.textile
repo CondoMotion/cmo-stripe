@@ -42,7 +42,7 @@ h2. Development
 
 h2. Email
 
-The application is configured to send email using a Gmail account.
+The application is configured to send email using a Gmail account.  It uses the letter_opener gem to test emails in development.
 
 h2. Getting Started
 
