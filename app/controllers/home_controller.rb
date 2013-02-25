@@ -6,4 +6,8 @@ class HomeController < ApplicationController
 	def featured_sites
 	end
 
+	def contact
+		@message = Message.new
+	end
+
 end

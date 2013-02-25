@@ -3,5 +3,26 @@
 = render 'layouts/navigation'
 #map
   %iframe{:frameborder => "0", :height => "350", :marginheight => "0", :marginwidth => "0", :scrolling => "no", :src => "https://maps.google.com/maps?f=q&source=s_q&hl=en&geocode=&q=Damen+and+N+Milwaukee+Ave,+Chicago,+Cook,+Illinois+60622&aq=&sll=41.889595,-87.641244&sspn=0.023258,0.045447&ie=UTF8&hq=&hnear=N+Milwaukee+Ave+%26+N+Damen+Ave,+Chicago,+Cook,+Illinois+60622&ll=41.910326,-87.677447&spn=0.046501,0.090895&t=m&z=14&output=embed&iwloc=near", :width => "100%"}
-.container
-  %h2 Contact Us
+.container#contact_us
+  .row-fluid
+    .span3{style: "text-align: right;"}
+      %p 
+        %strong Condo Motion, Inc.
+      %p 1523 N. Wicker Park Ave.
+      %p Chicago, IL 60622
+    .span9
+      = form_for @message do |f|
+        - if @message.errors.any?
+          .alert.alert-error
+            %h4
+              Please fix the following 
+              = pluralize(@message.errors.count, "error") 
+              errors:
+            %ul
+            - @message.errors.full_messages.each do |msg|
+              %li= msg
+        = f.text_field :name, class: "span12", placeholder: "Name"
+        = f.text_field :email, class: "span12", placeholder: "Email"
+        = f.text_field :subject, class: "span12", placeholder: "Subject"
+        = f.text_area :message, class: "span12", placeholder: "Message", :rows => 9
+        .actions= f.submit "Send", class: "btn btn-inverse"
