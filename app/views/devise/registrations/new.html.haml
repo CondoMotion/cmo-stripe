@@ -2,7 +2,7 @@
   = tag :meta, :name => "stripe-key", :content => STRIPE_PUBLIC_KEY
 = render "layouts/navigation"
 .container
-  %h2 Sign up
+  %h2.title Sign up
   #stripe_error.alert.alert-error{:style => "display:none"}
   = simple_form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => {:class => 'card_form form-vertical' }) do |f|
     %h3

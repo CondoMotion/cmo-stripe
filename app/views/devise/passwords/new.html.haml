@@ -1,7 +1,7 @@
 = render 'layouts/navigation'
 
 .container
-  %h2 Forgot Your Password?
+  %h2.title Forgot Your Password?
   %p{style: "color: #999;"} To reset your account password, enter the email address you registered with, and we’ll send your instructions on their way.
   = simple_form_for(resource, :as => resource_name, :url => password_path(resource_name)) do |f|
     = f.error_notification
