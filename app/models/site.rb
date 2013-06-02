@@ -10,7 +10,7 @@ class Site < ActiveRecord::Base
   after_save :update_stripe
   after_destroy :update_stripe
 
-  validates_presence_of :name, :subdomain, :address
+  validates_presence_of :name, :subdomain
   validates_uniqueness_of :subdomain
 
   def set_subdomain

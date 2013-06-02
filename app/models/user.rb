@@ -6,27 +6,32 @@ class User < ActiveRecord::Base
 
   accepts_nested_attributes_for :owned_company
   # Include default devise modules. Others available are:
-  # :token_authenticatable, :confirmable,
+  # :token_authenticatable, :confirmable, :trackable, 
   # :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable
+         :recoverable, :rememberable,:validatable
 
   validates :name, presence: true
 
   # Setup accessible (or protected) attributes for your model
   attr_accessible :name, :email, :password, :password_confirmation, :remember_me, :stripe_token, :coupon, :owned_company_attributes
   attr_accessor :stripe_token, :coupon
+  after_create :add_company
   before_save :update_stripe 
-  before_save :add_company
   before_destroy :cancel_subscription
 
   def quantity 
-    company.nil? ? 1 : company.sites.length
+    if self.company.nil?
+      1
+    else
+      self.company.sites.length == 0 ? 1 : self.company.sites.length
+    end
   end
 
   def add_company
     if self.owned_company
       self.company = self.owned_company
+      self.save
     end
   end
 

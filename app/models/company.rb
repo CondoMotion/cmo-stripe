@@ -6,6 +6,8 @@ class Company < ActiveRecord::Base
 
 	accepts_nested_attributes_for :address
 
+	validates :name, presence: true
+
   attr_accessible :logo, :name, :owner_id, :phone, :website, :remote_logo_url, :address_attributes
   mount_uploader :logo, LogoUploader
 end
