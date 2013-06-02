@@ -12,13 +12,6 @@
     - @company = resource.build_owned_company
     = f.simple_fields_for :owned_company do |ff|
       = ff.input :name, label: "Company Name"
-      - @company.build_address if @company.address.nil?
-      = ff.fields_for :address do |fff|
-        = fff.input :address1
-        = fff.input :address2
-        = fff.input :city
-        = fff.input :state
-        = fff.input :zip
     = f.input :name, label: "Full Name", :autofocus => true
     = f.input :email, :required => true
     = f.input :password, :required => true
