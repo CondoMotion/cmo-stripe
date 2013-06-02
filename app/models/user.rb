@@ -21,7 +21,7 @@ class User < ActiveRecord::Base
   before_destroy :cancel_subscription
 
   def quantity 
-    company.sites.length
+    company.nil? ? 1 : company.sites.length
   end
 
   def add_company
