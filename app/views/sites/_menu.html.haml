@@ -1,0 +1,9 @@
+%h5 Sites
+%ul#sites
+  - @sites.each do |site|
+    - if can? :edit, site
+      %li= link_to site.name, edit_site_url(subdomain: site.subdomain)
+    - else
+      %li= link_to site.name, root_url(subdomain: site.subdomain)
+%br
+= link_to 'New Site', new_site_url(subdomain: "www"), class: "btn", style: "color: #333;" if can? :create, Site

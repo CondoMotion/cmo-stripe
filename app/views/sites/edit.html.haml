@@ -1,26 +1,15 @@
-=render "layouts/navigation"
-.container
-  %h2.title Editing site
-  = link_to 'Show', root_url(subdomain: @site.subdomain)
-  \|
-  = link_to 'Back', sites_path
+= render "layouts/dashboard_navigation"
 
-  = render 'form'
-
-  %h3 Pages
-
-  %ul#pages{"data-update-url" => sort_pages_url}
-    - @pages.each do |page|
-      = content_tag_for :li, page do
-        %span.handle [drag]
-        = link_to page.name, page_url(page, subdomain: page.site.subdomain)
-        = link_to "Edit", edit_page_url(page)
-        = link_to "Delete", page, method: :delete
-  .row
-    .span12
-      %strong New Page
-      = simple_form_for @site.pages.new do |f|
-        = f.error_notification
-        = f.association :site, as: :hidden
-        = f.input :name
-        = f.submit class: 'btn'
+#main.no-nav-secondary
+  #breadcrumbs 
+    .container-fluid
+      .row-fluid
+        %h3.pull-left
+          = link_to 'Properties', sites_url(subdomain: "www")
+          %span  / 
+          = @site.name
+        = link_to raw("<i class='icon icon-trash'></i>"), @site, method: :delete, confirm: "Are you sure?", class: "btn pull-right"
+  .container-fluid
+    .row-fluid{style: "padding-top: 20px;"}
+      .span12
+        = render 'form'

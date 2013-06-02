@@ -1,9 +1,26 @@
-= render "layouts/navigation"
-.container
-	%h2.title Company Information
-	.logo= image_tag @company.logo_url(:thumb) if @company.logo?
-	.owner= "Owner: #{@company.owner.name} (#{@company.owner.email})"
-	.name= "Name: #{@company.name}"
-	.phone= "Phone: #{@company.phone}"
-	.website= "Website: #{@company.website}"
-	= link_to "Edit Company Info", edit_company_path if can? :edit, @company
+= render "layouts/dashboard_navigation"
+#main.no-nav-secondary
+  #breadcrumbs 
+    .container-fluid
+      .row-fluid
+        .span12
+          %h3.pull-left= @company.name 
+          = link_to "Edit", '/users/edit/company', class: "btn pull-right" if can? :edit, @company
+  .container-fluid
+    .row-fluid{style: "padding-top: 20px;"}
+      .span8
+        .logo= image_tag @company.logo_url(:thumb) if @company.logo?
+        .owner= "Owner: #{@company.owner.name} (#{@company.owner.email})"
+        .phone= @company.phone
+        .website= @company.website
+      .span4
+        .detail-box
+          %h4 Address
+          - unless @company.address.nil?
+            %p{style: 'margin: 0;'}
+              = @company.address.address1
+              %br
+              - unless @company.address.address2.blank?
+                = @company.address.address2
+                %br
+              = @company.address.city + ", " + @company.address.state + " " + @company.address.zip

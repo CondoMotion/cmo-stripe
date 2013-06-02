@@ -2,13 +2,11 @@
   = @site.name
 .container
   = link_to "Home", root_url(subdomain: @site.subdomain)
-  - @pages.each do |page|
-    = link_to page.name, page
 
   %h3= @site.name
 
   .row
-  = link_to 'Edit', edit_site_url(@site, subdomain: "www") if can? :edit, @site
+  = link_to 'Edit', edit_site_url(subdomain: @site.subdomain) if can? :edit, @site
   - if can? :index, Site
     \|
     = link_to 'Back', sites_url(subdomain: "www")

@@ -1,0 +1,27 @@
+= render 'layouts/dashboard_navigation'
+
+#main.no-nav-secondary
+  #breadcrumbs 
+    .container-fluid
+      .row-fluid
+        %h3.pull-left 
+          = link_to "People"
+          %span /
+          Add a Person
+        = link_to "Cancel", users_url, class: "btn pull-right"
+  .container-fluid
+    .row-fluid{style: "padding-top: 20px;"}
+      .span12
+        - if can? :create, User
+          .row-fluid
+            .span12
+              = simple_form_for(resource, :as => resource_name, :url => company_user_registration_path, :html => {:class => 'card_form form-inline' }) do |f|
+                = f.error_notification
+                = display_base_errors resource
+                = f.input :name, label: "Full Name", :autofocus => true
+                = f.input :email, :required => true
+                .input{style: "margin-bottom: 20px;"}
+                  = label_tag "Role"
+                  %br/
+                  = select_tag :plan, "<option>Manager</option><option>Resident</option>".html_safe
+                = f.button :submit, 'Add Person', :class => 'btn-primary'

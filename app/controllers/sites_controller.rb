@@ -3,9 +3,6 @@ class SitesController < ApplicationController
   # GET /sites
   # GET /sites.json
   def index
-    @sites = current_user.company.sites.all
-    authorize! :read, Site
-
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @sites }
@@ -15,9 +12,6 @@ class SitesController < ApplicationController
   # GET /sites/1
   # GET /sites/1.json
   def show
-    @site = Site.find_by_subdomain!(request.subdomain)
-    @pages = @site.pages.order(:position)
-
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @site }
@@ -38,8 +32,7 @@ class SitesController < ApplicationController
 
   # GET /sites/1/edit
   def edit
-    @site = current_user.company.sites.find(params[:id])
-    @pages = @site.pages.order(:position)
+    @site = current_user.company.sites.find_by_subdomain!(request.subdomain)
     authorize! :edit, @site
   end
 
@@ -64,13 +57,14 @@ class SitesController < ApplicationController
   # PUT /sites/1.json
   def update
     @site = current_user.company.sites.find(params[:id])
-    authorize! :update, @site
+    authorize! :edit, @site
 
     respond_to do |format|
       if @site.update_attributes(params[:site])
-        format.html { redirect_to sites_path, notice: 'Site was successfully updated.' }
+        format.html { redirect_to edit_site_url(subdomain: @site.subdomain), notice: 'Site was successfully updated.' }
         format.json { head :no_content }
       else
+        @pages = @site.pages
         format.html { render action: "edit" }
         format.json { render json: @site.errors, status: :unprocessable_entity }
       end

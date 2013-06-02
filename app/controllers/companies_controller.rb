@@ -6,11 +6,8 @@ class CompaniesController < ApplicationController
 	end
 
   def edit
-  	@company = current_user.owned_company
+  	@company = current_user.company
   	authorize! :edit, @company
-  	if current_user.has_role? :manager
-  		redirect_to current_user.company
-  	end
   end
 
   def create
@@ -24,11 +21,11 @@ class CompaniesController < ApplicationController
   end
 
   def update
-  	@company = current_user.owned_company
+  	@company = current_user.company
   	authorize! :edit, @company
 
   	if @company.update_attributes(params[:company])
-  		redirect_to @company, notice: "Company information updated successfully!"
+  		redirect_to '/users/edit/company', notice: "Company information updated successfully!"
   	else
   		render "edit"
   	end

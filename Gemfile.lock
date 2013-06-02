@@ -87,6 +87,7 @@ GEM
       mail (~> 2.2)
     erubis (2.7.0)
     eventmachine (1.0.0)
+    excon (0.22.1)
     execjs (1.4.0)
       multi_json (~> 1.0)
     factory_girl (4.2.0)
@@ -97,6 +98,17 @@ GEM
     ffi (1.4.0)
     figaro (0.5.4)
       rails (~> 3.0)
+    fog (1.11.1)
+      builder
+      excon (~> 0.20)
+      formatador (~> 0.2.0)
+      json (~> 1.7)
+      mime-types
+      net-scp (~> 1.1)
+      net-ssh (>= 2.1.3)
+      nokogiri (~> 1.5.0)
+      ruby-hmac
+    formatador (0.2.4)
     friendly_id (4.0.9)
     gherkin (2.11.6)
       json (>= 1.7.6)
@@ -128,8 +140,14 @@ GEM
       i18n (>= 0.4.0)
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
-    mime-types (1.21)
-    multi_json (1.6.1)
+    meta_request (0.2.2)
+      rack-contrib
+      railties
+    mime-types (1.23)
+    multi_json (1.7.4)
+    net-scp (1.1.1)
+      net-ssh (>= 2.6.5)
+    net-ssh (2.6.7)
     newrelic_rpm (3.5.7.59)
     nokogiri (1.5.6)
     orm_adapter (0.4.0)
@@ -140,6 +158,8 @@ GEM
     rack (1.4.5)
     rack-cache (1.2)
       rack (>= 0.4)
+    rack-contrib (1.1.0)
+      rack (>= 0.9.1)
     rack-ssl (1.3.3)
       rack
     rack-test (0.6.2)
@@ -177,6 +197,7 @@ GEM
       rspec-core (~> 2.12.0)
       rspec-expectations (~> 2.12.0)
       rspec-mocks (~> 2.12.0)
+    ruby-hmac (0.4.0)
     ruby_parser (3.1.1)
       sexp_processor (~> 4.1)
     rubyzip (0.9.9)
@@ -200,7 +221,7 @@ GEM
       rack (~> 1.0)
       tilt (~> 1.1, != 1.3.0)
     sqlite3 (1.3.7)
-    stripe (1.7.11)
+    stripe (1.8.3)
       multi_json (>= 1.0.4, < 2)
       rest-client (~> 1.4)
     stripe_event (0.5.0)
@@ -244,12 +265,14 @@ DEPENDENCIES
   email_spec (>= 1.4.0)
   factory_girl_rails (>= 4.2.0)
   figaro (>= 0.5.3)
+  fog
   friendly_id
   haml-rails (>= 0.4)
   html2haml (>= 1.0.1)
   jquery-rails
   launchy (>= 2.2.0)
   letter_opener
+  meta_request
   newrelic_rpm
   pg
   quiet_assets (>= 1.0.1)
@@ -260,7 +283,7 @@ DEPENDENCIES
   sass-rails (~> 3.2.3)
   simple_form (>= 2.0.4)
   sqlite3
-  stripe (>= 1.7.10)
+  stripe (>= 1.8.3)
   stripe_event (>= 0.4.0)
   thin (>= 1.5.0)
   uglifier (>= 1.0.3)

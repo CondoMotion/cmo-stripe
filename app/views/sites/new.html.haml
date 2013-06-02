@@ -1,7 +1,16 @@
-=render "layouts/navigation"
-.container
-  %h2.title New site
+=render "layouts/dashboard_navigation"
 
-  = render 'form'
-
-  = link_to 'Back', sites_path
+#main.no-nav-secondary
+  #breadcrumbs 
+    .container-fluid
+      .row-fluid
+        .span12
+          %h3.pull-left 
+            = link_to "Properties", sites_path
+            %span /
+            Add a Property 
+          = link_to "Cancel", sites_path, class: "btn pull-right"
+  .container-fluid
+    .row-fluid{style: "padding-top: 20px;"}
+      .span12
+        = render 'form'

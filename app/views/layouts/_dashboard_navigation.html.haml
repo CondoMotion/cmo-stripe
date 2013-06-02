@@ -1,0 +1,22 @@
+= content_for(:navigation) do
+  #header
+    %h4
+      Condo Motion
+      &nbsp;
+      %span{style: "font-weight: 100;"}= @company.name
+
+  #nav-primary
+    %h5 Navigation
+    %ul{style: "margin: 5px 0 0 0;"}
+      %li= link_to "Company", show_company_url(subdomain: "www"), class: ("active" if params[:controller] == "companies" && %w[show edit].include?(params[:action]))
+      %li= link_to "People", users_url(subdomain: "www"), class: ("active" if params[:controller] == "users" && %w[index show new edit].include?(params[:action])) if can? :read, User
+      %li= link_to "Properties", sites_url(subdomain: "www"), class: ("active" if params[:controller] == "sites")
+      %li= link_to "News"
+      %li= link_to "Documents"
+      %li= link_to "Issues"
+    %hr
+    %h5 Your Account
+    %ul{style: "margin: 5px 0 0 0;"}
+      %li= link_to "Settings", edit_user_registration_url(subdomain: 'www'), class: ("active" if params[:controller] == "registrations" && params[:action] == "edit")
+      / %li= link_to "Sign Out", destroy_user_session_path, method: :delete
+  = yield :nav_secondary

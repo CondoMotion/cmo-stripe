@@ -8,12 +8,33 @@ class RegistrationsController < Devise::RegistrationsController
     @user.company = current_user.owned_company
 
     if @user.save
-      redirect_to company_managers_path, notice: "Manager successfully added!"
+      redirect_to users_path, notice: "User successfully added!"
     else
-      @users = current_user.company.users.with_role(:manager)
-      render "companies/managers"
+      @users = current_user.company.users
+      render "users/new"
     end
   end
+
+  def update
+    @user = User.find(current_user.id)
+
+    successfully_updated = if needs_password?(@user, params)
+      @user.update_with_password(params[:user])
+    else
+      params[:user].delete(:current_password)
+      @user.update_without_password(params[:user])
+    end
+
+    if successfully_updated
+      set_flash_message :notice, :updated
+      # Sign in the user bypassing validation in case his password changed
+      sign_in @user, :bypass => true
+      redirect_to after_update_path_for(@user), notice: "Your account was successfully updated!"
+    else
+      render "edit"
+    end
+  end
+
 
   def new
     @plan = params[:plan]
@@ -40,7 +61,7 @@ class RegistrationsController < Devise::RegistrationsController
     @user = current_user
     @user.stripe_token = params[:user][:stripe_token]
     if @user.save
-      redirect_to edit_user_registration_path, :notice => 'Updated card.'
+      redirect_to '/users/edit/billing', :notice => 'Updated card.'
     else
       flash.alert = 'Unable to update card.'
       render :edit
@@ -60,6 +81,10 @@ private
     if params[:plan]
       resource.add_role(params[:plan])
     end
+  end
+
+  def needs_password?(user, params)
+    user.email != params[:user][:email] || !params[:user][:password].nil?
   end
 
 end

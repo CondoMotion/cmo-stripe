@@ -1,4 +1,4 @@
-= simple_form_for @company, multipart: true do |f|
+= simple_form_for @company, multipart: true, html: { class: "form-vertical" } do |f|
 	= f.error_notification
 	= f.input :name, label: "Company Name"
 	= f.input :phone
@@ -6,4 +6,11 @@
 	= f.input :logo, as: :file
 	%span or
 	= f.input :remote_logo_url
+	- @company.build_address if @company.address.nil?
+	= f.fields_for :address do |ff|
+		= ff.input :address1
+		= ff.input :address2
+		= ff.input :city
+		= ff.input :state
+		= ff.input :zip
 	= f.submit class: "btn"

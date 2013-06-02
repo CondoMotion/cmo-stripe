@@ -4,7 +4,13 @@
   .form-inputs
     = f.input :name
     = f.input :subdomain
-    = f.input :layout
+    - @site.build_address if @site.address.nil?
+    = f.fields_for :address do |ff|
+      = ff.input :address1
+      = ff.input :address2
+      = ff.input :city
+      = ff.input :state
+      = ff.input :zip
 
   .form-actions
     = f.button :submit

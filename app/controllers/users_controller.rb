@@ -2,8 +2,8 @@ class UsersController < ApplicationController
   before_filter :authenticate_user!
 
   def index
-    authorize! :index, @user, :message => 'Not authorized as an administrator.'
-    @users = User.all
+    # authorize! :index, @user, :message => 'Not authorized as an administrator.'
+    @users = @company.users.all
     @free_roles = Role.where('name = ? or name = ?', 'manager', 'resident')
     @paid_roles = Role.where('name = ? or name = ?', 'annual', 'monthly')
   end
@@ -12,8 +12,11 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
   end
   
+  def new
+  end
+
   def update
-    authorize! :update, @user, :message => 'Not authorized as an administrator.'
+    # authorize! :update, @user, :message => 'Not authorized as an administrator.'
     @user = User.find(params[:id])
     role = Role.find(params[:user][:role_ids]) unless params[:user][:role_ids].nil?
     params[:user] = params[:user].except(:role_ids)
@@ -31,9 +34,9 @@ class UsersController < ApplicationController
 
     unless user == current_user
       user.destroy
-      redirect_to company_users_path, :notice => "User deleted."
+      redirect_to users_path, :notice => "User deleted."
     else
-      redirect_to company_users_path, :notice => "Can't delete yourself."
+      redirect_to users_path, :notice => "Can't delete yourself."
     end
   end
 end

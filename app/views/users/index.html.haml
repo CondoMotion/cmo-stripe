@@ -1,18 +1,24 @@
-= render 'layouts/navigation'
-.container
-  %h2.title Users
-  .row
-    .span8
-      %table.table.table-condensed
-        %thead
-          %tr
-            %th Username
-            %th Email
-            %th Registered
-            %th Role
-            %th
-            %th
-        %tbody
+= render 'layouts/dashboard_navigation'
+
+#main.no-nav-secondary
+  #breadcrumbs 
+    .container-fluid
+      .row-fluid
+        %h3.pull-left People
+        = link_to "Add a Person", new_user_url, class: "btn btn-success pull-right"
+  .container-fluid
+    .row-fluid{style: "padding-top: 20px;"}
+      .span12
+        %table.table
+          %thead
+            %tr
+              %th Username
+              %th Email
+              %th Registered
+              %th Role
+              %th
+              %th
+          %tbody
           - @users.each do |user|
             %tr
               %td= link_to user.name, user

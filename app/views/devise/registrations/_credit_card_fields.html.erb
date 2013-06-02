@@ -1,0 +1,83 @@
+<h3 style="margin-top: 0; font-weight: 100;">
+	Credit Card
+</h3>
+
+<div class="row-fluid">
+  <div class="span12">
+    <div class="well">
+      <% if current_user.last_4_digits.nil? %>
+        <p>No card on file</p>
+      <% else %>
+        <p>Using card **** **** **** <%= @user.last_4_digits %></p>
+      <% end %>
+      <% @customer = Stripe::Customer.retrieve(@user.customer_id) %>
+      <% unless @customer.nil? %>
+        <p>Plan: <%= @customer.subscription.plan.name %> (<%= number_to_currency @customer.subscription.plan.amount.to_f / 100 %> a month per site)</p>
+        <p>Monthly Fee: <%= number_to_currency (@customer.subscription.quantity * @customer.subscription.plan.amount).to_f / 100 %></p>
+        <p>Status: <%= @customer.subscription.status == "trialing" ? "Trial" : @customer.subscription.status.humanize %></p>
+        <% if @customer.subscription.status == "trialing" %>
+          <p>Trial Ends: <%= Time.at(@customer.subscription.trial_end).to_datetime.strftime("%b %d, %Y") %></p>
+        <% end %>
+        <p>Number of Sites: <%= @customer.subscription.quantity %></p>
+      <% end %>
+    </div>
+  </div>
+</div>
+<div class="row-fluid">
+  <div class="span12">
+    <div class="well">
+      <h4 style="margin-top: 0;">Update Credit Card</h4>
+      <%= simple_form_for resource, :as => resource_name, :url => update_card_path, :html => {:method => :put, :class => 'form-horizontal card_form', style: "margin: 0;" } do |f| %>
+        <div id="stripe_error" class="alert alert-error" style="display:none" ></div>
+        <div class="field">
+          <%= label_tag :card_number, "Credit Card Number" %>
+          <%= text_field_tag :card_number, nil, name: nil, class: "span12" %>
+        </div>
+        <div class="row-fluid">
+          <div class="field span7">
+            <%= label_tag :card_month, "Card Expiration" %>
+            <%= select_month nil, {add_month_numbers: true}, {name: nil, id: "card_month"}%>
+            <%= select_year nil, {start_year: Date.today.year, end_year: Date.today.year+10}, {name: nil, id: "card_year", class: "span3"}%>
+          </div>
+          <div class="field span5">
+            <%= label_tag :card_code, "Card Security Code (CVV)" %>
+            <%= text_field_tag :card_code, nil, name: nil, class: "span10" %> <%= image_tag "cards/cvv.png", class: "pull-right", style: "margin-top: 4px;" %>
+          </div>
+        </div>
+        <%= f.hidden_field :name %>
+        <%= f.hidden_field :email %>
+        <%= f.hidden_field :stripe_token %><br>
+        <%= f.submit "Update Credit Card", :class => "btn btn-primary" %>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+<% unless @customer.nil? %>
+<div class="row-fluid">
+  <div class="span12">
+    <h3 style="margin-top: 0; font-weight: 100;">
+      Payment History
+    </h3>
+    <% if @customer.charges.count == 0 %>
+      <div class="well">No Payments</div>
+    <% else %>
+      <table class="table table-condensed" id="payments" >
+      <% @customer.charges.each do |charge| %>
+        <tr>
+          <td><%= image_tag "cards/#{charge.card.type}.png" %></td>
+          <td><%= Time.at(charge.created).to_datetime.strftime("%b %d, %Y") %></td>
+          <td><%= number_to_currency(charge.amount.to_f/100) %></td>
+        </tr>
+      <% end %>
+      </table>
+    <% end %>
+  </div>
+</div>
+<% end %>
+
+<h4 style="margin-top: 30px; font-weight: 100;">
+	Unhappy?
+</h4>
+
+<p><%= link_to "Cancel my account", registration_path(resource_name), :data => { :confirm => "Are you sure?" }, :method => :delete, :class => 'btn btn-mini btn-danger' %></p>

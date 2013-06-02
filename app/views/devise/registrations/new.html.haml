@@ -1,6 +1,6 @@
 - content_for :head do
   = tag :meta, :name => "stripe-key", :content => STRIPE_PUBLIC_KEY
-= render "layouts/navigation"
+= render "layouts/home_navigation"
 .container
   %h2.title Sign up
   #stripe_error.alert.alert-error{:style => "display:none"}

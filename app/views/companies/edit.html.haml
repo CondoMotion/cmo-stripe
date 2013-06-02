@@ -1,4 +1,11 @@
-= render "layouts/navigation"
-.container
-	%h2.title Edit Company Information
-	= render "form"
+= render "layouts/dashboard_navigation"
+#main.no-nav-secondary
+  #breadcrumbs 
+    .container-fluid
+      .row-fluid
+        %h3.pull-left
+          = link_to 'Company', show_company_url(subdomain: "www"), style: "color: #999;"
+          %span{style: "color: #999;"}  / 
+          = "Edit"
+  .container-fluid
+    = render "form"

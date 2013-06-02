@@ -1,7 +1,7 @@
 class User < ActiveRecord::Base
   rolify
 
-  has_one :owned_company, class_name: "Company", foreign_key: :owner_id
+  has_one :owned_company, class_name: "Company", foreign_key: :owner_id, dependent: :destroy
   belongs_to :company
 
   accepts_nested_attributes_for :owned_company
@@ -21,7 +21,7 @@ class User < ActiveRecord::Base
   before_destroy :cancel_subscription
 
   def quantity 
-    1 # TODO: tie this to # of sites.
+    company.sites.length
   end
 
   def add_company
