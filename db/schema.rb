@@ -35,19 +35,6 @@ ActiveRecord::Schema.define(:version => 20130602184723) do
     t.datetime "updated_at", :null => false
   end
 
-  create_table "pages", :force => true do |t|
-    t.string   "name"
-    t.text     "content"
-    t.string   "slug"
-    t.integer  "site_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-    t.integer  "position"
-  end
-
-  add_index "pages", ["site_id"], :name => "index_pages_on_site_id"
-  add_index "pages", ["slug"], :name => "index_pages_on_slug"
-
   create_table "roles", :force => true do |t|
     t.string   "name"
     t.integer  "resource_id"
