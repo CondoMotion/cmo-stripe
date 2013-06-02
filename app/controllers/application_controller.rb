@@ -29,11 +29,7 @@ class ApplicationController < ActionController::Base
 
   def set_company
     if current_user
-      if current_user.company
-        @company = current_user.company
-      elsif current_user.owned_company
-        @company = current_user.owned_company
-      end
+      @company = current_user.company
     elsif @site
       @company = @site.company
     end

@@ -5,7 +5,7 @@ class RegistrationsController < Devise::RegistrationsController
     @user.add_role(params[:plan].downcase)
     @user.password = "changeme"
     @user.password_confirmation = "changeme"
-    @user.company = current_user.owned_company
+    @user.company = current_user.company
 
     if @user.save
       redirect_to users_path, notice: "User successfully added!"
