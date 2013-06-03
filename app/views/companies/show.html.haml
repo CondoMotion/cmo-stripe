@@ -4,7 +4,9 @@
     .container-fluid
       .row-fluid
         .span12
-          %h3.pull-left= @company.name 
+          %h3.pull-left
+            %i.icon-home
+            = @company.name 
           = link_to "Edit", '/users/edit/company', class: "btn pull-right" if can? :edit, @company
   .container-fluid
     .row-fluid{style: "padding-top: 20px;"}

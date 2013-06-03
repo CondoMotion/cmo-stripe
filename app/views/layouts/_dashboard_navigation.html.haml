@@ -16,11 +16,11 @@
   #nav-primary
     %h5 Navigation
     %ul{style: "margin: 5px 0 0 0;"}
-      %li= link_to "Company", show_company_url(subdomain: "www"), class: ("active" if params[:controller] == "companies" && %w[show edit].include?(params[:action]))
-      %li= link_to "People", users_url(subdomain: "www"), class: ("active" if params[:controller] == "users" && %w[index show new edit].include?(params[:action])) if can? :read, User
-      %li= link_to "Properties", sites_url(subdomain: "www"), class: ("active" if params[:controller] == "sites")
-      %li= link_to "News"
-      %li= link_to "Documents"
-      %li= link_to "Issues"
+      %li= link_to raw("<i class='icon-home'></i> Company"), show_company_url(subdomain: "www"), class: ("active" if params[:controller] == "companies" && %w[show edit].include?(params[:action]))
+      %li= link_to raw("<i class='icon-group'></i> People"), users_url(subdomain: "www"), class: ("active" if params[:controller] == "users" && %w[index show new edit].include?(params[:action])) if can? :read, User
+      %li= link_to raw("<i class='icon-map-marker'></i> Properties"), sites_url(subdomain: "www"), class: ("active" if params[:controller] == "sites")
+      %li= link_to raw("<i class='icon-bullhorn'></i> News")
+      %li= link_to raw("<i class='icon-file'></i> Documents")
+      %li= link_to raw("<i class='icon-inbox'></i> Issues")
 
   = yield :nav_secondary
