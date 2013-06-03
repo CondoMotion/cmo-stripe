@@ -40,3 +40,4 @@ gem "acts_as_list"
 gem "meta_request", :group => :development
 gem "fog"
 gem 'chosen-rails'
+gem 'bootstrap-wysihtml5-rails'

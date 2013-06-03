@@ -4,10 +4,10 @@
   .form-inputs
     = f.simple_fields_for :post do |ff|
       = ff.input :title
-    = f.input :content, input_html: { rows: 5 }
+    = f.input :content, input_html: { rows: 5, class: "wysiwyg" }
     = f.simple_fields_for :post do |ff|
       = ff.association :roles, collection: Role.where("name = ? or name = ? or name = ?", "resident", "admin", "manager"), input_html: { class: "chosen" }
-      = ff.association :sites, collection: @company.sites.all, input_html: { class: "chosen" }
+      = ff.association :sites, label: "Properties", collection: @company.sites.all, input_html: { class: "chosen" }
 
   .form-actions
     = f.button :submit

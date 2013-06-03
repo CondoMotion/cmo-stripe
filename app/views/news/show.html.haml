@@ -14,4 +14,4 @@
     .row-fluid{style: "padding-top: 20px;"}
       .span12
         %h2= @news.post.title
-        %p= @news.content
+        %p= raw @news.content

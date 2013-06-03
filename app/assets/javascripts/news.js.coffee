@@ -3,3 +3,5 @@
 # You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
 $ ->
 	 $('.chosen').chosen()
+
+	 $('.wysiwyg').wysihtml5()

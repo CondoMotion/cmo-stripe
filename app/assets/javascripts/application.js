@@ -15,4 +15,6 @@
 //= require jquery_ujs
 //= require bootstrap
 //= require chosen-jquery
+//= require wysihtml5-0.3.0
+//= require bootstrap-wysihtml5
 //= require_tree .
