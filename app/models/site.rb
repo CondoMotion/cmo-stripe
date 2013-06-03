@@ -1,6 +1,8 @@
 class Site < ActiveRecord::Base
   belongs_to :company
   has_one :address, as: :addressable
+  has_many :postings
+  has_many :posts, through: :postings
 
   accepts_nested_attributes_for :address
 

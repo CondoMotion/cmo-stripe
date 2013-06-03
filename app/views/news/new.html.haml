@@ -1,0 +1,17 @@
+=render "layouts/dashboard_navigation"
+
+#main.no-nav-secondary
+  #breadcrumbs 
+    .container-fluid
+      .row-fluid
+        .span12
+          %h3.pull-left 
+            %i.icon-map-marker
+            = link_to "News", news_index_path
+            %span /
+            Add a News Post
+          = link_to "Cancel", news_index_path, class: "btn pull-right"
+  .container-fluid
+    .row-fluid{style: "padding-top: 20px;"}
+      .span12
+        = render 'form'

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130602184723) do
+ActiveRecord::Schema.define(:version => 20130603185632) do
 
   create_table "addresses", :force => true do |t|
     t.string   "address1"
@@ -34,6 +34,62 @@ ActiveRecord::Schema.define(:version => 20130602184723) do
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
+
+  create_table "documents", :force => true do |t|
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "news", :force => true do |t|
+    t.text     "content"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "pages", :force => true do |t|
+    t.string   "name"
+    t.text     "content"
+    t.string   "slug"
+    t.integer  "site_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+    t.integer  "position"
+  end
+
+  add_index "pages", ["site_id"], :name => "index_pages_on_site_id"
+  add_index "pages", ["slug"], :name => "index_pages_on_slug"
+
+  create_table "permissions", :force => true do |t|
+    t.integer  "role_id"
+    t.integer  "post_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "permissions", ["post_id"], :name => "index_permissions_on_post_id"
+  add_index "permissions", ["role_id"], :name => "index_permissions_on_role_id"
+
+  create_table "postings", :force => true do |t|
+    t.integer  "post_id"
+    t.integer  "site_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "postings", ["post_id"], :name => "index_postings_on_post_id"
+  add_index "postings", ["site_id"], :name => "index_postings_on_site_id"
+
+  create_table "posts", :force => true do |t|
+    t.string   "title"
+    t.string   "attachment_label"
+    t.integer  "user_id"
+    t.datetime "created_at",       :null => false
+    t.datetime "updated_at",       :null => false
+    t.string   "postable_type"
+    t.integer  "postable_id"
+  end
+
+  add_index "posts", ["user_id"], :name => "index_posts_on_user_id"
 
   create_table "roles", :force => true do |t|
     t.string   "name"

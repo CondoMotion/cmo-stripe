@@ -1,0 +1,27 @@
+= render "layouts/dashboard_navigation"
+
+#main.no-nav-secondary
+  #breadcrumbs 
+    .container-fluid
+      .row-fluid
+        .span12
+          %h3.pull-left 
+            %i.icon-file-alt
+            Documents 
+          = link_to "Add document", new_document_path, class: "btn btn-success pull-right" 
+          /if can? :create, Site
+  .container-fluid
+    .row-fluid{style: "padding-top: 20px;"}
+      .span12
+        %table.table
+          %thead
+            %tr
+              %th Title
+              %th Properties
+              %th Roles
+          %tbody
+          - @documents.each do |document|
+            %tr
+              %td= link_to document.post.title, document
+              %td= document.post.sites.map(&:name).join(", ")
+              %td= document.post.roles.map(&:name).join(", ")

@@ -1,0 +1,27 @@
+= render "layouts/dashboard_navigation"
+
+#main.no-nav-secondary
+  #breadcrumbs 
+    .container-fluid
+      .row-fluid
+        .span12
+          %h3.pull-left 
+            %i.icon-bullhorn
+            News
+          = link_to "Add news", new_news_path, class: "btn btn-success pull-right" 
+          /if can? :create, Site
+  .container-fluid
+    .row-fluid{style: "padding-top: 20px;"}
+      .span12
+        %table.table
+          %thead
+            %tr
+              %th Title
+              %th Properties
+              %th Roles
+          %tbody
+          - @news.each do |news|
+            %tr
+              %td= link_to news.post.title, news
+              %td= news.post.sites.map(&:name).join(", ")
+              %td= news.post.roles.map(&:name).join(", ")

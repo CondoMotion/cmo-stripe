@@ -1,4 +1,10 @@
 CmoStripe::Application.routes.draw do
+  resources :documents
+
+
+  resources :news
+
+
   mount StripeEvent::Engine => '/stripe'
   
   get '/',      to: 'sites#show',                    constraints: lambda { |r| r.subdomain.present? && r.subdomain != 'www' }
