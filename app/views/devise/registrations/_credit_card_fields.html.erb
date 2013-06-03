@@ -13,12 +13,12 @@
       <% @customer = Stripe::Customer.retrieve(@user.customer_id) %>
       <% unless @customer.nil? %>
         <p>Plan: <%= @customer.subscription.plan.name %> (<%= number_to_currency @customer.subscription.plan.amount.to_f / 100 %> a month per site)</p>
-        <p>Monthly Fee: <%= number_to_currency (@customer.subscription.quantity * @customer.subscription.plan.amount).to_f / 100 %></p>
+        <p>Monthly Total: <%= number_to_currency (@customer.subscription.quantity * @customer.subscription.plan.amount).to_f / 100 %></p>
         <p>Status: <%= @customer.subscription.status == "trialing" ? "Trial" : @customer.subscription.status.humanize %></p>
         <% if @customer.subscription.status == "trialing" %>
           <p>Trial Ends: <%= Time.at(@customer.subscription.trial_end).to_datetime.strftime("%b %d, %Y") %></p>
         <% end %>
-        <p style="margin: 0;">Number of Sites: <%= @customer.subscription.quantity %></p>
+        <p style="margin: 0;">Number of Properties: <%= @customer.subscription.quantity %></p>
       <% end %>
     </div>
   </div>
