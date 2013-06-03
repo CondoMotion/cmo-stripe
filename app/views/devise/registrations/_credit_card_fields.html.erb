@@ -18,7 +18,7 @@
         <% if @customer.subscription.status == "trialing" %>
           <p>Trial Ends: <%= Time.at(@customer.subscription.trial_end).to_datetime.strftime("%b %d, %Y") %></p>
         <% end %>
-        <p>Number of Sites: <%= @customer.subscription.quantity %></p>
+        <p style="margin: 0;">Number of Sites: <%= @customer.subscription.quantity %></p>
       <% end %>
     </div>
   </div>
@@ -76,8 +76,8 @@
 </div>
 <% end %>
 
-<h4 style="margin-top: 30px; font-weight: 100;">
+<h4 style="margin-top: 20px; font-weight: 100;">
 	Unhappy?
 </h4>
 
-<p><%= link_to "Cancel my account", registration_path(resource_name), :data => { :confirm => "Are you sure?" }, :method => :delete, :class => 'btn btn-mini btn-danger' %></p>
+<p><%= link_to "Cancel my account", registration_path(resource_name), :data => { :confirm => "Are you sure?" }, :method => :delete, :class => 'btn btn-mini' %></p>

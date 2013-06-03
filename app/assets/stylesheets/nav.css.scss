@@ -24,12 +24,23 @@ $iconSize: 35px;
 	top: 0px;
 	left: 0px;
 	right: 0px;
-	height: 40px;
-	padding-left: 20px;
+	height: $headerHeight;
 	background: #000;
 	color: #fff;
+	line-height: $headerHeight;
 	h4 {
 		font-weight: 400;
+	}
+	a {
+		color: #fff;
+		text-decoration: none;
+	}
+	.dropdown-menu a {
+		color: #4C90EE;
+		&:hover {
+			color: #fff;
+			background: #4C90EE;
+		}
 	}
 }
 
