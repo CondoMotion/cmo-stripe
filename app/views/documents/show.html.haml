@@ -1,6 +1,16 @@
-%p#notice= notice
-
-
-= link_to 'Edit', edit_document_path(@document)
-\|
-= link_to 'Back', documents_path
+= render "layouts/dashboard_navigation"
+#main.no-nav-secondary
+  #breadcrumbs 
+    .container-fluid
+      .row-fluid
+        .span12
+          %h3.pull-left
+            %i.icon-user
+            = link_to "Documents", documents_url
+            %span / 
+            = @document.post.title
+          = link_to "Edit", edit_document_path(@document),class: "btn pull-right"
+  .container-fluid
+    .row-fluid{style: "padding-top: 20px;"}
+      .span12
+        %h2= @document.post.title

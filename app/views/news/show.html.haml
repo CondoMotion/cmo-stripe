@@ -1,9 +1,17 @@
-%p#notice= notice
-
-%p
-  %b Content:
-  = @news.content
-
-= link_to 'Edit', edit_news_path(@news)
-\|
-= link_to 'Back', news_index_path
+= render "layouts/dashboard_navigation"
+#main.no-nav-secondary
+  #breadcrumbs 
+    .container-fluid
+      .row-fluid
+        .span12
+          %h3.pull-left
+            %i.icon-user
+            = link_to "News", news_index_url
+            %span / 
+            = @news.post.title
+          = link_to "Edit", edit_news_path(@news),class: "btn pull-right"
+  .container-fluid
+    .row-fluid{style: "padding-top: 20px;"}
+      .span12
+        %h2= @news.post.title
+        %p= @news.content
