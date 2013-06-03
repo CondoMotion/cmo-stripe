@@ -39,3 +39,4 @@ gem "friendly_id"
 gem "acts_as_list"
 gem "meta_request", :group => :development
 gem "fog"
+gem 'chosen-rails'

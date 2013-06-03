@@ -4,8 +4,8 @@
   .form-inputs
     = f.simple_fields_for :post do |ff|
       = ff.input :title
-      = ff.association :roles
-      = ff.association :sites
+      = ff.association :roles, collection: Role.where("name = ? or name = ? or name = ?", "resident", "admin", "manager"), input_html: { class: "chosen" }
+      = ff.association :sites, collection: @company.sites.all, input_html: { class: "chosen" }
 
   .form-actions
     = f.button :submit
