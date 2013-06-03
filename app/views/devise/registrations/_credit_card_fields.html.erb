@@ -28,8 +28,8 @@
     <div class="well">
       <h4 style="margin-top: 0;">Update Credit Card</h4>
       <%= simple_form_for resource, :as => resource_name, :url => update_card_path, :html => {:method => :put, :class => 'form-horizontal card_form', style: "margin: 0;" } do |f| %>
-        <div id="stripe_error" class="alert alert-error" style="display:none" ></div>
-        <div class="field">
+        <div id="stripe_error" class="alert alert-error" style="display:none; margin-bottom: 10px;" ></div>
+        <div class="field" style="margin-bottom: 10px;">
           <%= label_tag :card_number, "Credit Card Number" %>
           <%= text_field_tag :card_number, nil, name: nil, class: "span12" %>
         </div>
