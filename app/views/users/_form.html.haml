@@ -1,0 +1,12 @@
+= simple_form_for(resource, :as => resource_name, :url => company_user_registration_path, :html => {:class => 'card_form form-inline' }) do |f|
+  = f.error_notification
+  = display_base_errors resource
+  = f.input :name, label: "Full Name", :autofocus => true, input_html: { class: "span12" }
+  = f.input :email, :required => true, input_html: { class: "span12" }
+  .input{style: "margin-bottom: 20px;"}
+    = label_tag "Role"
+    %br/
+    = select_tag :plan, "<option>Manager</option><option>Resident</option>".html_safe  
+  .pull-right{style: "padding: 20px 0;"}
+    = link_to "Cancel", users_path, class: "btn"
+    = f.button :submit, "Save", class: "btn-success"

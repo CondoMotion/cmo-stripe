@@ -3,11 +3,11 @@
 
   .form-inputs
     = f.simple_fields_for :post do |ff|
-      = ff.input :title
-    = f.input :content, input_html: { rows: 5, class: "wysiwyg" }
+      = ff.input :title, input_html: { class: 'span12' }
+    = f.input :content, input_html: { rows: 10, class: "wysiwyg span12" }
     = f.simple_fields_for :post do |ff|
-      = ff.association :roles, collection: Role.where("name = ? or name = ? or name = ?", "resident", "admin", "manager"), input_html: { class: "chosen" }
-      = ff.association :sites, label: "Properties", collection: @company.sites.all, input_html: { class: "chosen" }
-
-  .form-actions
-    = f.button :submit
+      = ff.association :roles, collection: Role.where("name = ? or name = ? or name = ?", "resident", "admin", "manager"), input_html: { class: "chosen span12" }
+      = ff.association :sites, label: "Properties", collection: @company.sites.all, input_html: { class: "chosen span12" }
+  .pull-right{style: "padding: 20px 0;"}
+    = link_to "Cancel", news_index_path, class: "btn"
+    = f.button :submit, "Save", class: "btn-success"

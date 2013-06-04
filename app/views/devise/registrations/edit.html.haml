@@ -27,7 +27,8 @@
             .row-fluid
               %h3.span-12 Contact Info
         .container-fluid{style: "padding-top: 20px; padding-bottom: 20px;"}
-          = render "contact_fields"
+          .row-fluid
+            = render "contact_fields"
       - if can? :edit, @company
         #company.tab-pane{:class => params[:tab] == 'company' ? 'active' : ''}
           #breadcrumbs 
@@ -35,7 +36,8 @@
               .row-fluid
                 %h3.span-12 Company Info
           .container-fluid{style: "padding-top: 20px; padding-bottom: 20px;"}
-            = render "companies/form"
+            .row-fluid
+              = render "companies/form"
       - unless current_user.free?
         #billing.tab-pane{:class => params[:tab] == 'billing' ? 'active' : ''}
           #breadcrumbs 

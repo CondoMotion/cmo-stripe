@@ -20,6 +20,7 @@
               %th Properties
               %th Roles
               %th Posted by
+              %th Actions
           %tbody
           - @documents.each do |document|
             %tr
@@ -27,3 +28,7 @@
               %td= document.post.sites.map(&:name).join(", ")
               %td= document.post.roles.map(&:name).join(", ")
               %td= document.post.user.email if document.post.user
+              %td
+                .btn-group
+                  = link_to raw("<i class='icon-pencil'></i>"), edit_document_path(document), class: "btn btn-small"
+                  = link_to raw("<i class='icon-trash'></i>"), document, class: "btn btn-small", method: :delete, confirm: "Are you sure?"

@@ -1,16 +1,25 @@
 = simple_form_for @company, multipart: true, html: { class: "form-vertical" } do |f|
-	= f.error_notification
-	= f.input :name, label: "Company Name"
-	= f.input :phone
-	= f.input :website
-	= f.input :logo, as: :file
-	%span or
-	= f.input :remote_logo_url
-	- @company.build_address if @company.address.nil?
-	= f.fields_for :address do |ff|
-		= ff.input :address1
-		= ff.input :address2
-		= ff.input :city
-		= ff.input :state
-		= ff.input :zip
-	= f.submit class: "btn"
+  = f.error_notification
+  = f.input :name, label: "Company Name", input_html: { class: "span12" }
+  = f.input :phone, input_html: { class: "span12" }
+  = f.input :website, input_html: { class: "span12" }
+  .row-fluid
+    .span1
+      = image_tag @company.logo.url(:thumb) if @company.logo
+    .span5
+      = f.input :logo, as: :file, input_html: { class: "span12" }
+    .span6
+      = f.input :remote_logo_url, label: "Or enter a URL for your logo", input_html: { class: "span12" }
+  - @company.build_address if @company.address.nil?
+  = f.fields_for :address do |ff|
+    = ff.input :address1, input_html: { class: "span12" }
+    = ff.input :address2, input_html: { class: "span12" }
+    .row-fluid
+      .span6
+        = ff.input :city, input_html: { class: "span12" }
+      .span2
+        = ff.input :state, input_html: { class: "span12" }
+      .span4
+        = ff.input :zip, input_html: { class: "span12" }
+  .pull-right{style: "padding: 20px 0;"}
+    = f.button :submit, "Save", class: "btn-success"

@@ -10,8 +10,14 @@
             = link_to "News", news_index_path
             %span /
             Add News
-          = link_to "Cancel", news_index_path, class: "btn pull-right"
+          .pull-right
+            = link_to "Cancel", news_index_path, class: "btn"
+            /%input{class: "btn btn-success", name: "commit", type: "submit", value: "Save"}
   .container-fluid
     .row-fluid{style: "padding-top: 20px;"}
-      .span12
+      .span3
+        .form-instructions
+          %h3 Write your news post
+          %p Give your news post a title and add your content.
+      .span9
         = render 'form'

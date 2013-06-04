@@ -12,5 +12,9 @@
         = link_to raw("<i class='icon icon-trash'></i>"), @news, method: :delete, confirm: "Are you sure?", class: "btn pull-right"
   .container-fluid
     .row-fluid{style: "padding-top: 20px;"}
-      .span12
+      .span3
+        .form-instructions
+          %h3 Edit your news post
+          %p Give your news post a title and add your content.
+      .span9
         = render 'form'

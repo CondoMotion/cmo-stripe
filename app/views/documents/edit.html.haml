@@ -12,5 +12,9 @@
         = link_to raw("<i class='icon icon-trash'></i>"), @document, method: :delete, confirm: "Are you sure?", class: "btn pull-right"
   .container-fluid
     .row-fluid{style: "padding-top: 20px;"}
-      .span12
+      .span3
+        .form-instructions
+          %h3 Edit your document
+          %p Give your document post a title and choose a file to upload.
+      .span9
         = render 'form'

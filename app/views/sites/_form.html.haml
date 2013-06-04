@@ -2,15 +2,20 @@
   = f.error_notification
 
   .form-inputs
-    = f.input :name
-    = f.input :subdomain
+    = f.input :name, input_html: { class: "span12" }
+    = f.input :subdomain, input_html: { class: "span12" }
     - @site.build_address if @site.address.nil?
     = f.fields_for :address do |ff|
-      = ff.input :address1
-      = ff.input :address2
-      = ff.input :city
-      = ff.input :state
-      = ff.input :zip
+      = ff.input :address1, input_html: { class: "span12" }
+      = ff.input :address2, input_html: { class: "span12" }
+      .row-fluid
+        .span6
+          = ff.input :city, input_html: { class: "span12" }
+        .span2
+          = ff.input :state, input_html: { class: "span12" }
+        .span4
+          = ff.input :zip, input_html: { class: "span12" }
 
-  .form-actions
-    = f.button :submit
+    .pull-right{style: "padding: 20px 0;"}
+      = link_to "Cancel", sites_path, class: "btn"
+      = f.button :submit, "Save", class: "btn-success"

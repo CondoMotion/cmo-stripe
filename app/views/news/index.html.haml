@@ -20,6 +20,7 @@
               %th Properties
               %th Roles
               %th Posted by
+              %th Actions
           %tbody
           - @news.each do |news|
             %tr
@@ -27,3 +28,7 @@
               %td= news.post.sites.map(&:name).join(", ")
               %td= news.post.roles.map(&:name).join(", ")
               %td= news.post.user.email if news.post.user
+              %td
+                .btn-group
+                  = link_to raw("<i class='icon-pencil'></i>"), edit_news_path(news), class: "btn btn-small"
+                  = link_to raw("<i class='icon-trash'></i>"), news, class: "btn btn-small", method: :delete, confirm: "Are you sure?"
