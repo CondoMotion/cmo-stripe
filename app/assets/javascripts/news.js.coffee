@@ -61,7 +61,7 @@ $ ->
     html: (locale) ->
       "<li>" +
         "<div class='btn-group'>" +
-          "<a class='btn' data-wysihtml5-action='change_view' title='" + locale.html.edit + "'><i class='icon-pencil'></i></a>" +
+          "<a class='btn' data-wysihtml5-action='change_view' title='" + locale.html.edit + "'>HTML</a>" +
         "</div>" +
       "</li>"
 

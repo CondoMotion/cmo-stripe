@@ -9,4 +9,11 @@ ul.wysihtml5-toolbar {
 	li {
 		margin: 0 5px 0px 0!important;
 	}
+	.btn {
+		background: #F4F4F4;
+		padding: 2px 8px;
+		&:hover {
+			background: darken(#F4F4F4, 5%);
+		}
+	}
 }
