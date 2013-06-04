@@ -10,15 +10,15 @@
           = link_to "Edit", '/users/edit/company', class: "btn pull-right" if can? :edit, @company
   .container-fluid
     .row-fluid{style: "padding-top: 20px;"}
-      .span8
-        .row-fluid
-          .span2
-            .logo= image_tag @company.logo_url if @company.logo?
-          .span10
-            .owner= "Owner: #{@company.owner.name} (#{@company.owner.email})"
-            .phone= @company.phone
-            .website= @company.website
-      .span4
+      .span2
+        .logo= image_tag @company.logo_url if @company.logo?
+      .span5
+        .detail-box
+          %h4 Contact Info
+          .owner= "Owner: #{@company.owner.name} (#{@company.owner.email})"
+          .phone= @company.phone
+          .website= @company.website
+      .span5
         .detail-box
           %h4 Address
           - unless @company.address.nil?
