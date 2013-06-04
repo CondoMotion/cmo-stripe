@@ -26,6 +26,7 @@ class NewsController < ApplicationController
   def new
     @news = News.new
     @news.build_post
+    @news.build_attachment
 
     respond_to do |format|
       format.html # new.html.erb
@@ -36,6 +37,7 @@ class NewsController < ApplicationController
   # GET /news/1/edit
   def edit
     @news = News.find(params[:id])
+    @news.build_attachment if @news.attachment.nil?
   end
 
   # POST /news

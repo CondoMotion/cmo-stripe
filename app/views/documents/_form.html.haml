@@ -4,6 +4,9 @@
   .form-inputs
     = f.simple_fields_for :post do |ff|
       = ff.input :title, input_html: { class: "span12" }
+    = f.simple_fields_for :attachment do |attachmentFields|
+      = attachmentFields.input :attachment
+    = f.simple_fields_for :post do |ff|
       = ff.association :roles, collection: Role.where("name = ? or name = ? or name = ?", "resident", "admin", "manager"), input_html: { class: "chosen span12" }
       = ff.association :sites, label: "Properties", collection: @company.sites.all, input_html: { class: "chosen span12" }
     .pull-right{style: "padding: 20px 0;"}

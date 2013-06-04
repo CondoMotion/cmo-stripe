@@ -9,9 +9,13 @@
             = link_to "News", news_index_url
             %span / 
             = @news.post.title
-          = link_to "Edit", edit_news_path(@news),class: "btn pull-right"
+          .pull-right.btn-group
+            = link_to raw("<i class='icon icon-pencil'></i>"), edit_news_path(@news),class: "btn"
+            = link_to raw("<i class='icon icon-trash'></i>"), @news, method: :delete, confirm: "Are you sure?", class: "btn"
   .container-fluid
     .row-fluid{style: "padding-top: 20px;"}
       .span12
         %h2= @news.post.title
         %p= raw @news.content
+        - unless @news.attachment.nil?
+          %p= link_to "Attachment", @news.attachment.attachment.url if @news.attachment.attachment?

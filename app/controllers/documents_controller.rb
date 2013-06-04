@@ -26,6 +26,7 @@ class DocumentsController < ApplicationController
   def new
     @document = Document.new
     @document.build_post
+    @document.build_attachment
 
     respond_to do |format|
       format.html # new.html.erb
@@ -36,6 +37,7 @@ class DocumentsController < ApplicationController
   # GET /documents/1/edit
   def edit
     @document = Document.find(params[:id])
+    @document.build_attachment if @document.attachment.nil?
   end
 
   # POST /documents

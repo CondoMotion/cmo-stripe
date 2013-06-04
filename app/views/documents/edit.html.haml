@@ -9,7 +9,9 @@
           = link_to 'Documents', documents_path
           %span  / 
           = @document.post.title
-        = link_to raw("<i class='icon icon-trash'></i>"), @document, method: :delete, confirm: "Are you sure?", class: "btn pull-right"
+        .pull-right.btn-group
+          = link_to raw("<i class='icon icon-eye-open'></i>"), @document, class: "btn"
+          = link_to raw("<i class='icon icon-trash'></i>"), @document, method: :delete, confirm: "Are you sure?", class: "btn"
   .container-fluid
     .row-fluid{style: "padding-top: 20px;"}
       .span3

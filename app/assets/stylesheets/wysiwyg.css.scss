@@ -1,0 +1,16 @@
+ul.wysihtml5-toolbar {
+	background: #FAFAFA;
+	padding: 5px!important;
+	border: 1px solid #ccc;
+	border-bottom: 0;
+	li {
+		margin: 0 5px 0px 0!important;
+	}
+	.btn {
+		background: #F4F4F4;
+		padding: 2px 8px;
+		&:hover {
+			background: darken(#F4F4F4, 5%);
+		}
+	}
+}
