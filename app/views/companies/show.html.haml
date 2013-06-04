@@ -13,12 +13,21 @@
       .span2
         .logo= image_tag @company.logo_url if @company.logo?
       .span5
+      .span5
         .detail-box
           %h4 Contact Info
-          .owner= "Owner: #{@company.owner.name} (#{@company.owner.email})"
-          .phone= @company.phone
-          .website= @company.website
-      .span5
+          %table.table-condensed{style: "margin: 0;"}
+            %tbody
+              %tr
+                %th{style: "text-align: left;"} Owner
+                %td= @company.owner.name
+              %tr
+                %th{style: "text-align: left;"} Phone
+                %td= @company.phone
+              %tr
+                %th{style: "text-align: left;"} Website
+                %td= link_to @company.website, @company.website, target: "_blank"
+        %hr
         .detail-box
           %h4 Address
           - unless @company.address.nil?
