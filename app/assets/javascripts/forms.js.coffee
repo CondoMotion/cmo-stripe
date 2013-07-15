@@ -1,6 +1,10 @@
 $ ->
   $('.chosen').chosen()
 
+  $('.chosen-toggle').click ->
+    $($(this).data('target')).children('option').prop('selected', $(this).hasClass('select'))
+    $('.chosen').trigger('liszt:updated')
+
   myCustomTemplates = 
     'font-styles': (locale) ->
       "<li class='dropdown'>" +
