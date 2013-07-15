@@ -25,7 +25,7 @@ class NewsController < ApplicationController
   # GET /news/new.json
   def new
     @news = News.new
-    @news.build_post
+    @news.build_post(role_ids: Role.where("name = ? or name = ? or name = ?", "resident", "admin", "manager").map(&:id))
     @news.build_attachment
 
     respond_to do |format|

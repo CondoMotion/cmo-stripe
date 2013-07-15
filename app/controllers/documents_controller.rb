@@ -25,7 +25,7 @@ class DocumentsController < ApplicationController
   # GET /documents/new.json
   def new
     @document = Document.new
-    @document.build_post
+    @document.build_post(role_ids: Role.where("name = ? or name = ? or name = ?", "resident", "admin", "manager").map(&:id))
     @document.build_attachment
 
     respond_to do |format|
