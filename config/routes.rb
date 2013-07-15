@@ -1,9 +1,6 @@
 CmoStripe::Application.routes.draw do
   resources :documents
-
-
   resources :news
-
 
   mount StripeEvent::Engine => '/stripe'
   

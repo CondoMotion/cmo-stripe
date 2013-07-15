@@ -24,7 +24,7 @@
           %tbody
           - @documents.each do |document|
             %tr
-              %td= link_to document.post.title, document
+              %td= link_to document.post.title, document.attachment.attachment.url if (!document.attachment.nil? && document.attachment.attachment?)
               %td= document.post.sites.map(&:name).join(", ")
               %td= document.post.roles.map(&:name).join(", ")
               %td= document.post.user.email if document.post.user
