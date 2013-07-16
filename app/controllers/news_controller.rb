@@ -80,7 +80,7 @@ class NewsController < ApplicationController
     @news.destroy
 
     respond_to do |format|
-      format.html { redirect_to news_index_url }
+      format.html { redirect_to news_index_url, notice: 'News was successfully deleted.' }
       format.json { head :no_content }
     end
   end

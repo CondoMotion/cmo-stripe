@@ -1,0 +1,13 @@
+.news_post
+  %h1
+    = link_to news.post.title, news
+    .btn-group.pull-right
+      .btn.btn-small= link_to raw("<i class='icon-pencil'></i>"), edit_news_path(news)
+      .btn.btn-small= link_to raw("<i class='icon-trash'></i>"), news, method: :delete, confirm: "Are you sure?"
+  .content
+    %p= raw news.content
+  .footer
+    Posted 
+    = time_ago_in_words news.post.created_at
+    ago by 
+    = news.post.user.email
