@@ -31,13 +31,12 @@
               %th{style: "text-align: right;"} Actions
           %tbody
           - @documents.each do |document|
-            - if params[:site].nil? || document.post.site_ids.include?(params[:site].to_i)
-              %tr
-                %td= link_to document.post.title, document.attachment.attachment.url if (!document.attachment.nil? && document.attachment.attachment?)
-                %td= document.post.sites.map(&:name).join(", ")
-                %td= document.post.roles.map{|role| role.name.titleize }.join(", ")
-                %td= document.post.user.email if document.post.user
-                %td{style: "text-align: right;"}
-                  .btn-group
-                    = link_to raw("<i class='icon-pencil'></i>"), edit_document_path(document), class: "btn btn-small"
-                    = link_to raw("<i class='icon-trash'></i>"), document, class: "btn btn-small", method: :delete, confirm: "Are you sure?"
+            %tr
+              %td= link_to document.post.title, document.attachment.attachment.url if (!document.attachment.nil? && document.attachment.attachment?)
+              %td= document.post.sites.map(&:name).join(", ")
+              %td= document.post.roles.map{|role| role.name.titleize }.join(", ")
+              %td= document.post.user.email if document.post.user
+              %td{style: "text-align: right;"}
+                .btn-group
+                  = link_to raw("<i class='icon-pencil'></i>"), edit_document_path(document), class: "btn btn-small"
+                  = link_to raw("<i class='icon-trash'></i>"), document, class: "btn btn-small", method: :delete, confirm: "Are you sure?"

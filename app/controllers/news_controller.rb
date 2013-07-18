@@ -2,8 +2,14 @@ class NewsController < ApplicationController
   # GET /news
   # GET /news.json
   def index
-    @news = News.order("created_at DESC")
+    @site = @company.sites.find(params[:site]) if params[:site]
 
+    if @site
+      @news = @site.newses
+    else
+      @news = News.order("created_at DESC")
+    end
+    
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @news }

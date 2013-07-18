@@ -2,7 +2,13 @@ class DocumentsController < ApplicationController
   # GET /documents
   # GET /documents.json
   def index
-    @documents = Document.order("created_at DESC")
+    @site = @company.sites.find(params[:site]) if params[:site]
+
+    if @site
+      @documents = @site.documents
+    else
+      @documents = Document.order("created_at DESC")
+    end
 
     respond_to do |format|
       format.html # index.html.erb
