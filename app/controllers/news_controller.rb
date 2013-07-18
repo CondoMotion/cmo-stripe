@@ -2,7 +2,7 @@ class NewsController < ApplicationController
   # GET /news
   # GET /news.json
   def index
-    @site = @company.sites.find(params[:site]) if params[:site]
+    @site = Site.find(params[:site]) if params[:site]
 
     if @site
       @news = @site.newses

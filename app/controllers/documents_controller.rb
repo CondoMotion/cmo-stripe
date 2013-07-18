@@ -2,7 +2,7 @@ class DocumentsController < ApplicationController
   # GET /documents
   # GET /documents.json
   def index
-    @site = @company.sites.find(params[:site]) if params[:site]
+    @site = Site.find(params[:site]) if params[:site]
 
     if @site
       @documents = @site.documents
