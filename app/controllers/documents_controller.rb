@@ -2,10 +2,8 @@ class DocumentsController < ApplicationController
   # GET /documents
   # GET /documents.json
   def index
-    @site = Site.find(params[:site]) if params[:site]
-
-    if @site
-      @documents = @site.documents
+    if params[:site] && !Site.find(params[:site]).nil?
+      @documents = Site.find(params[:site].to_i).documents
     else
       @documents = Document.order("created_at DESC")
     end

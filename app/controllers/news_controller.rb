@@ -2,10 +2,8 @@ class NewsController < ApplicationController
   # GET /news
   # GET /news.json
   def index
-    @site = Site.find(params[:site]) if params[:site]
-
-    if @site
-      @news = @site.newses
+    if params[:site] && !Site.find(params[:site]).nil?
+      @news = Site.find(params[:site]).newses
     else
       @news = News.order("created_at DESC")
     end
