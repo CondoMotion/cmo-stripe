@@ -44,7 +44,7 @@ class SitesController < ApplicationController
 
     respond_to do |format|
       if @site.save
-        format.html { redirect_to root_url(subdomain: @site.subdomain), notice: 'Site was successfully created.' }
+        format.html { redirect_to root_url(subdomain: @site.subdomain), notice: 'Property was successfully created.' }
         format.json { render json: @site, status: :created, location: @site }
       else
         format.html { render action: "new" }
@@ -61,7 +61,7 @@ class SitesController < ApplicationController
 
     respond_to do |format|
       if @site.update_attributes(params[:site])
-        format.html { redirect_to edit_site_url(subdomain: @site.subdomain), notice: 'Site was successfully updated.' }
+        format.html { redirect_to sites_url(subdomain: "www"), notice: 'Property was successfully updated.' }
         format.json { head :no_content }
       else
         @pages = @site.pages
@@ -79,7 +79,7 @@ class SitesController < ApplicationController
     @site.destroy
 
     respond_to do |format|
-      format.html { redirect_to sites_url, notice: 'Site was successfully deleted.' }
+      format.html { redirect_to sites_url, notice: 'Property was successfully deleted.' }
       format.json { head :no_content }
     end
   end

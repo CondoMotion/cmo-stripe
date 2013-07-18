@@ -19,11 +19,10 @@ CmoStripe::Application.routes.draw do
   get "featured-sites", to: "home#featured_sites",  as: :featured_sites,  constraints: lambda { |r| !r.subdomain.present? or r.subdomain == 'www' }
   get "contact",        to: "home#contact",         as: :contact,         constraints: lambda { |r| !r.subdomain.present? or r.subdomain == 'www' }
 
-  authenticated :user do
-    root to: 'home#index', constraints: lambda { |r| !r.subdomain.present? or r.subdomain == 'www' }
-  end
-    root to: "home#index", constraints: lambda { |r| !r.subdomain.present? or r.subdomain == 'www' }
-  
+
+  root to: "news#index", constraints: lambda { |r| r.env["warden"].authenticate? }
+  root to: "home#index"
+
   devise_for :users, controllers: { registrations: 'registrations' }
   devise_scope :user do
     get 'users/edit(/:tab)',            to: 'registrations#edit'

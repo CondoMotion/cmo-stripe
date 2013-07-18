@@ -1,8 +1,11 @@
 .news_post {
   margin-bottom: 20px;
   border: 1px solid #ccc;
+  box-shadow: 0px 0px 3px #ccc;
   h1 {
     background: #f1f1f1;
+    @include gradient-vertical(#FAFAFA, #EAEAEA);
+    border-bottom: 1px solid #D8D8D8;
     font-size: 18px;
     padding: 0 20px;
     margin: 0;
@@ -15,13 +18,17 @@
   }
   .content {
     padding: 20px;
+    .news-sites {
+      margin-bottom: 20px;
+    }
     p {
       margin: 0;
     }
   }
   .footer {
-    background: #f1f1f1;
-    padding: 5px 20px;
+    background: #fff;
+    padding: 5px 20px 10px 20px;
     color: #999;
+    font-size: 13px;
   }
 }

@@ -17,7 +17,7 @@ class ApplicationController < ActionController::Base
       when 'admin'
         users_path
       else
-        show_company_path
+        news_index_path
     end
   end
 

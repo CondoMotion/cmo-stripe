@@ -2,9 +2,17 @@
   %h1
     = link_to news.post.title, news
     .btn-group.pull-right
-      .btn.btn-small= link_to raw("<i class='icon-pencil'></i>"), edit_news_path(news)
-      .btn.btn-small= link_to raw("<i class='icon-trash'></i>"), news, method: :delete, confirm: "Are you sure?"
+      = link_to raw("<i class='icon-pencil'></i>"), edit_news_path(news), class: "btn btn-small"
+      = link_to raw("<i class='icon-lock'></i>"), "#", data: { toggle: "collapse", target: "#permissions-#{news.post.id}" }, class: "btn btn-small"
+      = link_to raw("<i class='icon-trash'></i>"), news, method: :delete, confirm: "Are you sure?", class: "btn btn-small"
   .content
+    .collapse{id: "permissions-#{news.post.id}"}
+      %div{style: "padding-bottom: 10px;"}
+        - news.post.roles.each do |role|
+          %span.label.label-info= role.name
+    .news-sites
+      - news.post.sites.each do |site|
+        %span.label.label-info= site.name
     %p= raw news.content
   .footer
     Posted 
