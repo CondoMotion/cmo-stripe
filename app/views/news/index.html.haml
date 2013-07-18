@@ -1,6 +1,14 @@
+- content_for :nav_secondary do
+  #nav-secondary
+    %h5 Filter by Property
+    %ul.nav-secondary-tabs
+      %li{class: (params[:site].nil? ? "active" : "")}= link_to "All", news_index_url
+      - @sites.each do |site|
+        %li{class: (params[:site] == site.id.to_s ? "active" : "inactive")}= link_to site.name, news_index_url(site: site.id)
+
 = render "layouts/dashboard_navigation"
 
-#main.no-nav-secondary
+#main
   #breadcrumbs 
     .container-fluid
       .row-fluid

@@ -1,6 +1,14 @@
+- content_for :nav_secondary do
+  #nav-secondary
+    %h5 Filter by Property
+    %ul.nav-secondary-tabs
+      %li{class: (params[:site].nil? ? "active" : "")}= link_to "All", documents_url
+      - @sites.each do |site|
+        %li{class: (params[:site] == site.id.to_s ? "active" : "inactive")}= link_to site.name, documents_url(site: site.id)
+
 = render "layouts/dashboard_navigation"
 
-#main.no-nav-secondary
+#main
   #breadcrumbs 
     .container-fluid
       .row-fluid
@@ -23,12 +31,13 @@
               %th{style: "text-align: right;"} Actions
           %tbody
           - @documents.each do |document|
-            %tr
-              %td= link_to document.post.title, document.attachment.attachment.url if (!document.attachment.nil? && document.attachment.attachment?)
-              %td= document.post.sites.map(&:name).join(", ")
-              %td= document.post.roles.map(&:name).join(", ")
-              %td= document.post.user.email if document.post.user
-              %td{style: "text-align: right;"}
-                .btn-group
-                  = link_to raw("<i class='icon-pencil'></i>"), edit_document_path(document), class: "btn btn-small"
-                  = link_to raw("<i class='icon-trash'></i>"), document, class: "btn btn-small", method: :delete, confirm: "Are you sure?"
+            - if params[:site].nil? || document.post.site_ids.include?(params[:site].to_i)
+              %tr
+                %td= link_to document.post.title, document.attachment.attachment.url if (!document.attachment.nil? && document.attachment.attachment?)
+                %td= document.post.sites.map(&:name).join(", ")
+                %td= document.post.roles.map{|role| role.name.titleize }.join(", ")
+                %td= document.post.user.email if document.post.user
+                %td{style: "text-align: right;"}
+                  .btn-group
+                    = link_to raw("<i class='icon-pencil'></i>"), edit_document_path(document), class: "btn btn-small"
+                    = link_to raw("<i class='icon-trash'></i>"), document, class: "btn btn-small", method: :delete, confirm: "Are you sure?"
