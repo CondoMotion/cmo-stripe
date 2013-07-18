@@ -34,5 +34,7 @@
                   = site.address.zip
               %td{style: "text-align: right;"}
                 .btn-group
-                  = link_to raw("<i class='icon-pencil'></i>"), edit_site_url(subdomain: site.subdomain), class: "btn btn-small"
-                  = link_to raw("<i class='icon-trash'></i>"), site, class: "btn btn-small", method: :delete, confirm: "Are you sure?"
+                  - if can? :edit, site
+                    = link_to raw("<i class='icon-pencil'></i>"), edit_site_url(subdomain: site.subdomain), class: "btn btn-small"
+                  - if can? :delete, site
+                    = link_to raw("<i class='icon-trash'></i>"), site, class: "btn btn-small", method: :delete, confirm: "Are you sure?"
