@@ -2,6 +2,7 @@ $ ->
   $('.chosen').chosen()
 
   $('.chosen-toggle').click ->
+    event.preventDefault()
     $($(this).data('target')).children('option').prop('selected', $(this).hasClass('select'))
     $('.chosen').trigger('liszt:updated')
 
