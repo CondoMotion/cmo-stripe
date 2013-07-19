@@ -21,4 +21,26 @@
   .container-fluid
     .row-fluid{style: "padding-top: 20px;"}
       .span12
-        = render @news
+        - @posts.each do |post|
+          .news_post
+            %h1
+              = link_to post.title, post.postable
+              .btn-group.pull-right
+                = link_to raw("<i class='icon-pencil'></i>"), edit_news_path(post.postable), class: "btn btn-small"
+                .btn.btn-small{ data: { toggle: "collapse", target: "#permissions-#{post.id}" } }
+                  %i.icon-lock
+                = link_to raw("<i class='icon-trash'></i>"), post.postable, method: :delete, confirm: "Are you sure?", class: "btn btn-small"
+            .content
+              .collapse{id: "permissions-#{post.id}"}
+                .permissions
+                  - post.roles.each do |role|
+                    %span.label.label-info= role.name.titleize
+              .news-sites
+                - post.sites.each do |site|
+                  %span.label.label-info= site.name
+              %p= raw post.postable.content
+            .footer
+              Posted 
+              = time_ago_in_words post.created_at
+              ago by 
+              = post.user.email

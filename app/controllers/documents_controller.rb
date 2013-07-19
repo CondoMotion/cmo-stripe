@@ -3,9 +3,9 @@ class DocumentsController < ApplicationController
   # GET /documents.json
   def index
     if params[:site] && !Site.find(params[:site]).nil?
-      @documents = Site.find(params[:site].to_i).documents
+      @posts = Site.find(params[:site].to_i).posts.where(postable_type: "Document")
     else
-      @documents = Document.order("created_at DESC")
+      @posts = Post.order("created_at DESC").where(postable_type: "Document")
     end
 
     respond_to do |format|

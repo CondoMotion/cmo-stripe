@@ -4,8 +4,8 @@ class Site < ActiveRecord::Base
   has_many :postings
   has_many :posts, through: :postings
 
-  has_many :documents, through: :posts, source: :postable, source_type: "Document"
-  has_many :newses, through: :posts, source: :postable, source_type: "News"
+  # has_many :documents, through: :posts, source: :postable, source_type: "Document"
+  # has_many :news_posts, through: :posts, source: :postable, source_type: "News"
 
   accepts_nested_attributes_for :address
 
