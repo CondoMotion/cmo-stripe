@@ -4,6 +4,13 @@ class Role < ActiveRecord::Base
   has_many :permissions
 	has_many :posts, through: :permissions
   has_many :memberships
+
+  scope :site_roles, -> { where("name = ? OR name = ? or name = ? or name = ?", "manager", "admin", "trustee", "resident") }
   
   scopify
+
+  def select_label
+    name.titleize
+  end
+
 end
