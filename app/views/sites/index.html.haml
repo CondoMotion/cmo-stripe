@@ -1,4 +1,3 @@
-
 = render "layouts/dashboard_navigation"
 
 #main.no-nav-secondary
@@ -17,14 +16,12 @@
           %thead
             %tr
               %th Name
-              %th Subdomain
               %th Address
               %th{style: "text-align: right;"} Actions
           %tbody
           - @sites.each do |site|
             %tr
               %td= link_to site.name, root_url(subdomain: site.subdomain)
-              %td= site.subdomain
               - unless site.address.nil?
                 %td
                   = site.address.address1

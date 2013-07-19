@@ -7,6 +7,7 @@ class User < ActiveRecord::Base
   has_many :sites, through: :memberships
 
   accepts_nested_attributes_for :owned_company
+  accepts_nested_attributes_for :memberships, allow_destroy: true
   # Include default devise modules. Others available are:
   # :token_authenticatable, :confirmable, :trackable, 
   # :lockable, :timeoutable and :omniauthable
@@ -16,7 +17,7 @@ class User < ActiveRecord::Base
   validates :name, presence: true
 
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :name, :email, :password, :password_confirmation, :remember_me, :stripe_token, :coupon, :owned_company_attributes
+  attr_accessible :name, :email, :password, :password_confirmation, :remember_me, :stripe_token, :coupon, :owned_company_attributes, :memberships_attributes
   attr_accessor :stripe_token, :coupon
   after_create :add_company
   before_save :update_stripe 
@@ -52,7 +53,7 @@ class User < ActiveRecord::Base
   end
 
   def free?
-    %w[admin manager resident].include? roles.first.name
+    %w[admin manager resident trustee].include? roles.first.name
   end
   
   def update_stripe

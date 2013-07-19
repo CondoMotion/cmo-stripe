@@ -1,12 +1,57 @@
-= content_for :title do
-  = @site.name
-.container
-  = link_to "Home", root_url(subdomain: @site.subdomain)
+- content_for :nav_secondary do
+  #nav-secondary
+    %h5 Properties
+    %ul.nav-secondary-tabs
+      - @sites.each do |site|
+        %li{class: ("active" if site == @site )}= link_to site.name, root_url(subdomain: site.subdomain)
 
-  %h3= @site.name
+= render "layouts/dashboard_navigation"
 
-  .row
-  = link_to 'Edit', edit_site_url(subdomain: @site.subdomain) if can? :edit, @site
-  - if can? :index, Site
-    \|
-    = link_to 'Back', sites_url(subdomain: "www")
+#main
+  #breadcrumbs 
+    .container-fluid
+      .row-fluid
+        .span12
+          %h3.pull-left
+            %i.icon-map-marker
+            = link_to "Properties", sites_url(subdomain: "www")
+            %span / 
+            = @site.name
+          .pull-right.btn-group
+            = link_to raw("<i class='icon icon-pencil'></i>"), edit_site_url(subdomain: @site.subdomain), class: "btn" if can? :edit, @site
+  .container-fluid
+    .row-fluid
+      .span12
+        %iframe{:frameborder => "0", :height => "350", :marginheight => "0", :marginwidth => "0", :scrolling => "no", :src => "http://maps.google.com/maps?f=q&source=s_q&hl=en&geocode=&q=#{ @site.address.address1 }+#{ @site.address.city },+#{ @site.address.state }+#{ @site.address.zip }&ie=UTF8&z=14&t=m&iwloc=near&output=embed", :width => "100%"}
+    .row-fluid{style: "padding-top: 20px;"}
+      .span8
+        %h4 Members
+        - if @site.memberships.length == 0
+          .well
+            No members have been added to this property
+        - else
+          %table.table
+            %thead
+              %tr
+                %th Name
+                %th Role
+            %tbody
+              - @site.memberships.each do |membership|
+                %tr
+                  %td
+                    - if can? :read, membership.user
+                      = link_to membership.user.name, user_url(membership.user, subdomain: "www")
+                    - else
+                      = membership.user.name
+                  %td= membership.role.name.titleize
+      .span4
+        .detail-box
+          %h4 Address
+          - unless @site.address.nil?
+            %p{style: 'margin: 0;'}
+              = @site.address.address1
+              %br
+              - unless @site.address.address2.blank?
+                = @site.address.address2
+                %br
+              = @site.address.city + ", " + @site.address.state + " " + @site.address.zip

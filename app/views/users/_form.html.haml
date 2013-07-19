@@ -3,10 +3,10 @@
   = display_base_errors resource
   = f.input :name, label: "Full Name", :autofocus => true, input_html: { class: "span12" }
   = f.input :email, :required => true, input_html: { class: "span12" }
-  .input{style: "margin-bottom: 20px;"}
-    = label_tag "Role"
-    %br/
-    = select_tag :plan, "<option>Manager</option><option>Resident</option>".html_safe  
+  = hidden_field_tag :plan, "Resident"  
+  = f.simple_fields_for :memberships do |builder|
+    = render 'membership_fields', f: builder
+  = link_to_add_fields "Add Membership", f, :memberships
   .pull-right{style: "padding: 20px 0;"}
     = link_to "Cancel", users_path, class: "btn"
     = f.button :submit, "Save", class: "btn-success"

@@ -1,0 +1,9 @@
+%fieldset
+  .row-fluid
+    .span5
+      = f.association :site
+    .span5
+      = f.association :role
+    .span2
+      = f.hidden_field :_destroy
+      = link_to raw("<i class='icon-trash'></i>"), '#', class: "remove_fields btn pull-right", style: "margin-top: 25px;"
