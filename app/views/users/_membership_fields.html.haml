@@ -1,9 +1,9 @@
 %fieldset
   .row-fluid
     .span5
-      = f.association :site
+      = f.association :site, collection: @company.sites
     .span5
-      = f.association :role
+      = f.association :role, collection: Role.where("name = ? OR name = ? or name = ? or name = ?", "manager", "admin", "trustee", "resident"), label_method: lambda { |role| role.name.titleize }
     .span2
       = f.hidden_field :_destroy
       = link_to raw("<i class='icon-trash'></i>"), '#', class: "remove_fields btn pull-right", style: "margin-top: 25px;"
