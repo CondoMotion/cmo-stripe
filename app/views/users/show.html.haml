@@ -13,8 +13,23 @@
   .container-fluid
     .row-fluid{style: "padding-top: 20px;"}
       .span8
-        = @user.email
+        %h4{style: "margin-top: 0;"} Memberships
+        %table.table
+          %thead
+            %tr
+              %th Site
+              %th Role
+          %tbody
+            - @user.memberships.each do |membership|
+              %tr
+                %td= membership.site.name
+                %td= membership.role.name.titleize
       .span4
+        .detail-box
+          %h4 Email
+          %p{style: 'margin: 0;'}
+            = @user.email
+        %hr
         .detail-box
           %h4 Address
           %p{style: 'margin: 0;'}

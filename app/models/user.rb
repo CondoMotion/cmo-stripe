@@ -3,6 +3,8 @@ class User < ActiveRecord::Base
 
   has_one :owned_company, class_name: "Company", foreign_key: :owner_id, dependent: :destroy
   belongs_to :company
+  has_many :memberships
+  has_many :sites, through: :memberships
 
   accepts_nested_attributes_for :owned_company
   # Include default devise modules. Others available are:

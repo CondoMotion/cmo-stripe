@@ -3,6 +3,7 @@ class Role < ActiveRecord::Base
   belongs_to :resource, :polymorphic => true
   has_many :permissions
 	has_many :posts, through: :permissions
+  has_many :memberships
   
   scopify
 end
