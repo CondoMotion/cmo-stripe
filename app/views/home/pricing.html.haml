@@ -2,21 +2,22 @@
   Condo Motion | Pricing
 = render 'layouts/home_navigation'
 .container.center
-  %h2.title SIMPLE, TRANSPARENT PRICING.  NO SURPRISES.
-.row.span12.plans
-  .span2.offset4.well
-    .plan
-      %h2 Monthly
-    %ul.unstyled
-      %li Billed monthly
-    %h3 $25
-    %p a month per site
-    = link_to '30 Day Free Trial', 'sign_up/monthly', :class => 'btn btn-primary'
-  .span2.well
-    .plan.featured-plan
-      %h2 Annual
-    %ul.unstyled
-      %li Billed annually
-    %h3 $20
-    %p a month per site
-    = link_to '30 Day Free Trial', 'sign_up/annual', :class => 'btn btn-primary'
+  .row-fluid
+    %h2.span12.title Use Condo Motion free for 30 days.
+  .row-fluid.plans
+    .span3.offset3.well
+      .plan
+        %h2 Monthly
+      %ul.unstyled
+        %li Billed monthly
+      %h3 $25
+      %p a month per site
+      = link_to 'Start Free Trial', 'sign_up/monthly', :class => 'btn btn-primary'
+    .span3.well
+      .plan.featured-plan
+        %h2 Annual
+      %ul.unstyled
+        %li Billed annually
+      %h3 $20
+      %p a month per site
+      = link_to 'Start Free Trial', 'sign_up/annual', :class => 'btn btn-primary'

@@ -21,8 +21,8 @@
             %ul
             - @message.errors.full_messages.each do |msg|
               %li= msg
-        = f.text_field :name, class: "span12", placeholder: "Name"
-        = f.text_field :email, class: "span12", placeholder: "Email"
-        = f.text_field :subject, class: "span12", placeholder: "Subject"
-        = f.text_area :message, class: "span12", placeholder: "Message", :rows => 9
-        .actions= f.submit "Send", class: "btn btn-inverse"
+        = f.text_field :name, class: "span12", style: "margin-bottom: 10px;", placeholder: "Name"
+        = f.text_field :email, class: "span12", style: "margin-bottom: 10px;", placeholder: "Email"
+        = f.text_field :subject, class: "span12", style: "margin-bottom: 10px;", placeholder: "Subject"
+        = f.text_area :message, class: "span12", style: "margin-bottom: 10px;", placeholder: "Message", :rows => 9
+        .actions= f.submit "Send", class: "btn btn-primary"
