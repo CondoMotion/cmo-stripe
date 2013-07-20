@@ -5,7 +5,7 @@ class DocumentsController < ApplicationController
     if params[:site] && !Site.find(params[:site]).nil?
       @posts = Site.find(params[:site].to_i).posts.order("created_at DESC").where(postable_type: "Document")
     else
-      @posts = Post.order("created_at DESC").where(postable_type: "Document")
+      @posts = @company.posts.order("created_at DESC").where(postable_type: "Document")
     end
 
     respond_to do |format|
@@ -38,6 +38,7 @@ class DocumentsController < ApplicationController
   def create
     @document = Document.new(params[:document])
     @document.post.user = current_user
+    @document.post.company = current_user.company
 
     respond_to do |format|
       if @document.save

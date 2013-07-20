@@ -7,5 +7,6 @@ class Post < ActiveRecord::Base
   has_many :sites, through: :postings
   belongs_to :postable, polymorphic: true
   belongs_to :user
+  belongs_to :company
 
 end

@@ -5,7 +5,7 @@ class NewsController < ApplicationController
     if params[:site] && !Site.find(params[:site]).nil?
       @posts = Site.find(params[:site].to_i).posts.order("created_at DESC").where(postable_type: "News")
     else
-      @posts = Post.order("created_at DESC").where(postable_type: "News")
+      @posts = @company.posts.order("created_at DESC").where(postable_type: "News")
     end
     
     respond_to do |format|
@@ -49,6 +49,7 @@ class NewsController < ApplicationController
   def create
     @news = News.new(params[:news])
     @news.post.user = current_user
+    @news.post.company = current_user.company
 
     respond_to do |format|
       if @news.save

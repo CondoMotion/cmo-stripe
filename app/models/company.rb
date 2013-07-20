@@ -2,6 +2,7 @@ class Company < ActiveRecord::Base
 	belongs_to :owner, class_name: "User"
 	has_many :users, dependent: :destroy
 	has_many :sites, dependent: :destroy
+  has_many :posts, dependent: :destroy
 	has_one :address, as: :addressable 
 
 	accepts_nested_attributes_for :address

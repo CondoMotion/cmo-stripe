@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130719133340) do
+ActiveRecord::Schema.define(:version => 20130720204607) do
 
   create_table "addresses", :force => true do |t|
     t.string   "address1"
@@ -109,8 +109,10 @@ ActiveRecord::Schema.define(:version => 20130719133340) do
     t.datetime "updated_at",       :null => false
     t.string   "postable_type"
     t.integer  "postable_id"
+    t.integer  "company_id"
   end
 
+  add_index "posts", ["company_id"], :name => "index_posts_on_company_id"
   add_index "posts", ["user_id"], :name => "index_posts_on_user_id"
 
   create_table "roles", :force => true do |t|
