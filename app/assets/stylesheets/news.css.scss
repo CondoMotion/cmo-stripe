@@ -2,6 +2,11 @@
   margin-bottom: 20px;
   border: 1px solid #ccc;
   box-shadow: 0px 0px 3px #ccc;
+  .hover { display: none; }
+  &:hover {
+    box-shadow: 0px 0px 3px #4F8FCA;
+    .hover { display: block; }
+  }
   h1 {
     background: #f1f1f1;
     @include gradient-vertical(#FAFAFA, #EAEAEA);
@@ -26,6 +31,9 @@
     }
     p {
       margin: 0;
+    }
+    .attachment { 
+      margin-top: 10px;
     }
   }
   .footer {

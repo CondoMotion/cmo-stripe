@@ -25,7 +25,7 @@
           .news_post
             %h1
               = link_to post.title, post.postable
-              .btn-group.pull-right
+              .btn-group.pull-right.hover
                 = link_to raw("<i class='icon-pencil'></i>"), edit_news_path(post.postable), class: "btn btn-small"
                 .btn.btn-small{ data: { toggle: "collapse", target: "#permissions-#{post.id}" } }
                   %i.icon-lock
@@ -39,6 +39,8 @@
                 - post.sites.each do |site|
                   %span.label.label-info= site.name
               %p= raw post.postable.content
+              - unless post.postable.attachment.nil?
+                %p.attachment= link_to "Attachment", post.postable.attachment.attachment.url if post.postable.attachment.attachment?
             .footer
               Posted 
               = time_ago_in_words post.created_at
