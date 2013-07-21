@@ -1,5 +1,5 @@
 class Document < ActiveRecord::Base
-	has_one :post, as: :postable
+	has_one :post, as: :postable, dependent: :destroy
 	has_one :attachment, as: :attachable
   has_many :postings, through: :post
   has_many :sites, through: :postings

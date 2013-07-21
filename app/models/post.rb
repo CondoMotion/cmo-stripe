@@ -9,4 +9,15 @@ class Post < ActiveRecord::Base
   belongs_to :user
   belongs_to :company
 
+  def visible_to
+    users = []
+    sites.each do |site|
+      site.memberships.each do |membership|
+        if role_ids.include? membership.role.id
+          users.push membership.user.email
+        end
+      end
+    end
+    users
+  end
 end
