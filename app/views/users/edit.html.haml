@@ -1,0 +1,31 @@
+= render "layouts/dashboard_navigation"
+#main.no-nav-secondary
+  #breadcrumbs 
+    .container-fluid
+      .row-fluid
+        .span12
+          %h3.pull-left
+            %i.icon-user
+            = link_to "Users", users_url
+            %span / 
+            = @user.name
+          = link_to "Cancel", @user,class: "btn pull-right"
+  .container-fluid
+    .row-fluid{style: "padding-top: 20px;"}
+      .span3
+        .form-instructions
+          %h3 Edit this user
+          %p Edit the user's contact information or memberships
+      .span9
+        = simple_form_for(@user, :as => resource_name, :url => @user, :method => :put, :html => {:class => 'card_form form-inline' }) do |f|
+          = f.error_notification
+          = display_base_errors resource
+          = f.input :name, label: "Full Name", :autofocus => true, input_html: { class: "span12" }
+          = f.input :email, :required => true, input_html: { class: "span12" }
+          = hidden_field_tag :plan, "Resident"  
+          = f.simple_fields_for :memberships do |builder|
+            = render 'membership_fields', f: builder
+          = link_to_add_fields "Add Membership", f, :memberships
+          .pull-right{style: "padding: 20px 0;"}
+            = link_to "Cancel", @user, class: "btn"
+            = f.button :submit, "Save", class: "btn-success"
