@@ -1,9 +1,9 @@
 class Site < ActiveRecord::Base
   belongs_to :company
   has_one :address, as: :addressable
-  has_many :postings
+  has_many :postings, dependent: :destroy
   has_many :posts, through: :postings
-  has_many :memberships
+  has_many :memberships, dependent: :destroy
   has_many :users, through: :memberships
 
   # has_many :documents, through: :posts, source: :postable, source_type: "Document"
