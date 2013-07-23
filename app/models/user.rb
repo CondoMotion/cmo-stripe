@@ -23,6 +23,58 @@ class User < ActiveRecord::Base
   before_save :update_stripe 
   before_destroy :cancel_subscription
 
+  def manager
+    self.memberships.joins(:role).where(roles: { name: "manager" }).length > 0
+  end
+
+  def manages(site_id)
+    self.memberships.joins(:role).where(site_id: site_id).where(roles: { name: "manager" }).length > 0
+  end
+
+  def managed_sites
+    if self == self.company.owner
+      company.sites.all
+    else
+      Site.find(self.memberships.joins(:role).where(roles: { name: "manager" }).map(&:site_id))
+    end
+  end
+
+  def member(site_id)
+    self.memberships.where(site_id: site_id).length > 0
+  end
+
+  def member_sites
+    if self == self.company.owner
+      company.sites.all
+    else
+      Site.find(self.memberships.map(&:site_id))
+    end
+  end
+
+  def has_post_role(post_role_ids, post_site_ids)
+    i = 0
+    self.memberships.each do |m|
+      if post_role_ids.include?(m.role.id) && post_site_ids.include?(m.site.id)
+        i += 1
+      end
+    end
+    i > 0
+  end
+
+  def post_site_member(post_site_ids)
+    (post_site_ids & self.site_ids).length > 0
+  end
+
+  def post_site_manager(post_site_ids)
+    i = 0
+    self.memberships.each do |m|
+      if post_site_ids.include?(m.site.id) && m.role.name == "manager"
+        i += 1
+      end
+    end
+    i > 0
+  end
+
   def quantity 
     if self.company.nil?
       1

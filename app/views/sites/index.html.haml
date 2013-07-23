@@ -19,7 +19,7 @@
               %th Address
               %th{style: "text-align: right;"} Actions
           %tbody
-          - @sites.each do |site|
+          - current_user.member_sites.each do |site|
             %tr
               %td= link_to site.name, root_url(subdomain: site.subdomain)
               - unless site.address.nil?

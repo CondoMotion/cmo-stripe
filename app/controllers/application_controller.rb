@@ -36,7 +36,13 @@ class ApplicationController < ActionController::Base
   end
 
   def set_sites
-    @sites = @company.sites.reject(&:new_record?) if @company
+    if @company 
+      if current_user == @company.owner
+        @sites = @company.sites.reject(&:new_record?) if @company
+      else
+        @sites = current_user.sites.all
+      end
+    end
   end
   
 end

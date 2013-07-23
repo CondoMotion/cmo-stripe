@@ -3,7 +3,7 @@
     %h5 Filter by Property
     %ul.nav-secondary-tabs
       %li{class: (params[:site].nil? ? "active" : "")}= link_to "All", documents_url
-      - @sites.each do |site|
+      - current_user.member_sites.each do |site|
         %li{class: (params[:site] == site.id.to_s ? "active" : "inactive")}= link_to site.name, documents_url(site: site.id)
 
 = render "layouts/dashboard_navigation"
@@ -16,7 +16,8 @@
           %h3.pull-left 
             %i.icon-file-alt
             Documents
-          = link_to "Add document", new_document_path, class: "btn btn-success pull-right" 
+          - if can? :create, Post
+            = link_to "Add document", new_document_path, class: "btn btn-success pull-right" 
           /if can? :create, Site
   .container-fluid
     .row-fluid{style: "padding-top: 20px;"}
@@ -31,12 +32,14 @@
               %th{style: "text-align: right;"} Actions
           %tbody
           - @posts.each do |post|
-            %tr
-              %td= link_to post.title, post.postable.attachment.attachment.url if (!post.postable.nil? && !post.postable.attachment.nil? && post.postable.attachment.attachment?)
-              %td= post.sites.map(&:name).join(", ")
-              %td= post.roles.map{|role| role.name.titleize }.join(", ")
-              %td= post.user.email if post.user
-              %td{style: "text-align: right;"}
-                .btn-group
-                  = link_to raw("<i class='icon-pencil'></i>"), edit_document_path(post.postable), class: "btn btn-small" if !post.postable.nil?
-                  = link_to raw("<i class='icon-trash'></i>"), post.postable, class: "btn btn-small", method: :delete, confirm: "Are you sure?"
+            - if can? :read, post
+              %tr
+                %td= link_to post.title, post.postable.attachment.attachment.url if (!post.postable.nil? && !post.postable.attachment.nil? && post.postable.attachment.attachment?)
+                %td= post.sites.map(&:name).join(", ")
+                %td= post.roles.map{|role| role.name.titleize }.join(", ")
+                %td= post.user.email if post.user
+                %td{style: "text-align: right;"}
+                  - if can? :edit, post
+                    .btn-group
+                      = link_to raw("<i class='icon-pencil'></i>"), edit_document_path(post.postable), class: "btn btn-small" if !post.postable.nil?
+                      = link_to raw("<i class='icon-trash'></i>"), post.postable, class: "btn btn-small", method: :delete, confirm: "Are you sure?"

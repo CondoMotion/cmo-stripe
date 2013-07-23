@@ -3,7 +3,7 @@
     %h5 Filter by Property
     %ul.nav-secondary-tabs
       %li{class: (params[:site].nil? ? "active" : "")}= link_to "All", news_index_url
-      - @sites.each do |site|
+      - current_user.member_sites.each do |site|
         %li{class: (params[:site] == site.id.to_s ? "active" : "inactive")}= link_to site.name, news_index_url(site: site.id)
 
 = render "layouts/dashboard_navigation"
@@ -16,33 +16,36 @@
           %h3.pull-left 
             %i.icon-bullhorn
             News
-          = link_to "Add news", new_news_path, class: "btn btn-success pull-right" 
+          - if can? :create, Post
+            = link_to "Add news", new_news_path, class: "btn btn-success pull-right" 
           /if can? :create, Site
   .container-fluid
     .row-fluid{style: "padding-top: 20px;"}
       .span12
         - @posts.each do |post|
-          .news_post
-            %h1
-              = link_to post.title, post.postable
-              .btn-group.pull-right.hover
-                = link_to raw("<i class='icon-pencil'></i>"), edit_news_path(post.postable), class: "btn btn-small"
-                .btn.btn-small{ data: { toggle: "collapse", target: "#permissions-#{post.id}" } }
-                  %i.icon-lock
-                = link_to raw("<i class='icon-trash'></i>"), post.postable, method: :delete, confirm: "Are you sure?", class: "btn btn-small"
-            .content
-              .collapse{id: "permissions-#{post.id}"}
-                .permissions
-                  - post.roles.each do |role|
-                    %span.label.label-info= role.name.titleize
-              .news-sites
-                - post.sites.each do |site|
-                  %span.label.label-info= site.name
-              %p= raw post.postable.content
-              - unless post.postable.attachment.nil?
-                %p.attachment= link_to "Attachment", post.postable.attachment.attachment.url if post.postable.attachment.attachment?
-            .footer
-              Posted 
-              = time_ago_in_words post.created_at
-              ago by 
-              = post.user.email
+          - if can? :read, post
+            .news_post
+              %h1
+                = link_to post.title, post.postable
+                - if can? :edit, post
+                  .btn-group.pull-right.hover
+                    = link_to raw("<i class='icon-pencil'></i>"), edit_news_path(post.postable), class: "btn btn-small"
+                    .btn.btn-small{ data: { toggle: "collapse", target: "#permissions-#{post.id}" } }
+                      %i.icon-lock
+                    = link_to raw("<i class='icon-trash'></i>"), post.postable, method: :delete, confirm: "Are you sure?", class: "btn btn-small"
+              .content
+                .collapse{id: "permissions-#{post.id}"}
+                  .permissions
+                    - post.roles.each do |role|
+                      %span.label.label-info= role.name.titleize
+                .news-sites
+                  - post.sites.each do |site|
+                    %span.label.label-info= site.name
+                %p= raw post.postable.content
+                - unless post.postable.attachment.nil?
+                  %p.attachment= link_to "Attachment", post.postable.attachment.attachment.url if post.postable.attachment.attachment?
+              .footer
+                Posted 
+                = time_ago_in_words post.created_at
+                ago by 
+                = post.user.email
