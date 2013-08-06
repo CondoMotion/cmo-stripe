@@ -76,6 +76,7 @@ class DocumentsController < ApplicationController
 
     respond_to do |format|
       format.html { redirect_to documents_url, notice: 'Document was successfully deleted.' }
+      format.js   { render nothing: true }
       format.json { head :no_content }
     end
   end

@@ -87,6 +87,7 @@ class NewsController < ApplicationController
 
     respond_to do |format|
       format.html { redirect_to news_index_url, notice: 'News was successfully deleted.' }
+      format.js   { render nothing: true }
       format.json { head :no_content }
     end
   end

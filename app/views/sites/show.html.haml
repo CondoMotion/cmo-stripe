@@ -13,7 +13,7 @@
       .row-fluid
         .span12
           %h3.pull-left
-            %i.icon-map-marker
+            %i.icon-building
             = link_to "Properties", sites_url(subdomain: "www")
             %span / 
             = @site.name
@@ -36,7 +36,7 @@
                 %th Name
                 %th Role
             %tbody
-              - @site.memberships.each do |membership|
+              - @site.memberships.order(:role_id).each do |membership|
                 %tr
                   %td
                     - if can? :read, membership.user

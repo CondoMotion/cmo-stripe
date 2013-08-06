@@ -164,7 +164,7 @@ $iconSize: 35px;
 		height: 55px;
 		position: fixed;
 		top: $headerHeight;
-		left: $navPrimaryWidth + $navSecondaryWidth + 1;
+		left: $navPrimaryWidth + $navSecondaryWidth + $navSecondaryPaddingLeft;
 		right: 0px;
 		border-bottom: 1px solid #ccc;
 		background: rgba(255,255,255,0.9);
