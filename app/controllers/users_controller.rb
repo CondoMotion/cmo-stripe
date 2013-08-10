@@ -3,7 +3,7 @@ class UsersController < ApplicationController
 
   def index
     # authorize! :index, @user, :message => 'Not authorized as an administrator.'
-    @users = @company.users.order(:last_name)
+    @users = @company.users.all
     # @free_roles = Role.where('name = ? or name = ?', 'manager', 'resident')
     # @paid_roles = Role.where('name = ? or name = ?', 'annual', 'monthly')
   end
