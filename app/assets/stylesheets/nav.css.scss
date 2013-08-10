@@ -99,7 +99,7 @@ $iconSize: 35px;
 	left: $navPrimaryWidth + 1;
 	bottom: 0px;
 	width: $navSecondaryWidth;
-	padding-left: $navSecondaryPaddingLeft;
+	padding-left: 0;
 	background: $navSecondaryBg;
 	border-right: 1px solid #E3E3E3;
 	z-index: 10;
@@ -109,7 +109,7 @@ $iconSize: 35px;
 		text-transform: uppercase;
 		font-size: 13px;
 		line-height: 100%;
-		padding: 5px 0 0 0;
+		padding: 5px 0 0 9px;
 	}
 	.nav-tabs > .active > a, .nav-tabs > .active > a:hover {
 		background: $navSecondaryBg;
@@ -130,7 +130,6 @@ $iconSize: 35px;
 		li a {
 			padding: 8px 0;
 			display: block;
-			margin-left: -$navSecondaryPaddingLeft;
 			padding-left: $navSecondaryPaddingLeft;
 			color: #979797;
 			text-decoration: none;
@@ -152,7 +151,7 @@ $iconSize: 35px;
 #main {
 	box-sizing: border-box;
 	position: absolute;
-	left: $navPrimaryWidth + $navSecondaryWidth + $navSecondaryPaddingLeft;
+	left: $navPrimaryWidth + $navSecondaryWidth;
 	right: 0px;
 	top: $headerHeight;
 	bottom: 0px;
@@ -164,7 +163,7 @@ $iconSize: 35px;
 		height: 55px;
 		position: fixed;
 		top: $headerHeight;
-		left: $navPrimaryWidth + $navSecondaryWidth + $navSecondaryPaddingLeft;
+		left: $navPrimaryWidth + $navSecondaryWidth;
 		right: 0px;
 		border-bottom: 1px solid #ccc;
 		background: rgba(255,255,255,0.9);
