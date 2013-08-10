@@ -38,9 +38,9 @@ class ApplicationController < ActionController::Base
   def set_sites
     if @company 
       if current_user == @company.owner
-        @sites = @company.sites.reject(&:new_record?) if @company
+        @sites = @company.sites.order(:name).reject(&:new_record?) if @company
       else
-        @sites = current_user.sites.all
+        @sites = current_user.sites.order(:name)
       end
     end
   end
