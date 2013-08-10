@@ -4,8 +4,8 @@ class UsersController < ApplicationController
   def index
     # authorize! :index, @user, :message => 'Not authorized as an administrator.'
     @users = @company.users.all
-    @free_roles = Role.where('name = ? or name = ?', 'manager', 'resident')
-    @paid_roles = Role.where('name = ? or name = ?', 'annual', 'monthly')
+    # @free_roles = Role.where('name = ? or name = ?', 'manager', 'resident')
+    # @paid_roles = Role.where('name = ? or name = ?', 'annual', 'monthly')
   end
 
   def show
@@ -13,6 +13,21 @@ class UsersController < ApplicationController
   end
   
   def new
+  end
+
+  def create
+    @user = User.new(params[:user])
+    @user.add_role(params[:plan].downcase)
+    @user.password = "changeme"
+    @user.password_confirmation = "changeme"
+    @user.company = current_user.company
+
+    if @user.save
+      redirect_to users_path, notice: "User successfully added!"
+    else
+      @users = current_user.company.users
+      render "new"
+    end
   end
 
   def edit

@@ -1,10 +1,4 @@
-- content_for :nav_secondary do
-  #nav-secondary
-    %h5 Properties
-    %ul.nav-secondary-tabs
-      - @sites.each do |site|
-        %li{class: ("active" if site == @site )}= link_to site.name, root_url(subdomain: site.subdomain)
-
+= render "menu"
 = render "layouts/dashboard_navigation"
 
 #main

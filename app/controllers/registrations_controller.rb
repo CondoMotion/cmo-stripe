@@ -1,19 +1,4 @@
 class RegistrationsController < Devise::RegistrationsController
-  
-  def company_user_registration
-    @user = User.new(params[:user])
-    @user.add_role(params[:plan].downcase)
-    @user.password = "changeme"
-    @user.password_confirmation = "changeme"
-    @user.company = current_user.company
-
-    if @user.save
-      redirect_to users_path, notice: "User successfully added!"
-    else
-      @users = current_user.company.users
-      render "users/new"
-    end
-  end
 
   def update
     @user = User.find(current_user.id)
@@ -34,7 +19,6 @@ class RegistrationsController < Devise::RegistrationsController
       render "edit"
     end
   end
-
 
   def new
     @plan = params[:plan]

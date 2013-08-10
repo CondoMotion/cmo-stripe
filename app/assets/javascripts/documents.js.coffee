@@ -4,3 +4,6 @@
 $ ->
   $(".delete_post").bind "ajax:success", ->
     $(this).closest(".document_post").fadeOut()
+
+  $(".permissions-toggle").on "click", ->
+    $(this).toggleClass("active")

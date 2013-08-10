@@ -1,6 +1,9 @@
 .plans{
   text-align: center;
   margin-top: 20px;
+  p {
+    margin-bottom: 20px;
+  }
 }
 .featured{
   -webkit-transform:scale(1.15); 
@@ -8,11 +11,11 @@
 .plan{
   background-color: #518AC5;
   box-shadow: inset 0px 0px 30px rgba(0,0,0,0.21);
-}
-.plan.featured-plan{
-  background-color: #9EC74D;
-}
-.plan h2{
-  line-height: 100px;
-  color: #fff;
+  padding: 30px 0;
+  h2 {
+    color: #fff;
+  }
+  &.featured-plan {
+    background-color: #9EC74D;
+  }
 }

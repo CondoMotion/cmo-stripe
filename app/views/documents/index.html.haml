@@ -18,28 +18,31 @@
             Documents
           - if can? :create, Post
             = link_to "Add document", new_document_path, class: "btn btn-success pull-right" 
-          /if can? :create, Site
   .container-fluid
     .row-fluid{style: "padding-top: 20px;"}
       .span12
-        %table.table
-          %thead
-            %tr
-              %th Title
-              %th Properties
-              %th Roles
-              %th Posted by
-              %th{style: "text-align: right;"} Actions
-          %tbody
-          - @posts.each do |post|
-            - if can? :read, post
-              %tr.document_post
-                %td= link_to post.title, post.postable.attachment.attachment.url if (!post.postable.nil? && !post.postable.attachment.nil? && post.postable.attachment.attachment?)
-                %td= post.sites.map(&:name).join(", ")
-                %td= post.roles.map{|role| role.name.titleize }.join(", ")
-                %td= post.user.email if post.user
-                %td{style: "text-align: right;"}
-                  - if can? :edit, post
-                    .btn-group
-                      = link_to raw("<i class='icon-pencil'></i>"), edit_document_path(post.postable), class: "btn btn-small" if !post.postable.nil?
-                      = link_to raw("<i class='icon-trash'></i>"), post.postable, class: "btn btn-small delete_post", method: :delete, confirm: "Are you sure?", remote: true
+        - if @posts.length > 0
+          %table.table
+            %thead
+              %tr
+                %th Title
+                %th Properties
+                %th Roles
+                %th Posted by
+                %th{style: "text-align: right;"} Actions
+            %tbody
+            - @posts.each do |post|
+              - if can? :read, post
+                %tr.document_post
+                  %td= link_to post.title, post.postable.attachment.attachment.url if (!post.postable.nil? && !post.postable.attachment.nil? && post.postable.attachment.attachment?)
+                  %td= post.sites.map(&:name).join(", ")
+                  %td= post.roles.map{|role| role.name.titleize }.join(", ")
+                  %td= post.user.email if post.user
+                  %td{style: "text-align: right;"}
+                    - if can? :edit, post
+                      .btn-group
+                        = link_to raw("<i class='icon-pencil'></i>"), edit_document_path(post.postable), class: "btn btn-small" if !post.postable.nil?
+                        = link_to raw("<i class='icon-trash'></i>"), post.postable, class: "btn btn-small delete_post", method: :delete, confirm: "Are you sure?", remote: true
+        - else
+          .well
+            No Posts

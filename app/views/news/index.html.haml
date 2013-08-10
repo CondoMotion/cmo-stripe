@@ -30,7 +30,7 @@
                 - if can? :edit, post
                   .btn-group.pull-right.hover
                     = link_to raw("<i class='icon-pencil'></i>"), edit_news_path(post.postable), class: "btn btn-small"
-                    .btn.btn-small{ data: { toggle: "collapse", target: "#permissions-#{post.id}" } }
+                    .btn.btn-small.permissions-toggle{ data: { toggle: "collapse", target: "#permissions-#{post.id}" } }
                       %i.icon-lock
                     = link_to raw("<i class='icon-trash'></i>"), post.postable, method: :delete, confirm: "Are you sure?", class: "btn btn-small delete_post", remote: true
               .content

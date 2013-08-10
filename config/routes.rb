@@ -27,10 +27,10 @@ CmoStripe::Application.routes.draw do
   devise_scope :user do
     get 'users/edit(/:tab)',            to: 'registrations#edit'
     get 'sign_up/:plan',                to: 'registrations#new'
-    get 'sign_in',                      to: 'devise/sessions#new',                       as: :new_user_session
+    get 'sign_in',                      to: 'devise/sessions#new',        as: :new_user_session
     put 'update_plan',                  to: 'registrations#update_plan'
     put 'update_card',                  to: 'registrations#update_card'
-    post 'company_user_registration',   to: 'registrations#company_user_registration',   as: :company_user_registration
+    post 'company_user_registration',   to: 'users#create',               as: :company_user_registration
   end
 
   resources :users

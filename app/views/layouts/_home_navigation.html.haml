@@ -20,5 +20,5 @@
                 %li= link_to "My Account", edit_user_registration_url(subdomain: 'www')
                 %li= link_to "Sign Out", destroy_user_session_path, method: :delete
               - else
-                %li= link_to "Sign Up", pricing_path
                 %li= link_to "Sign In", new_user_session_path
+                %li= link_to "Try It", pricing_path
