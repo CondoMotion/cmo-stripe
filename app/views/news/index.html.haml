@@ -23,30 +23,36 @@
   .container-fluid
     .row-fluid{style: "padding-top: 20px;"}
       .span12
-        - @posts.each do |post|
-          - if can? :read, post
-            .news_post
-              %h1
-                = link_to post.title, post.postable
-                - if can? :edit, post
-                  .btn-group.pull-right.hover
-                    = link_to raw("<i class='icon-pencil'></i>"), edit_news_path(post.postable), class: "btn btn-small"
-                    .btn.btn-small.permissions-toggle{ data: { toggle: "collapse", target: "#permissions-#{post.id}" } }
-                      %i.icon-lock
-                    = link_to raw("<i class='icon-trash'></i>"), post.postable, method: :delete, confirm: "Are you sure?", class: "btn btn-small delete_post", remote: true
-              .content
-                .collapse{id: "permissions-#{post.id}"}
-                  .permissions
-                    - post.roles.each do |role|
-                      %span.label.label-info= role.name.titleize
-                .news-sites
-                  - post.sites.each do |site|
-                    %span.label.label-info= site.name
-                %p= raw post.postable.content
-                - unless post.postable.attachment.nil?
-                  %p.attachment= link_to "Attachment", post.postable.attachment.attachment.url if post.postable.attachment.attachment?
-              .footer
-                Posted 
-                = time_ago_in_words post.created_at
-                ago by 
-                = post.user.email
+        - if @posts.length > 0
+          - @posts.each do |post|
+            - if can? :read, post
+              .news_post
+                %h1
+                  = link_to post.title, post.postable
+                  - if can? :edit, post
+                    .btn-group.pull-right.hover
+                      = link_to raw("<i class='icon-pencil'></i>"), edit_news_path(post.postable), class: "btn btn-small"
+                      .btn.btn-small.permissions-toggle{ data: { toggle: "collapse", target: "#permissions-#{post.id}" } }
+                        %i.icon-lock
+                      = link_to raw("<i class='icon-trash'></i>"), post.postable, method: :delete, confirm: "Are you sure?", class: "btn btn-small delete_post", remote: true
+                .content
+                  .collapse{id: "permissions-#{post.id}"}
+                    .permissions
+                      - post.roles.each do |role|
+                        %span.label.label-info= role.name.titleize
+                  .news-sites
+                    - post.sites.each do |site|
+                      %span.label.label-info= site.name
+                  %p= raw post.postable.content
+                  - unless post.postable.attachment.nil?
+                    %p.attachment= link_to "Attachment", post.postable.attachment.attachment.url if post.postable.attachment.attachment?
+                .footer
+                  Posted 
+                  = time_ago_in_words post.created_at
+                  ago by 
+                  = post.user.email
+        - else 
+          .row-fluid.center
+            %i.icon-bullhorn
+            %h5 You don't have any news posts
+            = link_to "Add news", new_news_path, class: "btn btn-primary"
