@@ -47,7 +47,7 @@ class User < ActiveRecord::Base
     if self == self.company.owner
       company.sites.all
     else
-      Site.find(self.memberships.map(&:site_id))
+      sites.all
     end
   end
 

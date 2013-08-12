@@ -1,6 +1,7 @@
+= render "menu"
 = render "layouts/dashboard_navigation"
 
-#main.no-nav-secondary
+#main
   #breadcrumbs 
     .container-fluid
       .row-fluid
@@ -11,7 +12,9 @@
           = link_to "Add property", new_site_path, class: "btn btn-success pull-right" if can? :create, Site
   .container-fluid
     .row-fluid{style: "padding-top: 20px;"}
-      = render current_user.member_sites
+      .center.no-content
+        %i.icon-building
+        %h5 Please select a property to get started
       / .span12
       /   %table.table
       /     %thead
