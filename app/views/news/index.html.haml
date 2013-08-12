@@ -54,5 +54,5 @@
         - else 
           .no-content.center
             %i.icon-bullhorn
-            %h5 You don't have any news posts
+            %h5 There are no news posts for the selected properties
             = link_to "Add news", new_news_path, class: "btn btn-primary" if can? :create, Post
