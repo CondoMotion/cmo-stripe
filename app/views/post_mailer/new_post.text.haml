@@ -1,10 +1,11 @@
 Hello,
 \
-= "#{@post.company.name} has posted a new #{@post.postable_type.downcase} post on Condo Motion.  THe content of the post is below; please sign in to your account at www.condomotion.com to see the full post including any attached documents."
+= "#{@post.company.name} has posted a new #{@post.postable_type.downcase} post on Condo Motion.  The content of the post is below; please sign in to your account at www.condomotion.com to see the full post including any attached documents."
 \
 = @post.title
-\
-= @post.postable.content if @post.postable_type == "News"
+- if @post.postable_type == "News"
+  \
+  = @post.postable.content 
 \
 Cheers,
 Condo Motion
