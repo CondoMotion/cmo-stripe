@@ -5,9 +5,10 @@ class PostMailer < ActionMailer::Base
     @post = post
     attachments.inline['logo.png'] = File.read("#{Rails.root}/app/assets/images/logo.png")
     mail(
+      :from => @post.user.email,
       :to => "earlynovrock@gmail.com", 
       :bcc => post.visible_to,
-      :subject => "New Post"
+      :subject => "New post by #{@post.company.name} on Condo Motion"
     )
   end
 end

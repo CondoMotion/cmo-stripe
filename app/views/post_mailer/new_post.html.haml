@@ -456,8 +456,8 @@
                     %tr
                       %td.bodyContent{"mc:edit" => "body_content", :valign => "top"}
                         = link_to image_tag(attachments['logo.png'].url, style: "margin-bottom: 30px;"), "http://www.condomotion.com/users/sign_in"
-                        %h1= "New #{@post.postable_type.downcase} post"
-                        %h3= @post.title
+                        %h1= @post.title
+                        / %h3= @post.title
                         - if @post.postable_type == "News" && @post.postable.content
                           %p= @post.postable.content
                         - if @post.postable.attachment
