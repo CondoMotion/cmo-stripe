@@ -47,5 +47,5 @@
         - else
           .center.no-content
             %i.icon-file-alt
-            %h5 There are no document posts for the selected properties
+            %h5 There are no document posts for the selected property
             = link_to "Add document", new_document_path, class: "btn btn-primary" if can? :create, Post
