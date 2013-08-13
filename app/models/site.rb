@@ -11,7 +11,7 @@ class Site < ActiveRecord::Base
 
   accepts_nested_attributes_for :address
 
-  attr_accessible :layout, :name, :subdomain, :address_attributes
+  attr_accessible :layout, :name, :subdomain, :address_attributes, :signup_password
 
   before_validation :set_subdomain
   after_save :update_stripe
