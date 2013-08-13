@@ -1,6 +1,7 @@
 .detail-box {
 	border: 1px solid #D2D8E1;
 	padding: 10px;
+	margin-bottom: 20px;
 	h4 {
 		background: #F2F7FA;
 		border-bottom: 1px solid #D2D8E1;
@@ -34,5 +35,8 @@
 	h5 {
 		color: #364453; 
 		margin: 25px 0;
+	}
+	&.compact {
+		padding-top: 20px;
 	}
 }
