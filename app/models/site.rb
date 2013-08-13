@@ -27,4 +27,8 @@ class Site < ActiveRecord::Base
   def update_stripe
   	company.owner.update_stripe
   end
+
+  def managers
+    User.find(self.memberships.joins(:role).where(roles: {name: "manager"}).map(&:user_id))
+  end
 end

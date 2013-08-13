@@ -5,19 +5,29 @@ class Post < ActiveRecord::Base
   has_many :roles, through: :permissions
   has_many :postings
   has_many :sites, through: :postings
+  has_many :memberships, through: :sites
   belongs_to :postable, polymorphic: true
   belongs_to :user
   belongs_to :company
 
-  def visible_to
-    users = []
-    sites.each do |site|
-      site.memberships.each do |membership|
-        if role_ids.include? membership.role.id
-          users.push membership.user.email unless users.include? membership.user.email
-        end
+  def visible_to_emails
+    emails = []
+    roles = self.roles.map(&:id)
+    self.memberships.includes(:user).each do |membership|
+      if roles.include? membership.role_id
+        users.push membership.user.email
       end
     end
-    users
+    emails.uniq
+  end
+
+  def manager_emails
+    emails = []
+    sites.each do |site|
+      site.managers.each do |membership|
+        emails.push membership.email
+      end
+    end
+    emails.uniq
   end
 end

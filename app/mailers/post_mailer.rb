@@ -7,7 +7,8 @@ class PostMailer < ActionMailer::Base
     mail(
       :from => @post.user.email,
       :to => "earlynovrock@gmail.com", 
-      :bcc => post.visible_to,
+      :reply_to => post.manager_emails,
+      :bcc => post.visible_to_emails,
       :subject => "New post by #{@post.company.name} on Condo Motion"
     )
   end
