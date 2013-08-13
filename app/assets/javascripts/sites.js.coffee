@@ -4,3 +4,9 @@
 $ ->
   $(".scrollpane").jScrollPane
     autoReinitialize: true
+
+  $("#signup_password").focus ->
+    $("#signup_password_help").slideDown("fast")
+
+  $("#signup_password").blur ->
+    $("#signup_password_help").slideUp("fast")

@@ -12,7 +12,7 @@
           = label_tag :signup_password, raw("<abbr title='required'>*</abbr> Site Password"), class: "control-label required"
           .controls
             = password_field_tag :signup_password, @password.nil? ? "" : @password, class: "span12 string required"
-        %span.help-block= "This is the password your management company set up so only residents can create accounts. Contact your property manager if you need the password."
+        %span.help-block#signup_password_help{style: "display: none;"}= "This is the password your management company set up so only residents can create accounts. Contact your property manager if you need the password."
         = hidden_field_tag :site_id, @site.id
         %div{style: "padding: 20px 0;"}
           = f.button :submit, "Create Account", class: "btn-success"
