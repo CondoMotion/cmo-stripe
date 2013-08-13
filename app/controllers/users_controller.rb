@@ -4,6 +4,7 @@ class UsersController < ApplicationController
   def index
     # authorize! :index, @user, :message => 'Not authorized as an administrator.'
     @users = @company.users.all
+    authorize! :index, User
     # @free_roles = Role.where('name = ? or name = ?', 'manager', 'resident')
     # @paid_roles = Role.where('name = ? or name = ?', 'annual', 'monthly')
   end
@@ -32,6 +33,7 @@ class UsersController < ApplicationController
 
   def edit
     @user = User.find(params[:id])
+    authorize! :edit, @user
   end
 
   def update

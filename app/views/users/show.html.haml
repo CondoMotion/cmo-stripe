@@ -9,7 +9,7 @@
             = link_to "Users", users_url
             %span / 
             = @user.name
-          = link_to "Edit", edit_user_path(@user), class: "btn pull-right"
+          = link_to "Edit", edit_user_path(@user), class: "btn pull-right" if can? :edit, @user
   .container-fluid
     .row-fluid{style: "padding-top: 20px;"}
       .span8
