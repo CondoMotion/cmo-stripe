@@ -1,0 +1,15 @@
+.container 
+  %h1= "Sign up for #{@site.name}"
+  = simple_form_for(@user, url: signups_path, html: { class: 'form-inline' }) do |f|
+    = f.error_notification
+    = f.input :name, label: "Full Name", autofocus: true, input_html: { class: "span12" }
+    = f.input :email, required: true, input_html: { class: "span12" }
+    = f.input :password, required: true, input_html: { class: "span12" }
+    = f.input :password_confirmation, required: true, input_html: { class: "span12" }
+    .control-group.required
+      = label_tag :signup_password, raw("<abbr title='required'>*</abbr> Site Password"), class: "control-label required"
+      .controls
+        = password_field_tag :signup_password, @password.nil? ? "" : @password, class: "span12 string required"
+    = hidden_field_tag :site_id, @site.id
+    .pull-right{style: "padding: 20px 0;"}
+      = f.button :submit, "Save", class: "btn-success"

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130720204607) do
+ActiveRecord::Schema.define(:version => 20130813154729) do
 
   create_table "addresses", :force => true do |t|
     t.string   "address1"
@@ -131,8 +131,9 @@ ActiveRecord::Schema.define(:version => 20130720204607) do
     t.string   "subdomain"
     t.string   "layout"
     t.integer  "company_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
+    t.string   "signup_password"
   end
 
   add_index "sites", ["company_id"], :name => "index_sites_on_company_id"

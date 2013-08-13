@@ -4,12 +4,13 @@ CmoStripe::Application.routes.draw do
 
   mount StripeEvent::Engine => '/stripe'
   
-  get '/',      to: 'sites#show',                    constraints: lambda { |r| r.subdomain.present? && r.subdomain != 'www' }
-  get '/edit',  to: 'sites#edit',    as: :edit_site, constraints: lambda { |r| r.subdomain.present? && r.subdomain != 'www' }
+  get '/',        to: 'sites#show',                      constraints: lambda { |r| r.subdomain.present? && r.subdomain != 'www' }
+  get '/edit',    to: 'sites#edit',    as: :edit_site,   constraints: lambda { |r| r.subdomain.present? && r.subdomain != 'www' }
+  get '/sign_up', to: 'signups#new',   as: :site_signup, constraints: lambda { |r| r.subdomain.present? && r.subdomain != 'www' }
 
-  get ':id',    to: 'pages#show',    as: :page,      constraints: lambda { |r| r.subdomain.present? && r.subdomain != 'www' }
-  put ':id',    to: 'pages#update',                  constraints: lambda { |r| r.subdomain.present? && r.subdomain != 'www' }
-  delete ':id', to: 'pages#destroy'
+  get ':id',      to: 'pages#show',    as: :page,        constraints: lambda { |r| r.subdomain.present? && r.subdomain != 'www' }
+  put ':id',      to: 'pages#update',                    constraints: lambda { |r| r.subdomain.present? && r.subdomain != 'www' }
+  delete ':id',   to: 'pages#destroy'
 
   get "company",        to: "companies#show",       as: :show_company
   get "company/edit",   to: "companies#edit",       as: :edit_company
@@ -33,6 +34,7 @@ CmoStripe::Application.routes.draw do
     post 'company_user_registration',   to: 'users#create',               as: :company_user_registration
   end
 
+  resources :signups, only: [:new, :create]
   resources :users
   resources :messages
   resources :companies

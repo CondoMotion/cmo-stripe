@@ -14,7 +14,7 @@ class Post < ActiveRecord::Base
     sites.each do |site|
       site.memberships.each do |membership|
         if role_ids.include? membership.role.id
-          users.push membership.user.email
+          users.push membership.user.email unless users.include? membership.user.email
         end
       end
     end
