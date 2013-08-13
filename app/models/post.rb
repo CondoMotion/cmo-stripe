@@ -15,7 +15,7 @@ class Post < ActiveRecord::Base
     roles = self.roles.map(&:id)
     self.memberships.includes(:user).each do |membership|
       if roles.include? membership.role_id
-        users.push membership.user.email
+        emails.push membership.user.email
       end
     end
     emails.uniq
