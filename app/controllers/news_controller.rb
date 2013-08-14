@@ -53,7 +53,9 @@ class NewsController < ApplicationController
 
     respond_to do |format|
       if @news.save
-        PostMailer.new_post(@news.post).deliver
+        @news.post.visible_to_emails.each do |email|
+          PostMailer.delay.new_post(@news.post, email)
+        end
         format.html { redirect_to @news, notice: 'News was successfully created.' }
         format.json { render json: @news, status: :created, location: @news }
       else

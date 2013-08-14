@@ -42,7 +42,9 @@ class DocumentsController < ApplicationController
 
     respond_to do |format|
       if @document.save
-        PostMailer.new_post(@document.post).deliver
+        @document.post.visible_to_emails.each do |email|
+          PostMailer.delay.new_post(@document.post, email)
+        end
         format.html { redirect_to documents_url, notice: 'Document was successfully created.' }
         format.json { render json: @document, status: :created, location: @document }
       else
