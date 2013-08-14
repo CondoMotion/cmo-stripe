@@ -38,7 +38,7 @@ CmoStripe::Application.routes.draw do
   resources :users
   resources :messages
   resources :companies
-  resources :sites
+  resources :sites, path: "properties"
   resources :pages do
     collection { post :sort }
   end
