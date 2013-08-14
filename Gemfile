@@ -42,3 +42,5 @@ gem "meta_request", :group => :development
 gem "fog"
 gem 'chosen-rails'
 gem 'bootstrap-wysihtml5-rails'
+gem 'delayed_job_active_record'
+gem "workless", "~> 1.1.3"
