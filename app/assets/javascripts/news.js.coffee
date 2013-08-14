@@ -4,3 +4,5 @@
 $ ->
   $(".delete_post").bind "ajax:success", ->
     $(this).closest(".news_post").fadeOut()
+    if $(".news_post").length == 1
+      $("#posts").html("<div class='center no-content'><i class='icon-bullhorn'></i><h5>There are no news posts for the selected property</h5></div>")

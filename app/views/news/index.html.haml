@@ -22,7 +22,7 @@
           /if can? :create, Site
   .container-fluid
     .row-fluid{style: "padding-top: 20px;"}
-      .span12
+      .span12#posts
         - if @posts.length > 0
           - @posts.each do |post|
             - if can? :read, post

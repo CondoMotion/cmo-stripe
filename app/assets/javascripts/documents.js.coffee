@@ -4,6 +4,8 @@
 $ ->
   $(".delete_post").bind "ajax:success", ->
     $(this).closest(".document_post").fadeOut()
+    if $(".document_post").length == 1
+      $("#posts").html("<div class='center no-content'><i class='icon-file-alt'></i><h5>There are no document posts for the selected property</h5></div>")
 
   $(".permissions-toggle").on "click", ->
     $(this).toggleClass("active")
