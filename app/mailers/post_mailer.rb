@@ -3,6 +3,9 @@ class PostMailer < ActionMailer::Base
 
   def new_post(post, to)
     @post = post
+    @to   = to
+    @name = User.find_by_email(@to).name
+    @manager = @post.user.name
     attachments.inline['logo.png'] = File.read("#{Rails.root}/app/assets/images/logo.png")
     mail(
       :from => @post.user.email,
