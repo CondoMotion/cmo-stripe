@@ -1,7 +1,7 @@
 - content_for :nav_secondary do
   #nav-secondary
     %h5 Filter by Property
-    .scroll{style: "overflow-y: scroll; position: absolute; top: 28px; bottom: 0px;left: 0px;right: 0px;"}
+    .scroll-pane
       %ul.nav-secondary-tabs
         %li{class: (params[:site].nil? ? "active" : "")}= link_to "All", documents_url
         - current_user.member_sites.each do |site|
