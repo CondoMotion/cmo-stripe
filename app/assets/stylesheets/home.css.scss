@@ -44,7 +44,8 @@ body.home, body.passwords, body.sessions, body.registrations {
 }
 
 #jumbotron {
-  background: #287DA6 url('aqua.jpg');
+  @include gradient-horizontal(#174672, #47AABD);
+  background-image: url('aqua.jpg');
   background-size: cover;
   color: #ffffff;
   h2{
