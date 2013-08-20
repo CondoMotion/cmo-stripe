@@ -49,10 +49,10 @@ body.home, body.passwords, body.sessions, body.registrations {
   color: #ffffff;
   h2{
     color: #fff;
-  font-size: 36px;
-  font-weight: normal;
-  line-height: 40px;
-  text-shadow: 1px 1px 1px rgb(49, 57, 61);
+    font-size: 36px;
+    font-weight: normal;
+    line-height: 40px;
+    text-shadow: 1px 1px 1px rgb(49, 57, 61);
   }
   h3 {
     color: #cccccc;
@@ -117,6 +117,29 @@ h2.title {
 		color: #777;
 		line-height: 2em;
 	}
+  .thumbnail {
+    margin: 30px 0 -30px 0;
+    .browser-header {
+      height: 20px;
+      @include gradient-vertical(#F1F1F1, #C1C1C1);
+      border: 1px solid #ccc;
+      @include border-radius(3px 3px 0 0);
+      color: #666;
+      padding: 0 10px;
+      i {
+        margin-right: 5px;
+      }
+      .red {
+        color: #B24646;
+        background: #FF2F2E;
+        height: 6px;
+        width: 6px;
+        margin-top: 7px;
+        border: 1px solid #B24646;
+        @include border-radius(50%);
+      }
+    }
+  }
 }
 
   .login-box {
