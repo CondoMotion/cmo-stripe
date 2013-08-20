@@ -2,6 +2,18 @@ body.signups {
   background: #F1F2F5;
   color: #595959;
 }
+@media (max-width: 767px) {
+  body {
+    padding-top: 100px;
+  }
+  .header {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    right: 0px;
+  }
+}
+  
 .signups {
   .header {
     background: #2c3742;
@@ -20,6 +32,7 @@ body.signups {
   }
   .login-box {
     background: #FFFFFF;
+    padding-top: 10px;
     @include border-radius(5px);
     @include box-shadow(rgba(0, 0, 0, 0.4) 0 1px 3px, rgba(0, 0, 0, 0.35) 0 0 1px);
     h3 {
