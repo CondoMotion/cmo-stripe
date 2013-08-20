@@ -39,7 +39,7 @@ form {
 	text-align: center;
 }
 
-body.home {
+body.home, body.passwords, body.sessions, body.registrations {
   background: #FBFBFB;
 }
 
@@ -118,3 +118,12 @@ h2.title {
 		line-height: 2em;
 	}
 }
+
+  .login-box {
+    background: #FFFFFF;
+    @include border-radius(5px);
+    @include box-shadow(rgba(0, 0, 0, 0.4) 0 1px 3px, rgba(0, 0, 0, 0.35) 0 0 1px);
+    .content-wrap {
+      margin: 30px;
+    }
+  }

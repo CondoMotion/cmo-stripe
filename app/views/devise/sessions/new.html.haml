@@ -1,19 +1,21 @@
 = render "layouts/home_navigation"
 .container
-  = simple_form_for(resource, :as => resource_name, :url => session_path(resource_name), :html => {:class => 'form-horizontal' }) do |f|
-    .control-group
-      .controls
-        %h2.title{style: "margin-bottom: 0;"} Sign in
-    = f.input :email, :autofocus => true
-    = f.input :password
-    .control-group
-      .controls
-        %label.checkbox{for: "user_remember_me", style: "font-weight: normal;"}
-          %input#user_remember_me{:name => "user[remember_me]", :type => "checkbox", :value => "1"}/
-          Remember Me
-    .control-group
-      .controls
-        = f.button :submit, "Sign in", :class => 'btn-primary'
-        %br
-        %br
-        = render "devise/shared/links"
+  .row-fluid{style: "margin: 100px 0 0 0;"}
+    .span4.offset4.login-box
+      .content-wrap
+        %h3{style: "font-weight: 100; margin: 0 0 20px 0;"} Sign in
+        = simple_form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f|
+          .row-fluid
+            = f.input :email, :autofocus => true, label: false, placeholder: "Email", input_html: {class: "span12"}
+            = f.input :password, label: false, placeholder: "Password", input_html: {class: "span12"}
+          .control-group
+            .controls
+              %label.checkbox{for: "user_remember_me", style: "font-weight: normal;"}
+                %input#user_remember_me{:name => "user[remember_me]", :type => "checkbox", :value => "1"}/
+                Remember Me
+          .control-group
+            .controls
+              = f.button :submit, "Sign in", :class => 'btn-primary'
+              %br
+              %br
+              = render "devise/shared/links"

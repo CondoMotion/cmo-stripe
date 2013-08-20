@@ -1,11 +1,18 @@
-= render 'layouts/home_navigation'
+= render "layouts/home_navigation"
 
 .container
-  %h2.title Forgot Your Password?
-  %p{style: "color: #999;"} To reset your account password, enter the email address you registered with, and we’ll send your instructions on their way.
-  = simple_form_for(resource, :as => resource_name, :url => password_path(resource_name)) do |f|
-    = f.error_notification
-    .form-inputs
-      = f.input :email, :required => true, :autofocus => true, label: false, input_html: { placeholder: "Email"}
-      = f.button :submit, "Send instructions", class: "btn-primary"
-  = render "devise/shared/links"
+  .row-fluid{style: "margin: 100px 0 0 0;"}
+    .span4.offset4.login-box
+      .content-wrap
+        %h3{style: "font-weight: 100; margin: 0 0 10px 0;"} Forgot Your Password?
+        %p{style: "color: #999; margin-bottom: 20px;"} To reset your account password, enter the email address you registered with, and we’ll send your instructions on their way.
+        = simple_form_for(resource, :as => resource_name, :url => password_path(resource_name)) do |f|
+          = f.error_notification
+          .row-fluid
+            = f.input :email, :autofocus => true, label: false, placeholder: "Email", input_html: {class: "span12"}
+          .control-group
+            .controls
+              = f.button :submit, "Send instructions", class: 'btn-primary'
+              %br
+              %br
+              = render "devise/shared/links"

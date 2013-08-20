@@ -1,14 +1,19 @@
 = render "layouts/home_navigation"
+
 .container
-  %h2.title Change your password
-  = form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :put }) do |f|
-    = devise_error_messages!
-    = f.hidden_field :reset_password_token
-    %div
-      = f.label :password, "New password"
-      = f.password_field :password, :autofocus => true
-    %div
-      = f.label :password_confirmation, "Confirm new password"
-      = f.password_field :password_confirmation
-    %div= f.submit "Change my password", class: "btn"
-  = render "devise/shared/links"
+  .row-fluid{style: "margin: 100px 0 0 0;"}
+    .span4.offset4.login-box
+      .content-wrap
+        %h3{style: "font-weight: 100; margin: 0 0 20px 0;"} Change your password
+        = simple_form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :put }) do |f|
+          = devise_error_messages!
+          .row-fluid
+            = f.input :reset_password_token, as: :hidden
+            = f.input :password, :autofocus => true, label: false, placeholder: "Password", input_html: {class: "span12"}
+            = f.input :password_confirmation, :autofocus => true, label: false, placeholder: "Password confirmation", input_html: {class: "span12"}
+          .control-group
+            .controls
+              = f.button :submit, "Change my password", class: 'btn-primary'
+              %br
+              %br
+              = render "devise/shared/links"
