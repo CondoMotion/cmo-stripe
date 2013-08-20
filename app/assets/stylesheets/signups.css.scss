@@ -3,7 +3,7 @@ body.signups {
   color: #595959;
 }
 @media (max-width: 767px) {
-  body {
+  body.signups {
     padding-top: 100px;
   }
   .header {

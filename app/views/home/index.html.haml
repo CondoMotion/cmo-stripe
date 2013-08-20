@@ -1,11 +1,17 @@
 = content_for :title do
   Condo Motion | Simple, Beautiful Websites for Condos and Property Managers
+
 = render 'layouts/home_navigation'
-.row-fluid
-  #welcome.hero-unit.span8.offset2
-    %h1 Condo Motion
-    %h3 Easily share information and track issues at your properties
-    = link_to "Try it Now", pricing_path, class: "btn btn-large btn-primary"
+
+#jumbotron
+  .container
+    .row-fluid
+      .span4#welcome
+        %h2 Property Management Software
+        %h3 Easily share information and track issues at your properties
+        = link_to "Try it Now", pricing_path, class: "btn btn-large btn-success"
+      .span8
+        = image_tag "macbook.png", id: "macbook"
 .feature
   .container
     %h3 Instant Setup
