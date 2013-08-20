@@ -56,7 +56,7 @@ $iconSize: 35px;
 	background: $navPrimaryBg;
 	color: #042333;
 	border-right: 1px solid #DDE2EB;
-	overflow-y: scroll;
+	overflow-y: auto;
 	overflow-x: hidden;
 	a {
 		text-decoration: none;
@@ -114,7 +114,7 @@ $iconSize: 35px;
 	background: $navSecondaryBg;
 	border-right: 1px solid #E3E3E3;
 	z-index: 10;
-	overflow-y: scroll;
+	overflow-y: auto;
 	overflow-x: hidden;
 	h5 {
 		position: fixed;
