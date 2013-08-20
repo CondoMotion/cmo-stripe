@@ -39,10 +39,21 @@ form {
 	text-align: center;
 }
 
+body.home {
+  background: #FBFBFB;
+}
+
 #jumbotron {
   background: url('aqua.jpg');
   background-size: cover;
   color: #ffffff;
+  h2{
+    color: #fff;
+  font-size: 36px;
+  font-weight: normal;
+  line-height: 40px;
+  text-shadow: 1px 1px 1px rgb(49, 57, 61);
+  }
   h3 {
     color: #cccccc;
     font-weight: 200;
