@@ -49,18 +49,20 @@ $iconSize: 35px;
 
 #nav-primary {
 	position: fixed;
-	top: $headerHeight;
+	top: $headerHeight + 40;
 	left: 0px;
 	bottom: 0px;
 	width: $navPrimaryWidth;
 	background: $navPrimaryBg;
 	color: #042333;
-	padding-top: 5px;
 	border-right: 1px solid #DDE2EB;
+	overflow-y: scroll;
+	overflow-x: hidden;
 	a {
 		text-decoration: none;
 		color: #042333;
 	}
+	ul { margin: 0; }
 	li {
 		list-style: none;
 		a{
@@ -83,13 +85,19 @@ $iconSize: 35px;
 		}
 	}
 	h5 {
+		position: fixed;
+		top: $headerHeight;
+		width: $navPrimaryWidth - 40;
 		font-size: 13px;
 		font-weight: 400;
 		color: #aab6bd;
 		text-transform: uppercase;
-		padding: 5px 0 0 20px;
-		line-height: 28px;
+		padding: 0 20px;
+		line-height: 40px;
+		height: 40px;
 		margin: 0;
+		background: $navPrimaryBg;
+		border-right: 1px solid #DDE2EB;
 	}
 	hr {
 		margin: 0 0 5px 0;
@@ -98,7 +106,7 @@ $iconSize: 35px;
 }
 #nav-secondary {
 	position: fixed;
-	top: $headerHeight;
+	top: $headerHeight + 40;
 	left: $navPrimaryWidth + 1;
 	bottom: 0px;
 	width: $navSecondaryWidth;
@@ -106,13 +114,21 @@ $iconSize: 35px;
 	background: $navSecondaryBg;
 	border-right: 1px solid #E3E3E3;
 	z-index: 10;
+	overflow-y: scroll;
+	overflow-x: hidden;
 	h5 {
-		margin-bottom: 0;
+		position: fixed;
+		top: $headerHeight;
+		width: $navSecondaryWidth - 18;
+		background: $navSecondaryBg;
+		border-right: 1px solid #E3E3E3;
+		margin: 0;
 		font-weight: lighter;
 		text-transform: uppercase;
 		font-size: 13px;
-		line-height: 100%;
-		padding: 5px 0 0 9px;
+		line-height: 40px;
+		height: 40px;
+		padding: 0 9px;
 	}
 	.nav-tabs > .active > a, .nav-tabs > .active > a:hover {
 		background: $navSecondaryBg;
@@ -128,7 +144,7 @@ $iconSize: 35px;
 		}
 	}
 	.nav-secondary-tabs {
-		margin: 15px 0px 0px 0px;
+		margin: 0px 0px 0px 0px;
 		list-style: none;
 		li a {
 			padding: 8px 0;

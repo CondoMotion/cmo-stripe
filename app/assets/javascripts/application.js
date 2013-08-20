@@ -17,6 +17,4 @@
 //= require chosen-jquery
 //= require wysihtml5-0.3.0
 //= require bootstrap-wysihtml5
-//= require jquery.mousewheel
-//= require jquery.jscrollpane.min
 //= require_tree .
