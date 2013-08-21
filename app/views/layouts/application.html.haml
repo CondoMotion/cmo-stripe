@@ -5,6 +5,12 @@
     %title= content_for?(:title) ? yield(:title) : "Condo Motion"
     %meta{:content => content_for?(:description) ? yield(:description) : "Beautifully simple websites for condominium associations and property managers", :name => "description"}/
     = stylesheet_link_tag "application", :media => "all"
+    /[if gte IE 9]
+      <style type="text/css">
+      \.gradient {
+      filter: none;
+      }
+      </style>
     = javascript_include_tag "application"
     = csrf_meta_tags
     %link{:href => "/favicon.png", :rel => "shortcut icon"}/
