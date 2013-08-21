@@ -11,7 +11,7 @@
   .container-fluid
     .row-fluid{style: "padding-top: 20px;"}
       .span12
-        %table.table
+        %table.table.table-hover
           %thead
             %tr
               %th Username
@@ -23,5 +23,5 @@
             %tr
               %td= link_to user.name, user
               %td= user.email
-              %td= user.created_at.to_date
-              %td= link_to("Delete user", user_path(user), :data => { :confirm => "Are you sure?" }, :method => :delete, :class => 'btn btn-mini') if can?(:delete, user) && user != @company.owner
+              %td= user.created_at.strftime("%b %d, %Y")
+              %td= link_to("Delete user", user_path(user), :data => { :confirm => "Are you sure?" }, :method => :delete, :class => 'btn btn-mini pull-right') if can?(:delete, user) && user != @company.owner
