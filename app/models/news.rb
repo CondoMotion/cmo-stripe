@@ -7,4 +7,6 @@ class News < ActiveRecord::Base
   accepts_nested_attributes_for :post, :attachment
 
   attr_accessible :content, :post_attributes, :attachment_attributes
+
+  validates :content, presence: true
 end

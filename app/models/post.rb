@@ -10,6 +10,8 @@ class Post < ActiveRecord::Base
   belongs_to :user
   belongs_to :company
 
+  validates :title, :role_ids, :site_ids, presence: true
+
   def visible_to_emails
     emails = []
     roles = self.roles.map(&:id)

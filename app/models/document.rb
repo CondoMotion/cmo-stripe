@@ -7,4 +7,5 @@ class Document < ActiveRecord::Base
   accepts_nested_attributes_for :post, :attachment
 
   attr_accessible :post_attributes, :attachment_attributes
+  
 end
