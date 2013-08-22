@@ -42,6 +42,10 @@ form {
 
 
 @media (max-width: 767px) {
+  body { padding: 0; }
+  .container {
+    padding: 0 20px;
+  }
   .navbar-fixed-top, .navbar-fixed-bottom, .navbar-static-top {
     margin-left: 0;
     margin-right: 0;
