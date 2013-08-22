@@ -39,6 +39,20 @@ form {
 	text-align: center;
 }
 
+
+
+@media (max-width: 767px) {
+  .navbar-fixed-top, .navbar-fixed-bottom, .navbar-static-top {
+    margin-left: 0;
+    margin-right: 0;
+  }
+  .brand img {
+    max-width: 200px!important;
+    height: auto!important;
+    margin-top: 15px!important;
+  }
+}
+
 body.home, body.passwords, body.sessions, body.registrations {
   background: #FBFBFB;
 }
