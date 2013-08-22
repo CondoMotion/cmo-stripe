@@ -1,69 +1,117 @@
 = content_for :title do
   Condo Motion | Simple CRM for Property Managers
 
-= render 'layouts/home_navigation'
+- if params[:style] == "scroller"
+  = content_for(:head) do
+    = stylesheet_link_tag "cbpScroller"
+    = javascript_include_tag "modernizr.custom"
+  = content_for(:scripts) do
+    = javascript_include_tag "classie"
+    = javascript_include_tag "cbpScroller"
+    :javascript
+      new cbpScroller( document.getElementById( 'cbp-so-scroller' ) );
+  
+  = render 'layouts/home_navigation'
+  
+  %div{:style => "background: #47a3da; height: 495px; width: 100%;"}
+  .cbp-container
+    #cbp-so-scroller.cbp-so-scroller
+      %section.cbp-so-section
+        %article.cbp-so-side.cbp-so-side-left
+          %h2 Easy Setup
+          %p Once you create your account, just create user accounts for your staff and add the properties you manage. We can import them from an Excel spreadsheet for you if you would like. Residents can sign up for user accounts via their property's signup page. A property-wide password restricts unauthorized users from signing up.
+        %figure.cbp-so-side.cbp-so-side-right
+          = image_tag "screenshots/2.png"
+      %section.cbp-so-section
+        %figure.cbp-so-side.cbp-so-side-left
+          = image_tag "screenshots/2.png"
+        %article.cbp-so-side.cbp-so-side-right
+          %h2 Control Center
+          %p Condo Motion provides a centralized point of control for your entire management company. You can manage all of your properties all in one place.
+      %section.cbp-so-section
+        %article.cbp-so-side.cbp-so-side-left
+          %h2 User Management
+          %p All of your users, from staff to residents, have profiles in the Condo Motion system. A single user can be a member of multiple properties with different permissions for each membership.
+        %figure.cbp-so-side.cbp-so-side-right
+          = image_tag "screenshots/2.png"
+      %section.cbp-so-section
+        %figure.cbp-so-side.cbp-so-side-left
+          = image_tag "screenshots/2.png"
+        %article.cbp-so-side.cbp-so-side-right
+          %h2 Easily Share Information
+          %p Post news and documents to one or more properties at the same time. Your clients will get beautiful email notifications. You have full control over what user roles can access the information you are posting.
+      %section.cbp-so-section
+        %article.cbp-so-side.cbp-so-side-left
+          %h2 Simple Issue Reporting
+          %p
+            %strong Coming Soon!
+            We are working hard on the next major feature of Condo Motion, issue reporting. Residents will be able to report issues at their property. Managers will be able to assign the issue, post updates, and track the issue until it is resolved.
+        %figure.cbp-so-side.cbp-so-side-right
+          = image_tag "screenshots/2.png"
+- else
+  = render 'layouts/home_navigation'
 
-#jumbotron
-  .container
-    .row-fluid
-      .span4#welcome
-        %h2 Property Management Software
-        %h3 Easily share information and track issues at your properties
-        = link_to raw("<i class='icon-circle-arrow-right'></i> Try it Now"), pricing_path, class: "btn btn-large btn-success"
-      .span8
-        = image_tag "macbook.png", id: "macbook", class: "pull-right"
-.feature
-  .container
-    .row-fluid
-      .span4
-        %h3 Easy Setup
-        %hr/
-        .description Once you create your account, just create user accounts for your staff and add the properties you manage.  We can import them from an Excel spreadsheet for you if you would like.  Residents can sign up for user accounts via their property's signup page. A property-wide password restricts unauthorized users from signing up.
-      .span8
-        .thumbnail
-          = browser_bar
-          = image_tag "screenshots/property_sign_up.png"
-.feature.dark
-  .container
-    .row-fluid
-      .span8
-        .thumbnail
-          = browser_bar
-          = image_tag "screenshots/property.png"
-      .span4.right
-        %h3 Control Center
-        %hr/
-        .clearfix
-        .description Condo Motion provides a centralized point of control for your entire management company.  You can manage all of your properties in one place.
-.feature
-  .container
-    .row-fluid
-      .span4
-        %h3 User Management
-        %hr/
-        .description All of your users, from staff to residents, have profiles in the Condo Motion system.  A single user can be a member of multiple properties with different permissions for each membership.
-      .span8
-        .thumbnail
-          = browser_bar
-          = image_tag "screenshots/user.png"
-.feature.dark
-  .container
-    .row-fluid
-      .span8
-        .thumbnail
-          = browser_bar
-          = image_tag "screenshots/news_new.png"
-      .span4.right
-        %h3 Easily Share Information
-        %hr/
-        .clearfix
-        .description Post news and documents to one or more properties at the same time. Your clients will get beautiful email notifications. You have full control over what user roles can access the information you are posting.
-.feature
-  .container
-    .row-fluid
-      .span6
-        %h3 Simple Issue Reporting
-        %hr/
-        .description
-          %strong Coming Soon!
-          We are working hard on the next major feature of Condo Motion, issue reporting.  Residents will be able to report issues at their property.  Managers will be able to assign the issue, post updates, and track the issue until it is resolved.
+  #jumbotron
+    .container
+      .row-fluid
+        .span4#welcome
+          %h2 Property Management Software
+          %h3 Easily share information and track issues at your properties
+          = link_to raw("<i class='icon-circle-arrow-right'></i> Try it Now"), pricing_path, class: "btn btn-large btn-success"
+        .span8
+          = image_tag "macbook.png", id: "macbook", class: "pull-right"
+  .feature
+    .container
+      .row-fluid
+        .span4
+          %h3 Easy Setup
+          %hr/
+          .description Once you create your account, just create user accounts for your staff and add the properties you manage.  We can import them from an Excel spreadsheet for you if you would like.  Residents can sign up for user accounts via their property's signup page. A property-wide password restricts unauthorized users from signing up.
+        .span8
+          .thumbnail
+            = browser_bar
+            = image_tag "screenshots/property_sign_up.png"
+  .feature.dark
+    .container
+      .row-fluid
+        .span8
+          .thumbnail
+            = browser_bar
+            = image_tag "screenshots/property.png"
+        .span4.right
+          %h3 Control Center
+          %hr/
+          .clearfix
+          .description Condo Motion provides a centralized point of control for your entire management company.  You can manage all of your properties in one place.
+  .feature
+    .container
+      .row-fluid
+        .span4
+          %h3 User Management
+          %hr/
+          .description All of your users, from staff to residents, have profiles in the Condo Motion system.  A single user can be a member of multiple properties with different permissions for each membership.
+        .span8
+          .thumbnail
+            = browser_bar
+            = image_tag "screenshots/user.png"
+  .feature.dark
+    .container
+      .row-fluid
+        .span8
+          .thumbnail
+            = browser_bar
+            = image_tag "screenshots/news_new.png"
+        .span4.right
+          %h3 Easily Share Information
+          %hr/
+          .clearfix
+          .description Post news and documents to one or more properties at the same time. Your clients will get beautiful email notifications. You have full control over what user roles can access the information you are posting.
+  .feature
+    .container
+      .row-fluid
+        .span6
+          %h3 Simple Issue Reporting
+          %hr/
+          .description
+            %strong Coming Soon!
+            We are working hard on the next major feature of Condo Motion, issue reporting.  Residents will be able to report issues at their property.  Managers will be able to assign the issue, post updates, and track the issue until it is resolved.
