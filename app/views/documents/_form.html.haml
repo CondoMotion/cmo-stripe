@@ -7,8 +7,8 @@
     = f.simple_fields_for :attachment do |attachmentFields|
       = attachmentFields.input :attachment
     = f.simple_fields_for :post do |ff|
-      = ff.association :roles, label: "What roles can view this post?", collection: Role.site_roles, label_method: :select_label, input_html: { class: "chosen span12" }
-      = ff.association :sites, label: "What properties do you want to post this to?", collection: current_user.managed_sites, input_html: { class: "chosen span12" }
+      = ff.association :roles, label: "What roles can view this post?", collection: Role.site_roles, label_method: :select_label, input_html: { class: "chosen span12", data: { placeholder: "Choose some roles" } }
+      = ff.association :sites, label: "What properties do you want to post this to?", collection: current_user.managed_sites, input_html: { class: "chosen span12", data: { placeholder: "Choose some properties" } }
       = link_to "All", "#", class: "chosen-toggle select btn btn-mini", data: { target: "#document_post_attributes_site_ids" } 
       = link_to "Clear", "#", class: "chosen-toggle deselect btn btn-mini", data: { target: "#document_post_attributes_site_ids" } 
     .pull-right{style: "padding: 20px 0;"}
