@@ -8,6 +8,8 @@ body {
   background: #FBFBFB;
 }
 
+#push { display: none; }
+
 figure img {
 	max-width: none!important;
 }
@@ -43,7 +45,7 @@ figure img {
 .cbp-so-section p {
 	font-size: 2em;
 	font-weight: 300;
-	line-height: 1.1;
+	line-height: 1.2;
 }
 
 /* Sides */
@@ -148,3 +150,14 @@ figure img {
 	}
 }
 
+@media (max-width: 767px) {
+	.navbar-fixed-top, .navbar-fixed-bottom, .navbar-static-top {
+		margin-left: 0;
+		margin-right: 0;
+	}
+	.brand img {
+		max-width: 200px!important;
+		height: auto!important;
+		margin-top: 15px!important;
+	}
+}
