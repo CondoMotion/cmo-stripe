@@ -2,9 +2,9 @@ $ ->
   $('.chosen').chosen()
 
   $('.chosen-toggle').click ->
-    event.preventDefault()
     $($(this).data('target')).children('option').prop('selected', $(this).hasClass('select'))
     $('.chosen').trigger('liszt:updated')
+    event.preventDefault()
 
   $('form').on 'click', '.remove_fields', (event) ->
     $(this).prev('input[type=hidden]').val('1')
