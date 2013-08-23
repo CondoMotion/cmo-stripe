@@ -2,7 +2,11 @@
   = link_to @site.name, root_url(subdomain: @site.subdomain)
 .container
   .row-fluid
-    .span4.offset4.login-box
+    .span6
+      %h2.light Sign up for Condo Motion
+      %p Create your resident account today!  Your property manager will be using Condo Motion to share important information and documents with you.  
+      %p Coming soon, you'll also be able to report issues at your property and see the status as your property manager resolves the issue.
+    .span4.offset1.login-box
       %h3.center Sign up
       = simple_form_for(@user, url: signups_path, html: { class: 'form-inline' }) do |f|
         .content-wrap

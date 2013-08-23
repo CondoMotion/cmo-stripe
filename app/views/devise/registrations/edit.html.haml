@@ -5,8 +5,8 @@
   #nav-secondary
     %h5 Your Profile
     %ul.nav-secondary-tabs
-      %li{:class => (params[:tab] == 'contact-info' || params[:tab].nil?) ? 'active' : ''}
-        %a{"data-toggle" => "tab", :href => "#contact-info"} Contact Info
+      %li{:class => (params[:tab] == 'account-info' || params[:tab].nil?) ? 'active' : ''}
+        %a{"data-toggle" => "tab", :href => "#account-info"} Account Info
       - if can? :edit, @company
         %li{:class => params[:tab] == 'company' ? 'active' : ''}
           %a{"data-toggle" => "tab", :href => "#company"} Company Info
@@ -21,11 +21,11 @@
     You updated your account successfully!
   .padding20
     .tab-content
-      #contact-info.tab-pane{:class => (params[:tab] == 'contact-info' || params[:tab].nil?) ? 'active' : ''}
+      #account-info.tab-pane{:class => (params[:tab] == 'account-info' || params[:tab].nil?) ? 'active' : ''}
         #breadcrumbs 
           .container-fluid
             .row-fluid
-              %h3.span-12 Contact Info
+              %h3.span-12 Account Info
         .container-fluid{style: "padding-top: 20px; padding-bottom: 20px;"}
           .row-fluid
             = render "contact_fields"

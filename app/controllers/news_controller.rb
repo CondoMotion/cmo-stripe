@@ -56,7 +56,7 @@ class NewsController < ApplicationController
         @news.post.visible_to_emails.each do |email|
           PostMailer.delay.new_post(@news.post, email)
         end
-        format.html { redirect_to @news, notice: 'News was successfully created.' }
+        format.html { redirect_to news_index_url, notice: 'News was successfully created.' }
         format.json { render json: @news, status: :created, location: @news }
       else
         format.html { render action: "new" }
@@ -72,7 +72,7 @@ class NewsController < ApplicationController
 
     respond_to do |format|
       if @news.update_attributes(params[:news])
-        format.html { redirect_to @news, notice: 'News was successfully updated.' }
+        format.html { redirect_to news_index_url, notice: 'News was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }

@@ -21,8 +21,11 @@
           %table.table-condensed{style: "margin: 0;"}
             %tbody
               %tr
-                %th{style: "text-align: left;"} Owner
+                %th{style: "text-align: left;"} Owner Name
                 %td= @company.owner.name
+              %tr
+                %th{style: "text-align: left;"} Owner Email
+                %td= @company.owner.email
               %tr
                 %th{style: "text-align: left;"} Phone
                 %td= @company.phone
