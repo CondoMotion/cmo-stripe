@@ -2,7 +2,7 @@
   #header
     .container-fluid
       %h4.pull-left
-        Condo Motion
+        = link_to "Condo Motion", news_index_url(subdomain: "www")
         &nbsp;
         %span{style: "font-weight: 100;"}= @company.name
       - if user_signed_in?
