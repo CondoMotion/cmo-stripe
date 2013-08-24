@@ -44,7 +44,10 @@
                     %strong Posted to: 
                     - post.sites.each do |site|
                       %span.label.label-info= site.name
-                  %p= raw post.postable.content
+                  %p
+                    = raw post.postable.content.truncate(200)
+                    - if post.postable.content.length > 200
+                      = link_to "read more", post.postable
                   - unless post.postable.attachment.nil?
                     %p.attachment= link_to "Attachment", post.postable.attachment.attachment.url if post.postable.attachment.attachment?
                 .footer
