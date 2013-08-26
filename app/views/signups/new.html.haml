@@ -6,6 +6,25 @@
       %h2.light Sign up for Condo Motion
       %p Create your resident account today!  Your property manager will be using Condo Motion to share important information and documents with you.  
       %p Coming soon, you'll also be able to report issues at your property and see the status as your property manager resolves the issue.
+      .row-fluid
+        %h4.span12.light Management Company
+      .row-fluid
+        .span4
+          %p= @site.company.name
+          %address
+            %p= @site.company.address.address1
+            %p= @site.company.address.address2 unless @site.company.address.address2.blank?
+            %p= "#{@site.company.address.city}, #{@site.company.address.state} #{@site.company.address.zip}"
+            %p= @site.company.phone
+        .span8
+          %table.table.table-condensed
+            - @site.managers.each do |m|
+              %tr
+                %td
+                  = m.name
+                %td
+                  = link_to(m.email, "mailto:#{m.email}")
+
     .span4.offset1.login-box
       %h3.center Sign up
       = simple_form_for(@user, url: signups_path, html: { class: 'form-inline' }) do |f|

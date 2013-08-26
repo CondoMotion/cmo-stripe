@@ -9,4 +9,5 @@ class News < ActiveRecord::Base
   attr_accessible :content, :post_attributes, :attachment_attributes
 
   validates :content, presence: true
+  
 end

@@ -48,6 +48,7 @@ class DocumentsController < ApplicationController
         format.html { redirect_to documents_url, notice: 'Document was successfully created.' }
         format.json { render json: @document, status: :created, location: @document }
       else
+        @document.build_attachment if @document.attachment.nil?
         format.html { render action: "new" }
         format.json { render json: @document.errors, status: :unprocessable_entity }
       end

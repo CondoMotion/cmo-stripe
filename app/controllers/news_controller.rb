@@ -59,6 +59,7 @@ class NewsController < ApplicationController
         format.html { redirect_to news_index_url, notice: 'News was successfully created.' }
         format.json { render json: @news, status: :created, location: @news }
       else
+        @news.build_attachment if @news.attachment.nil?
         format.html { render action: "new" }
         format.json { render json: @news.errors, status: :unprocessable_entity }
       end
