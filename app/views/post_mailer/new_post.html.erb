@@ -470,7 +470,7 @@
                                                                   <br />
                                                                   <%= raw @post.postable.content %>
                                                                 <% end %>
-                                                                <% unless @post.postable.attachment.blank? %>
+                                                                <% if !@post.postable.attachment.nil? && @post.postable.attachment.attachment %>
                                                                   <br />
                                                                   <br />
                                                                   <a href="<%= @post.postable.attachment.attachment.url %>"><%= File.basename(@post.postable.attachment.attachment.path) %></a><br />
