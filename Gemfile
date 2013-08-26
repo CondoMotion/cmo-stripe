@@ -34,6 +34,7 @@ gem "binding_of_caller", ">= 0.7.1", :group => :development, :platforms => [:mri
 gem 'newrelic_rpm'
 gem 'active_attr'
 gem 'letter_opener', :group => :development
+gem 'mail_view', :git => 'https://github.com/37signals/mail_view.git'
 gem "rmagick"
 gem "carrierwave"
 gem "friendly_id"

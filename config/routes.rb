@@ -43,5 +43,7 @@ CmoStripe::Application.routes.draw do
     collection { post :sort }
   end
 
-
+  if Rails.env.development?
+    mount MailPreview => 'mail_view'
+  end
 end
