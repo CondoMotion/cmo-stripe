@@ -40,10 +40,11 @@
                     .permissions
                       - post.roles.each do |role|
                         %span.label.label-info= role.name.titleize
-                  .news-sites
-                    %strong Posted to: 
-                    - post.sites.each do |site|
-                      %span.label.label-info= site.name
+                  - if can? :edit, post
+                    .news-sites
+                      %strong Posted to: 
+                      - post.sites.each do |site|
+                        %span.label.label-info= site.name
                   %p
                     = raw post.postable.content.truncate(200)
                     - if post.postable.content.length > 200
