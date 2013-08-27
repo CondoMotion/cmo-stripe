@@ -10,12 +10,18 @@
         %h4.span12.light Management Company
       .row-fluid
         .span4
-          %p= @site.company.name
           %address
-            %p= @site.company.address.address1
-            %p= @site.company.address.address2 unless @site.company.address.address2.blank?
-            %p= "#{@site.company.address.city}, #{@site.company.address.state} #{@site.company.address.zip}"
-            %p= @site.company.phone
+            %p
+              = @site.company.name
+              %br/
+              = @site.company.address.address1
+              %br/
+              - unless @site.company.address.address2.blank?
+                = @site.company.address.address2 
+                %br/
+              = "#{@site.company.address.city}, #{@site.company.address.state} #{@site.company.address.zip}"
+              %br/
+              = @site.company.phone
         .span8
           %table.table.table-condensed
             - @site.managers.each do |m|
