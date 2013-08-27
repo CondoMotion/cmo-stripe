@@ -4,7 +4,7 @@
   .form-inputs
     = f.input :name, input_html: { class: "span12" }
     = f.input :subdomain, input_html: { class: "span12" }
-    = f.input :signup_password, input_html: { class: "span12", value: @site.signup_password }
+    = f.input :signup_password, as: :string, input_html: { class: "span12", value: @site.signup_password }
     - @site.build_address if @site.address.nil?
     = f.fields_for :address do |ff|
       = ff.input :address1, input_html: { class: "span12" }
