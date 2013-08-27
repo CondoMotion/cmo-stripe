@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130814171918) do
+ActiveRecord::Schema.define(:version => 20130827193944) do
 
   create_table "addresses", :force => true do |t|
     t.string   "address1"
@@ -126,6 +126,7 @@ ActiveRecord::Schema.define(:version => 20130814171918) do
     t.string   "postable_type"
     t.integer  "postable_id"
     t.integer  "company_id"
+    t.boolean  "send_email"
   end
 
   add_index "posts", ["company_id"], :name => "index_posts_on_company_id"

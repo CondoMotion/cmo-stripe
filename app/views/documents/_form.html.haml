@@ -4,6 +4,8 @@
   .form-inputs
     = f.simple_fields_for :post do |ff|
       = ff.input :title, input_html: { class: "span12" }
+      - if params[:action] == "new"
+        = ff.input :send_email, inline_label: "Send email", label: false, input_html: { checked: "checked" }
     - unless @document.attachment.attachment_cache.blank?
       %strong Attachment pending:
       = @document.attachment.attachment_cache.split("/").last

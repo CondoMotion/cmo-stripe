@@ -1,5 +1,5 @@
 class Post < ActiveRecord::Base
-  attr_accessible :attachment_label, :title, :user_id, :postable_type, :postable_id, :role_ids, :site_ids
+  attr_accessible :attachment_label, :title, :user_id, :postable_type, :postable_id, :role_ids, :site_ids, :send_email
 
   has_many :permissions
   has_many :roles, through: :permissions
