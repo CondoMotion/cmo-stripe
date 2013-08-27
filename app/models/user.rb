@@ -78,6 +78,8 @@ class User < ActiveRecord::Base
   def quantity 
     if self.company.nil?
       1
+    elsif self.company.name == "The Hofeller Company"
+      self.company.sites.length == 0 ? 1 : self.company.sites.length - 3
     else
       self.company.sites.length == 0 ? 1 : self.company.sites.length
     end
