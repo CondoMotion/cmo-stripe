@@ -1,58 +1,61 @@
-= render "menu"
-- if user_signed_in?
+
+- unless user_signed_in?
+  = render "public_page"
+- else
+  = render "menu"
   = render "layouts/dashboard_navigation"
 
-#main{class: ("no-nav-secondary" unless user_signed_in?)}
-  #breadcrumbs 
+  #main{class: ("no-nav-secondary" unless user_signed_in?)}
+    #breadcrumbs 
+      .container-fluid
+        .row-fluid
+          .span12
+            %h3.pull-left
+              %i.icon-building
+              - if can? :read, Site
+                = link_to "Properties", sites_url(subdomain: "www")
+                %span / 
+              = @site.name
+            .pull-right.btn-group
+              = link_to raw("<i class='icon icon-pencil'></i>"), edit_site_url(subdomain: @site.subdomain), class: "btn" if can? :edit, @site
     .container-fluid
       .row-fluid
         .span12
-          %h3.pull-left
-            %i.icon-building
-            - if can? :read, Site
-              = link_to "Properties", sites_url(subdomain: "www")
-              %span / 
-            = @site.name
-          .pull-right.btn-group
-            = link_to raw("<i class='icon icon-pencil'></i>"), edit_site_url(subdomain: @site.subdomain), class: "btn" if can? :edit, @site
-  .container-fluid
-    .row-fluid
-      .span12
-        %iframe{:frameborder => "0", :height => "350", :marginheight => "0", :marginwidth => "0", :scrolling => "no", :src => "http://maps.google.com/maps?f=q&source=s_q&hl=en&geocode=&q=#{ @site.address.address1 }+#{ @site.address.city },+#{ @site.address.state }+#{ @site.address.zip }&ie=UTF8&z=14&t=m&iwloc=near&output=embed", :width => "100%"}
-    .row-fluid{style: "padding-top: 20px;"}
-      .span8
-        - if can? :read, User
-          - if @site.memberships.length == 0
-            .center.no-content.compact
-              %i.icon-user
-              %h5 No members have been added to this property
-          - else
-            %h4 Members
-            %table.table
-              %thead
-                %tr
-                  %th Name
-                  %th Role
-              %tbody
-                - @site.memberships.order(:role_id).each do |membership|
+          %iframe{:frameborder => "0", :height => "350", :marginheight => "0", :marginwidth => "0", :scrolling => "no", :src => "http://maps.google.com/maps?f=q&source=s_q&hl=en&geocode=&q=#{ @site.address.address1 }+#{ @site.address.city },+#{ @site.address.state }+#{ @site.address.zip }&ie=UTF8&z=14&t=m&iwloc=near&output=embed", :width => "100%"}
+      .row-fluid{style: "padding-top: 20px;"}
+        .span8
+          - if can? :read, User
+            - if @site.memberships.length == 0
+              .center.no-content.compact
+                %i.icon-user
+                %h5 No members have been added to this property
+            - else
+              %h4 Members
+              %table.table
+                %thead
                   %tr
-                    %td
-                      - if can? :read, membership.user
-                        = link_to membership.user.name, user_url(membership.user, subdomain: "www")
-                      - else
-                        = membership.user.name
-                    %td= membership.role.name.titleize
-      .span4
-        .detail-box
-          %h4 Address
-          - unless @site.address.nil?
-            %p{style: 'margin: 0;'}
-              = @site.address.address1
-              %br
-              - unless @site.address.address2.blank?
-                = @site.address.address2
+                    %th Name
+                    %th Role
+                %tbody
+                  - @site.memberships.order(:role_id).each do |membership|
+                    %tr
+                      %td
+                        - if can? :read, membership.user
+                          = link_to membership.user.name, user_url(membership.user, subdomain: "www")
+                        - else
+                          = membership.user.name
+                      %td= membership.role.name.titleize
+        .span4
+          .detail-box
+            %h4 Address
+            - unless @site.address.nil?
+              %p{style: 'margin: 0;'}
+                = @site.address.address1
                 %br
-              = @site.address.city + ", " + @site.address.state + " " + @site.address.zip
-        .detail-box
-          %h4 Signup Page
-          = link_to "Resident Signup Page", site_signup_url(subdomain: @site.subdomain)
+                - unless @site.address.address2.blank?
+                  = @site.address.address2
+                  %br
+                = @site.address.city + ", " + @site.address.state + " " + @site.address.zip
+          .detail-box
+            %h4 Signup Page
+            = link_to "Resident Signup Page", site_signup_url(subdomain: @site.subdomain)

@@ -1,8 +1,12 @@
 class CompaniesController < ApplicationController
-  before_filter :authenticate_user!
+  before_filter :authenticate_user!, except: [:index, :show]
 
   def show
-    @company = current_user.company
+    if current_user
+      @company = current_user.company
+    else
+      @company = Company.find(params[:id])
+    end
   end
 
   def edit

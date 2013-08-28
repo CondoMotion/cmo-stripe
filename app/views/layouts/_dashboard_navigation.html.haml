@@ -2,7 +2,7 @@
   #header
     .container-fluid
       %h4.pull-left
-        = link_to "Condo Motion", news_index_url(subdomain: "www")
+        = user_signed_in? ? link_to("Condo Motion", news_index_url(subdomain: "www")) : link_to("Condo Motion", root_url)
         &nbsp;
         %span{style: "font-weight: 100;"}= @company.name
       - if user_signed_in?
@@ -19,12 +19,15 @@
   #nav-primary
     %h5 Navigation
     %ul
-      %li= link_to raw("<i class='icon-bullhorn'></i> News"), news_index_url(subdomain: "www"), class: ("active" if params[:controller] == "news")
-      %li= link_to raw("<i class='icon-file-alt'></i> Documents"), documents_url(subdomain: "www"), class: ("active" if params[:controller] == "documents")
-      %li= link_to raw("<i class='icon-group'></i> People"), users_url(subdomain: "www"), class: ("active" if params[:controller] == "users" && %w[index show new edit].include?(params[:action])) if can? :read, User
-      %li= link_to raw("<i class='icon-building'></i> Properties"), sites_url(subdomain: "www"), class: ("active" if params[:controller] == "sites")
-      %li= link_to raw("<i class='icon-home'></i> Management Co."), show_company_url(subdomain: "www"), class: ("active" if params[:controller] == "companies" && %w[show edit].include?(params[:action]))
-      %li= link_to raw("<i class='icon-cogs'></i> Settings"), edit_user_registration_url(subdomain: 'www'), class: ("active" if params[:controller] == "registrations")
-      / %li= link_to raw("<i class='icon-inbox'></i> Issues")
+      - if user_signed_in?
+        %li= link_to raw("<i class='icon-bullhorn'></i> News"), news_index_url(subdomain: "www"), class: ("active" if params[:controller] == "news")
+        %li= link_to raw("<i class='icon-file-alt'></i> Documents"), documents_url(subdomain: "www"), class: ("active" if params[:controller] == "documents")
+        %li= link_to raw("<i class='icon-group'></i> People"), users_url(subdomain: "www"), class: ("active" if params[:controller] == "users" && %w[index show new edit].include?(params[:action])) if can? :read, User
+        %li= link_to raw("<i class='icon-building'></i> Properties"), sites_url(subdomain: "www"), class: ("active" if params[:controller] == "sites")
+        %li= link_to raw("<i class='icon-home'></i> Management Co."), show_company_url(subdomain: "www"), class: ("active" if params[:controller] == "companies" && %w[show edit].include?(params[:action]))
+        %li= link_to raw("<i class='icon-cogs'></i> Settings"), edit_user_registration_url(subdomain: 'www'), class: ("active" if params[:controller] == "registrations")
+        / %li= link_to raw("<i class='icon-inbox'></i> Issues")
+      - else
+        %li= link_to raw("<i class='icon-home'></i> Management Co."), @company, class: ("active" if params[:controller] == "companies" && %w[show edit].include?(params[:action]))
 
   = yield :nav_secondary

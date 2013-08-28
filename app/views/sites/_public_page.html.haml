@@ -1,0 +1,11 @@
+.header
+  = link_to @site.name, root_url(subdomain: @site.subdomain)
+.container
+  .row-fluid
+    %h2.center Welcome to Condo Motion
+  .row-fluid
+    .span4.offset4.login-box
+      %p.center= link_to "Sign Up", site_signup_url(subdomain: @site.subdomain)
+      %p.center= link_to "Sign In", new_user_session_url(subdomain: "www")
+= content_for :body_classes do
+  signups

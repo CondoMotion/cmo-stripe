@@ -15,7 +15,7 @@
     = csrf_meta_tags
     %link{:href => "/favicon.png", :rel => "shortcut icon"}/
     = yield(:head)
-  %body{:class => "#{controller_name} #{action_name}"}
+  %body{:class => "#{controller_name} #{action_name} #{yield(:body_classes)}"}
     #wrap
       = yield(:navigation)
       = render 'layouts/messages'
