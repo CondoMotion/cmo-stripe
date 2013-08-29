@@ -1,5 +1,18 @@
-.container
-  .row-fluid{style: "padding: 20px 0;"}
-    .span12
-      %div{style: "border: 3px solid #fff;"}
-        = image_tag "properties/#{@site.subdomain}.jpg"
+#portal-hero
+  = image_tag "properties/#{@site.subdomain}.jpg"
+  #mask
+    .container
+      .row-fluid
+        .span6
+          %h1.portal-title= link_to @site.name, root_url(subdomain: @site.subdomain)
+        .span6
+          %ul#portal-nav.pull-right
+            %li= link_to "Sign up", site_signup_url(subdomain: @site.subdomain)
+            %li= link_to "Sign in", new_user_session_url(subdomain: "www")
+      %h2#portal-welcome.nixie.white Welcome to Condo Motion
+
+= content_for :head do
+  :css
+    @import url(http://fonts.googleapis.com/css?family=Raleway:400,500);
+    @import url(http://fonts.googleapis.com/css?family=Montserrat);
+    @import url(http://fonts.googleapis.com/css?family=Nixie+One);
