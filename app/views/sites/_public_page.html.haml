@@ -1,8 +1,12 @@
+%div{style: "background-image: url('assets/properties/#{@site.subdomain}.jpg'); height: 375px; background-position: center center; background-size: cover;"}
 .header
   = link_to @site.name, root_url(subdomain: @site.subdomain)
 .container
   .row-fluid
-    %h2.center Welcome to Condo Motion
+    .span12.center
+      %h2 Welcome to Condo Motion
+      %p Create your resident account today!  Your property manager will be using Condo Motion to share important information and documents with you.  
+      %p Coming soon, you'll also be able to report issues at your property and see the status as your property manager resolves the issue.
   .row-fluid
     .span4.offset4.login-box
       %p.center= link_to "Sign Up", site_signup_url(subdomain: @site.subdomain)
