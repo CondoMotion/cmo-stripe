@@ -10,8 +10,8 @@
           %h1.portal-title= link_to @site.name, root_url(subdomain: @site.subdomain)
         .span6
           %ul#portal-nav.pull-right
-            %li= link_to "Sign up", site_signup_url(subdomain: @site.subdomain)
             %li= link_to "Sign in", new_user_session_url(subdomain: "www")
+            %li= link_to "Sign up", site_signup_url(subdomain: @site.subdomain), class: ("active" if params[:action] == "new")
       %h2#portal-welcome.nixie.white Welcome to Condo Motion
 
 = content_for :head do
@@ -19,3 +19,6 @@
     @import url(http://fonts.googleapis.com/css?family=Raleway:400,500);
     @import url(http://fonts.googleapis.com/css?family=Montserrat);
     @import url(http://fonts.googleapis.com/css?family=Nixie+One);
+
+= content_for :title do
+  = @site.name + " | Condo Motion"
