@@ -1,33 +1,36 @@
-%div{style: "background-image: url('assets/properties/#{@site.subdomain}.jpg'); height: 375px; background-position: center center; background-size: cover;"}
+
 .header
-  = link_to @site.name, root_url(subdomain: @site.subdomain)
+  .container
+    = link_to @site.name, '', class: "brand"
+    .pull-right
+      = link_to "Sign in", new_user_session_url(subdomain: "www")
+.container
+  .row-fluid{style: "padding: 20px 0;"}
+    .span12
+      %div{style: "border: 3px solid #fff;"}
+        = image_tag "properties/#{@site.subdomain}.jpg"
 .container
   .row-fluid
     .span6
-      %h2.light Sign up for Condo Motion
+      %h2.light Condo Motion
       %p Create your resident account today!  Your property manager will be using Condo Motion to share important information and documents with you.  
       %p Coming soon, you'll also be able to report issues at your property and see the status as your property manager resolves the issue.
-      .row-fluid
-        %h4.span12.light Management Company
-      .row-fluid
-        .span4
-          %address
-            %p
-              = @site.company.name
-              %br/
-              = @site.company.address.address1
-              %br/
-              - unless @site.company.address.address2.blank?
-                = @site.company.address.address2 
-                %br/
-              = "#{@site.company.address.city}, #{@site.company.address.state} #{@site.company.address.zip}"
-              %br/
-              = @site.company.phone
-              %br/
-              = link_to "lparrish@hofeller.com", "mailto:lparrish@hofeller.com"
-    .span4.offset1
+      %h4.light= @site.company.name
+      %address
+        %p
+          = @site.company.address.address1
+          %br/
+          - unless @site.company.address.address2.blank?
+            = @site.company.address.address2 
+            %br/
+          = "#{@site.company.address.city}, #{@site.company.address.state} #{@site.company.address.zip}"
+          %br/
+          = @site.company.phone
+          %br/
+          = link_to "lparrish@hofeller.com", "mailto:lparrish@hofeller.com"
+    .span4.offset2
       .login-box
-        %h3.center Sign up
+        %h3.center{style: "color: #333;"} Sign up
         = simple_form_for(@user, url: signups_path, html: { class: 'form-inline' }) do |f|
           .content-wrap
             = f.error_notification
@@ -42,4 +45,4 @@
             = hidden_field_tag :site_id, @site.id
           .center.actions
             = f.button :submit, "Create Account", class: "btn-primary"
-      %p.center{style: "margin-top: 15px;"}= link_to "Sign in", new_user_session_url(subdomain: "www"), style: "color: #999;"
+    .span4
