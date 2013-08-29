@@ -1,14 +1,5 @@
-
-.header
-  .container
-    = link_to @site.name, '', class: "brand"
-    .pull-right
-      = link_to "Sign in", new_user_session_url(subdomain: "www")
-.container
-  .row-fluid{style: "padding: 20px 0;"}
-    .span12
-      %div{style: "border: 3px solid #fff;"}
-        = image_tag "properties/#{@site.subdomain}.jpg"
+= render "sites/public_nav"
+= render 'sites/public_photo'
 .container
   .row-fluid
     .span6
@@ -45,4 +36,3 @@
             = hidden_field_tag :site_id, @site.id
           .center.actions
             = f.button :submit, "Create Account", class: "btn-primary"
-    .span4

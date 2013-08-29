@@ -1,0 +1,6 @@
+.header
+  .container
+    = link_to @site.name, '', class: "brand"
+    .pull-right
+      = link_to "Sign up", site_signup_url(subdomain: @site.subdomain), style: "margin-right: 15px;"
+      = link_to "Sign in", new_user_session_url(subdomain: "www")
