@@ -1,7 +1,8 @@
 #portal-hero
-  = image_tag "properties/#{@site.subdomain}.jpg"
-  = image_tag "properties/gradient-right.png", style: "position: absolute; top: 0px; right: 200px;"
-  = image_tag "properties/gradient-left.png", style: "position: absolute; top: 0px; left: 200px;"
+  %div{style: "position: relative; display: inline-block;"}
+    = image_tag "properties/#{@site.subdomain}.jpg"
+    = image_tag "properties/gradient-left.png", style: "position: absolute; left: 0px; top: 0px;"
+    = image_tag "properties/gradient-right.png", style: "position: absolute; right: 0px; top: 0px;"
   #mask
     .container
       .row-fluid
