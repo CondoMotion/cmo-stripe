@@ -1,8 +1,8 @@
 #portal-hero
   %div{style: "position: relative; display: inline-block;"}
     = image_tag "properties/#{@site.subdomain}.jpg"
-    = image_tag "properties/gradient-left.png", style: "position: absolute; left: 0px; top: 0px;"
-    = image_tag "properties/gradient-right.png", style: "position: absolute; right: 0px; top: 0px;"
+    #gradient-left
+    #gradient-right
   #mask
     .container
       .row-fluid
@@ -12,7 +12,7 @@
           %ul#portal-nav.pull-right
             %li= link_to "Sign in", new_user_session_url(subdomain: "www")
             %li= link_to "Sign up", site_signup_url(subdomain: @site.subdomain), class: ("active" if params[:action] == "new")
-      %h2#portal-welcome.nixie.white Welcome to Condo Motion
+      %h2#portal-welcome.nixie Welcome to Condo Motion
 
 = content_for :head do
   :css
