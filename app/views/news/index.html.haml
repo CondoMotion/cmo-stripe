@@ -17,6 +17,9 @@
           %h3.pull-left 
             %i.icon-bullhorn
             News
+            - if @site
+              %span /
+              = link_to @site.name, root_url(subdomain: @site.subdomain)
           - if can? :create, Post
             = link_to "Add news", new_news_path, class: "btn btn-success pull-right" 
           /if can? :create, Site

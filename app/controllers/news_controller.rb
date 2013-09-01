@@ -3,8 +3,9 @@ class NewsController < ApplicationController
   # GET /news
   # GET /news.json
   def index
-    if params[:site] && !Site.find(params[:site]).nil?
-      @posts = Site.find(params[:site].to_i).posts.order("created_at DESC").where(postable_type: "News")
+    if params[:site] && !Site.find(params[:site].to_i).nil?
+      @site = Site.find(params[:site].to_i)
+      @posts = @site.posts.order("created_at DESC").where(postable_type: "News")
     else
       @posts = @company.posts.order("created_at DESC").where(postable_type: "News")
     end

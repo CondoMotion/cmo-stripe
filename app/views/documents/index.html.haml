@@ -17,6 +17,9 @@
           %h3.pull-left 
             %i.icon-file-alt
             Documents
+            - if @site
+              %span /
+              = link_to @site.name, root_url(subdomain: @site.subdomain)
           - if can? :create, Post
             = link_to "Add document", new_document_path, class: "btn btn-success pull-right" 
   .container-fluid
