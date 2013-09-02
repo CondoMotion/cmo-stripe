@@ -19,6 +19,11 @@ CmoStripe::Application.routes.draw do
   get "about",          to: "home#about",           as: :about,           constraints: lambda { |r| !r.subdomain.present? or r.subdomain == 'www' }
   get "featured-sites", to: "home#featured_sites",  as: :featured_sites,  constraints: lambda { |r| !r.subdomain.present? or r.subdomain == 'www' }
   get "contact",        to: "home#contact",         as: :contact,         constraints: lambda { |r| !r.subdomain.present? or r.subdomain == 'www' }
+ 
+  get "tabs",           to: "home#tabs",            as: :tabs,            constraints: lambda { |r| !r.subdomain.present? or r.subdomain == 'www' }
+  get "tab1",           to: "home#tab1",            as: :tab1,            constraints: lambda { |r| !r.subdomain.present? or r.subdomain == 'www' }
+  get "tab2",           to: "home#tab2",            as: :tab2,            constraints: lambda { |r| !r.subdomain.present? or r.subdomain == 'www' }
+  get "tab3",           to: "home#tab3",            as: :tab3,            constraints: lambda { |r| !r.subdomain.present? or r.subdomain == 'www' }
 
 
   root to: "news#index", constraints: lambda { |r| r.env["warden"].authenticate? }

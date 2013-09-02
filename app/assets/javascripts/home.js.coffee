@@ -5,4 +5,4 @@ $ ->
 	$(document).on "click", ".flash", ->
 		$(this).fadeOut()
 
-	$(".flash").delay(3000).fadeOut()
+  $(".flash").delay(3000).fadeOut()
