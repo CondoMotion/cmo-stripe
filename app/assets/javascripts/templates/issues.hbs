@@ -9,6 +9,7 @@
       {{#if isEditing}}
         {{view CmoStripe.EditIssueView }}
       {{else}}
+
         {{title}}
         <a href="#" {{action "removeIssue"}}>delete</a>
         <a href="#" {{action "editIssue"}}>edit</a>

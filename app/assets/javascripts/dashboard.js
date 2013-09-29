@@ -13,7 +13,9 @@
 //= require_tree ./views
 
 // for more details see: http://emberjs.com/guides/application/
-CmoStripe = Ember.Application.create();
+CmoStripe = Ember.Application.create({
+  LOG_TRANSITIONS: true
+});
 
 // $ ->
 //         $.get('/issues.json', data:"", (response) ->
