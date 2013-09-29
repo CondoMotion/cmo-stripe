@@ -1,9 +1,13 @@
 CmoStripe::Application.routes.draw do
   resources :documents
   resources :news
+  resources :issues
+
+  get "/dashboard", to: 'dashboard#index', as: :dashboard
+  
 
   mount StripeEvent::Engine => '/stripe'
-  
+
   get '/',        to: 'sites#show',                      constraints: lambda { |r| r.subdomain.present? && r.subdomain != 'www' }
   get '/edit',    to: 'sites#edit',    as: :edit_site,   constraints: lambda { |r| r.subdomain.present? && r.subdomain != 'www' }
   get '/sign_up', to: 'signups#new',   as: :site_signup, constraints: lambda { |r| r.subdomain.present? && r.subdomain != 'www' }

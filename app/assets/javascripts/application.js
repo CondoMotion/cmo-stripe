@@ -17,4 +17,11 @@
 //= require chosen-jquery
 //= require wysihtml5-0.3.0
 //= require bootstrap-wysihtml5
-//= require_tree .
+//= require companies.js.coffee
+//= require sites.js.coffee
+//= require posts.js.coffee
+//= require news.js.coffee
+//= require forms.js.coffee
+//= require documents.js.coffee
+//= require home.js.coffee
+//= require issues.js.coffee

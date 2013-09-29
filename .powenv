@@ -1,0 +1,12 @@
+export PATH ; PATH="/Users/obowen/.rvm/gems/ruby-1.9.3-p194@cmo-stripe/bin:/Users/obowen/.rvm/gems/ruby-1.9.3-p194@global/bin:/Users/obowen/.rvm/rubies/ruby-1.9.3-p194/bin:/Users/obowen/.rvm/bin:$PATH"
+export rvm_env_string ; rvm_env_string='ruby-1.9.3-p194@cmo-stripe'
+export rvm_path ; rvm_path='/Users/obowen/.rvm'
+export rvm_ruby_string ; rvm_ruby_string='ruby-1.9.3-p194'
+export rvm_gemset_name ; rvm_gemset_name='cmo-stripe'
+export RUBY_VERSION ; RUBY_VERSION='ruby-1.9.3-p194'
+export GEM_HOME ; GEM_HOME='/Users/obowen/.rvm/gems/ruby-1.9.3-p194@cmo-stripe'
+export GEM_PATH ; GEM_PATH='/Users/obowen/.rvm/gems/ruby-1.9.3-p194@cmo-stripe:/Users/obowen/.rvm/gems/ruby-1.9.3-p194@global'
+export MY_RUBY_HOME ; MY_RUBY_HOME='/Users/obowen/.rvm/rubies/ruby-1.9.3-p194'
+export IRBRC ; IRBRC='/Users/obowen/.rvm/rubies/ruby-1.9.3-p194/.irbrc'
+unset MAGLEV_HOME
+unset RBXOPT
