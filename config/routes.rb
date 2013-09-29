@@ -4,7 +4,7 @@ CmoStripe::Application.routes.draw do
   resources :issues
 
   get "/dashboard", to: 'dashboard#index', as: :dashboard
-  
+  get "/dashboard/*other", to: 'dashboard#index', as: :dashboard
 
   mount StripeEvent::Engine => '/stripe'
 
@@ -47,7 +47,9 @@ CmoStripe::Application.routes.draw do
   resources :users
   resources :messages
   resources :companies
+  # both /properties and /sites map to the sites resource
   resources :sites, path: "properties"
+  resources :sites
   resources :pages do
     collection { post :sort }
   end
