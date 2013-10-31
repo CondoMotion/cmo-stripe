@@ -41,8 +41,10 @@
               - if can? :read, post
                 %tr.document_post
                   %td= link_to post.title, post.postable.attachment.attachment.url if (!post.postable.nil? && !post.postable.attachment.nil? && post.postable.attachment.attachment?)
-                  - if current_user.post_site_manager(post.site_ids)
-                    %td= post.sites.map(&:name).join(", ")
+                  - if current_user.manager
+                    %td
+                      - if current_user.post_site_manager(post.site_ids)
+                        = post.sites.map(&:name).join(", ")
                   / %td= post.roles.map{|role| role.name.titleize }.join(", ")
                   %td= post.user.email if post.user
                   - if can? :edit, post
