@@ -1,1 +1,0 @@
-CmoStripe.SiteController = Ember.ObjectController

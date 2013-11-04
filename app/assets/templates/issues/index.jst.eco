@@ -1,0 +1,8 @@
+<br>
+There are <%= @issues.length %> issue(s).
+<ul>
+<% console.log(@issues) %>
+<% for issue in @issues.models: %>
+  <li><%= issue.get('title') %></li>
+<% end %>        
+</ul>

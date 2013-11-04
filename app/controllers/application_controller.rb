@@ -45,4 +45,11 @@ class ApplicationController < ActionController::Base
     end
   end
   
+  # NOTE: with root:false, the json output from ouer serializers will 
+  #      not contain  the root identifier object. This keeps things 
+  #      compatible with what backbone expects.
+  def default_serializer_options
+    {root: false}
+  end
+
 end

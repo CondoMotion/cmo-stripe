@@ -1,3 +1,0 @@
-CmoStripe.SitesController = Ember.ArrayController
-
-

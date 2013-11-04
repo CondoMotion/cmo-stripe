@@ -1,0 +1,14 @@
+<b>Sites</b>
+<ul>
+  <li>
+    <a href="#" class="siteLink" data-id="0">All</a>
+  </li>
+  <% for site in @sites.models: %>
+    <li>
+      <a class="siteLink" data-id="<%= site.get('id')%>" 
+         href="#site/<%= site.get('id') %>">
+        <%= site.get('name') %>
+      </a>
+    </li>
+  <% end %>        
+</ul>

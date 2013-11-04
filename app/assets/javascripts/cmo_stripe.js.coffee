@@ -1,8 +1,18 @@
-#= require ./store
-#= require_tree ./models
-#= require_tree ./controllers
-#= require_tree ./views
-#= require_tree ./helpers
-#= require_tree ./templates
-#= require_tree ./routes
-#= require_self
+window.CmoStripe =
+  Models: {}
+  Collections: {}
+  Views: {}
+  Routers: {}
+  
+  init: ->
+    @appState = new CmoStripe.Models.State
+
+    @ev = new CmoStripe.Views.Events
+
+    new CmoStripe.Routers.Dashboard
+    Backbone.history.start()
+
+$(document).ready ->
+  CmoStripe.init()
+
+  
