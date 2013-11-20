@@ -6,11 +6,11 @@
   </div>
 </div>
 
-<div style="padding-left:20px;float:left;">
+<div id="mainContent">
 <div id="filterLinks">
 <a href="#" id="activityLink">Activity</a> |
 <a href="#" id="issuesLink">Issues</a>
-</div>
+<div>
    <div id="activityPanel"><br>activity goes here...</div>
    <div id="issuesPanel"></div>
 </div>

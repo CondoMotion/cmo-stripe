@@ -1,8 +1,34 @@
+
+<a href="#issueModal" role="button" class="btn pull-right" data-toggle="modal">New Issue</a>
+
+<div class="clear-fix"></div>
 <br>
 There are <%= @issues.length %> issue(s).
 <ul>
-<% console.log(@issues) %>
 <% for issue in @issues.models: %>
   <li><%= issue.get('title') %></li>
 <% end %>        
 </ul>
+
+
+<!-- Modal -->
+<div id="issueModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="issueModalLabel" aria-hidden="true">
+  <form id="newIssue">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    <h3 id="issueModalLabel">New Issue</h3>
+  </div>
+  <div class="modal-body">
+
+             Title <br/>
+             <input type="text" name="title" id="newIssueTitle">
+              <br/>
+             Details <br/>
+             <textarea name="details" id="newIssueDetails"></textarea>
+  </div>
+  <div class="modal-footer">
+    <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+    <input type="submit" class="btn btn-primary" value="Save changes">
+  </div>
+  </form>
+</div>
