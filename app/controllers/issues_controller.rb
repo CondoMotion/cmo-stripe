@@ -11,7 +11,9 @@ class IssuesController < ApplicationController
   end
 
   def create
-    respond_with Issue.create(params[:issue])
+    site = Site.find(params[:site_id])
+    respond_with site.issues.create(params[:issue])
+    #respond_with Issue.create(params[:issue])
   end
 
   def update
