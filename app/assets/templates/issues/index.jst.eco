@@ -1,5 +1,5 @@
 
-<a href="#issueModal" role="button" class="btn pull-right" data-toggle="modal">New Issue</a>
+<a href="#issueModal" id="createIssueBtn" role="button" class="btn pull-right" data-toggle="modal">New Issue</a>
 
 <div class="clear-fix"></div>
 <br>
@@ -8,7 +8,8 @@ There are <%= @issues.length %> issue(s).
 <% for issue in @issues.models: %>
   <tr>
     <td><%= issue.get('title') %></td>
-    <td>&nbsp <a class="deleteIssue" data-id="<%= issue.get('id') %>" href="#">delete</a></td>
+    <td>&nbsp  <a class="deleteIssue" data-id="<%= issue.get('id') %>" href="#">delete</a></td>
+    <td>&nbsp  <a class="editIssue" data-id="<%= issue.get('id') %>" href="#">edit</a></td>
   </tr>
 <% end %>        
 </table>
@@ -16,7 +17,7 @@ There are <%= @issues.length %> issue(s).
 
 <!-- Modal -->
 <div id="issueModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="issueModalLabel" aria-hidden="true">
-  <form id="newIssue">
+  <form id="issueForm">
   <div class="modal-header">
     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
     <h3 id="issueModalLabel">New Issue</h3>
@@ -24,14 +25,14 @@ There are <%= @issues.length %> issue(s).
   <div class="modal-body">
 
              Title <br/>
-             <input type="text" name="title" id="newIssueTitle">
+             <input type="text" name="title" id="issueFormTitle">
               <br/>
              Details <br/>
-             <textarea name="details" id="newIssueDetails"></textarea>
+             <textarea name="details" id="issueFormDetails"></textarea>
   </div>
   <div class="modal-footer">
     <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
-    <input type="submit" class="btn btn-primary" value="Save changes">
+    <input type="submit" id="issueFormSubmit" class="btn btn-primary" value="Submit">
   </div>
   </form>
 </div>
