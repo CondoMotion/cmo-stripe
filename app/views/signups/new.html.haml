@@ -23,12 +23,13 @@
         = simple_form_for(@user, url: signups_path, html: { class: 'form-inline' }) do |f|
           .content-wrap
             = f.error_notification
-            = f.input :name, label: false, placeholder: "Full Name", autofocus: true, input_html: { class: "span12" }
-            = f.input :email, required: true, label: false, placeholder: "Email address", input_html: { class: "span12" }
-            = f.input :password, required: true, label: false, placeholder: "Password", input_html: { class: "span12" }
-            = f.input :password_confirmation, required: true, label: false, placeholder: "Password confirmation", input_html: { class: "span12" }
+            = f.input :name, placeholder: "Full Name", autofocus: true, input_html: { class: "span12" }
+            = f.input :email, required: true, placeholder: "Email address", input_html: { class: "span12" }
+            = f.input :password, required: true, placeholder: "Password", input_html: { class: "span12" }
+            = f.input :password_confirmation, required: true, placeholder: "Password confirmation", input_html: { class: "span12" }
             .control-group.required
               .controls
+                = label_tag :signup_password, raw("<abbr title='required'>*</abbr> Site Password")
                 = password_field_tag :signup_password, @password.nil? ? "" : @password, class: "span12 string required", placeholder: "Site password"
             %span.help-block#signup_password_help{style: "display: none;"}= "This is the password your management company set up so only residents can create accounts. Contact your property manager if you need the password."
             = hidden_field_tag :site_id, @site.id

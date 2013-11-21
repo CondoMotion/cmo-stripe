@@ -6,8 +6,8 @@
         %h3{style: "font-weight: 100; margin: 0 0 20px 0;"} Sign in
         = simple_form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f|
           .row-fluid
-            = f.input :email, :autofocus => true, label: false, placeholder: "Email", input_html: {class: "span12"}
-            = f.input :password, label: false, placeholder: "Password", input_html: {class: "span12"}
+            = f.input :email, :autofocus => true, placeholder: "Email", input_html: {class: "span12"}
+            = f.input :password, placeholder: "Password", input_html: {class: "span12"}
           .control-group
             .controls
               %label.checkbox{for: "user_remember_me", style: "font-weight: normal;"}
