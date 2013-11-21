@@ -20,7 +20,7 @@
     %h5 Navigation
     %ul
       - if user_signed_in?
-        %li= link_to raw("<i class='icon-inbox'></i> Issues"), issues_url(subdomain: "www"), class: ("active" if params[:controller] == "issues")
+        / %li= link_to raw("<i class='icon-inbox'></i> Issues"), issues_url(subdomain: "www"), class: ("active" if params[:controller] == "issues")
         %li= link_to raw("<i class='icon-bullhorn'></i> News"), news_index_url(subdomain: "www"), class: ("active" if params[:controller] == "news")
         %li= link_to raw("<i class='icon-file-alt'></i> Documents"), documents_url(subdomain: "www"), class: ("active" if params[:controller] == "documents")
         %li= link_to raw("<i class='icon-group'></i> People"), users_url(subdomain: "www"), class: ("active" if params[:controller] == "users" && %w[index show new edit].include?(params[:action])) if can? :read, User

@@ -5,7 +5,6 @@ class Site < ActiveRecord::Base
   has_many :posts, through: :postings
   has_many :memberships, dependent: :destroy
   has_many :users, through: :memberships
-  has_many :issues
 
   # has_many :documents, through: :posts, source: :postable, source_type: "Document"
   # has_many :news_posts, through: :posts, source: :postable, source_type: "News"

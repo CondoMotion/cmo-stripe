@@ -5,7 +5,6 @@ class User < ActiveRecord::Base
   belongs_to :company
   has_many :memberships, dependent: :destroy
   has_many :sites, through: :memberships
-  has_many :issues
 
   accepts_nested_attributes_for :owned_company
   accepts_nested_attributes_for :memberships, allow_destroy: true
