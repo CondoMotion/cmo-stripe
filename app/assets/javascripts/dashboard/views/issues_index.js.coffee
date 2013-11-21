@@ -3,7 +3,8 @@ class Cmo.Views.IssuesIndex extends Backbone.View
   template: JST['issues/index']
 
   events:
-    'submit #newIssue': 'createIssue'
+    'submit #newIssue'  : 'createIssue'
+    'click .deleteIssue': 'deleteIssue'
 
   initialize: ->
     @listenTo(@collection, 'reset change', @render)
@@ -33,3 +34,12 @@ class Cmo.Views.IssuesIndex extends Backbone.View
 #    @collection.add(m)
     @collection.create({title: title, details: details, site_id: siteId})
     $('#issueModal').modal('hide')
+
+
+  deleteIssue: (event) ->
+    event.preventDefault()
+    issueId = $(event.target).attr("data-id")
+    @collection.get(issueId).destroy()
+    console.log(@collection)
+    #@collection.sync()
+    #alert('rm')

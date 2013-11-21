@@ -4,11 +4,14 @@
 <div class="clear-fix"></div>
 <br>
 There are <%= @issues.length %> issue(s).
-<ul>
+<table>
 <% for issue in @issues.models: %>
-  <li><%= issue.get('title') %></li>
+  <tr>
+    <td><%= issue.get('title') %></td>
+    <td>&nbsp <a class="deleteIssue" data-id="<%= issue.get('id') %>" href="#">delete</a></td>
+  </tr>
 <% end %>        
-</ul>
+</table>
 
 
 <!-- Modal -->
