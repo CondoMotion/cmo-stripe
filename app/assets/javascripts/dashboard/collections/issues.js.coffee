@@ -1,5 +1,5 @@
 class Cmo.Collections.Issues extends Backbone.Collection
-  url: '/issues.json'
+  url: '/issues'#.json'
   model: Cmo.Models.Issue
 
   bySite: (siteId) ->

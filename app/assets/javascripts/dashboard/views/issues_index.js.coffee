@@ -7,7 +7,7 @@ class Cmo.Views.IssuesIndex extends Backbone.View
     'click .deleteIssue': 'deleteIssue'
 
   initialize: ->
-    @listenTo(@collection, 'reset change', @render)
+    @listenTo(@collection, 'reset change remove', @render)
     @listenTo(Cmo.state,   'reset change', @render)
     @render()
     
@@ -26,12 +26,6 @@ class Cmo.Views.IssuesIndex extends Backbone.View
     siteId = Cmo.state.get('siteId')
     title = $('#newIssueTitle').val()
     details = $('#newIssueDetails').val()
-#    console.log(@collection)
-#    m = new Cmo.Models.Issue({title:   siteTitle, details: "test", site_id: siteId})
-#    m.save()
-#    console.log('created model', m)
-    
-#    @collection.add(m)
     @collection.create({title: title, details: details, site_id: siteId})
     $('#issueModal').modal('hide')
 
@@ -40,6 +34,4 @@ class Cmo.Views.IssuesIndex extends Backbone.View
     event.preventDefault()
     issueId = $(event.target).attr("data-id")
     @collection.get(issueId).destroy()
-    console.log(@collection)
-    #@collection.sync()
-    #alert('rm')
+
