@@ -6,7 +6,7 @@
   = f.input :website, input_html: { class: "span12" }
   .row-fluid
     .span1
-      = image_tag @company.logo.url(:thumb) if @company.logo
+      = image_tag @company.logo.url(:thumb) unless @company.logo.blank?
     .span5
       = f.input :logo, as: :file, input_html: { class: "span12" }
     .span6
