@@ -10,6 +10,8 @@ class DocumentsController < ApplicationController
       @posts = @company.posts.order("created_at DESC").where(postable_type: "Document")
     end
 
+    @posts = @posts.page(params[:page]).per(10)
+
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @documents }

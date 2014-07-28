@@ -52,6 +52,7 @@
                       .btn-group
                         = link_to raw("<i class='icon-pencil'></i>"), edit_document_path(post.postable), class: "btn btn-small" if !post.postable.nil?
                         = link_to raw("<i class='icon-trash'></i>"), post.postable, class: "btn btn-small delete_post", method: :delete, confirm: "Are you sure?", remote: true
+          = paginate @posts
         - else
           .center.no-content
             %i.icon-file-alt

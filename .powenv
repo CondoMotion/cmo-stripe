@@ -1,0 +1,8 @@
+export PATH="/Users/earlynovrock/.rvm/gems/ruby-1.9.3-p362@cmo-stripe/bin:/Users/earlynovrock/.rvm/gems/ruby-1.9.3-p362@global/bin:/Users/earlynovrock/.rvm/rubies/ruby-1.9.3-p362/bin:$PATH"
+export GEM_HOME='/Users/earlynovrock/.rvm/gems/ruby-1.9.3-p362@cmo-stripe'
+export GEM_PATH='/Users/earlynovrock/.rvm/gems/ruby-1.9.3-p362@cmo-stripe:/Users/earlynovrock/.rvm/gems/ruby-1.9.3-p362@global'
+export MY_RUBY_HOME='/Users/earlynovrock/.rvm/rubies/ruby-1.9.3-p362'
+export IRBRC='/Users/earlynovrock/.rvm/rubies/ruby-1.9.3-p362/.irbrc'
+unset MAGLEV_HOME
+unset RBXOPT
+export RUBY_VERSION='ruby-1.9.3-p362'
